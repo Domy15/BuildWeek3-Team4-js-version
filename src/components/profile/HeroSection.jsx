@@ -10,6 +10,7 @@ const HeroSection = ({param}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   const fetchProfile = async () => {
     const id = param || "me"; 
     try {
@@ -41,13 +42,13 @@ const HeroSection = ({param}) => {
 
   useEffect(() => {
     fetchProfile();
-  }, [param]);
+  }, [param, profile.update]);
 
   if (error) {
     return <div className="text-danger text-center mt-4">{error}</div>;
   }
 
-  if (!profile) {
+  if (!profile.profile) {
     return <div className="text-center mt-4">Loading...</div>;
   }
 
@@ -65,14 +66,14 @@ const HeroSection = ({param}) => {
             />
 
             <img
-              src={profile.image || "https://via.placeholder.com/150"}
+              src={profile.profile.image || "https://via.placeholder.com/150"}
               alt="Profile"
               className="rounded-circle profilePicture position-absolute"
             />
 
             <div className="d-flex align-items-end">
               <h1 className="fw-bold titleProfile mx-3">
-                {profile.name} {profile.surname}
+                {profile.profile.name} {profile.profile.surname}
               </h1>
               <Button
                 variant="link"
@@ -83,7 +84,7 @@ const HeroSection = ({param}) => {
             </div>
             <div className="p-3">
               <p className="h5 fw-light mb-1 text-black fw-bold">
-                {profile.title}
+                {profile.profile.title}
               </p>
               <p className="mb-2 text-muted">{profile.area}</p>
               <div className="d-flex gap-2">
@@ -98,7 +99,7 @@ const HeroSection = ({param}) => {
           </div>
           <div className="p-3 border rounded-2 my-3">
             <h4 className="">Informazioni</h4>
-            <p>{profile.bio}</p>
+            <p>{profile.profile.bio}</p>
           </div>
         </div>
       </div>

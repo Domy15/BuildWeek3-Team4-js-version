@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 const HomeJobs = ({ searchQuery }) => {
   const [randomJobs, setRandomJobs] = useState([]);
 
@@ -13,7 +14,7 @@ const HomeJobs = ({ searchQuery }) => {
       );
       if (response.ok) {
         const { data } = await response.json();
-        const random = [...data].sort(() => Math.random() - 0.5).slice(0, 4);
+        const random = [...data].sort(() => Math.random() - 0.5).slice(0, 3);
         setRandomJobs(random);
       } else {
         alert("Errore nel recupero dei dati");
@@ -26,13 +27,13 @@ const HomeJobs = ({ searchQuery }) => {
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
     return date.toLocaleString({
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',      
-      hour24: true, 
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour24: true,
     });
   };
   return (
@@ -52,6 +53,7 @@ const HomeJobs = ({ searchQuery }) => {
         {randomJobs.map((job) => (
           <div
             key={job._id}
+            className="bg-light"
             style={{
               border: "1px solid #ddd",
               borderRadius: "8px",
@@ -80,7 +82,7 @@ const HomeJobs = ({ searchQuery }) => {
             </a>
           </div>
         ))}
-      </div>
+      </div>      
     </div>
   );
 };

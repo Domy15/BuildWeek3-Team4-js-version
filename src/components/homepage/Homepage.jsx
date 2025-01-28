@@ -7,12 +7,12 @@ const Homepage = () => {
   return (
     <Container> 
       <Row> 
-        <Col md ={3}>
+        <Col md ={3} sm={12}>
         </Col>
-        <Col md ={6}>
+        <Col lg ={6} sm={12} md ={7}>
         <NewsHome />
         </Col>
-        <Col md ={3}>
+        <Col lg ={3} md ={2} className=" d-lg-block d-sm-none d-xxs-none">
         <HomeJobs/>
         </Col>
          </Row>               

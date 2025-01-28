@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -8,9 +8,11 @@ const HomePage = () => {
   const [posts, setPosts] = useState([]);
   const [newPostText, setNewPostText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showmore, setShowmore] = useState(6);
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
-  const AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+  const AUTH_TOKEN =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
 
   const fetchPosts = async () => {
     try {
@@ -58,7 +60,11 @@ const HomePage = () => {
       console.error("Error creating post:", error.message);
     }
   };
-
+  const handleShowMore =()=>{
+    setShowmore( showmore + 6 )
+  }
+  //creare uno stato numero
+  //show more
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -88,8 +94,7 @@ const HomePage = () => {
       {loading ? (
         <p>Loading posts...</p>
       ) : (
-        posts.slice(0, 6).map((post) => (
-            
+        posts.slice(0, showmore).map((post) => (
           <Card key={post._id} className="mb-4">
             {console.log(post)}
             <Card.Body>
@@ -111,8 +116,14 @@ const HomePage = () => {
           </Card>
         ))
       )}
+    <div className="text-center mt-4">
+        <button className="btn btn-primary" onClick={handleShowMore}>
+          Show More
+        </button>
+      </div>
     </div>
   );
 };
+
 
 export default HomePage;

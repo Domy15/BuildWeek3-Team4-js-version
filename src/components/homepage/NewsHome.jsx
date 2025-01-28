@@ -88,12 +88,14 @@ const HomePage = () => {
       {loading ? (
         <p>Loading posts...</p>
       ) : (
-        posts.map((post) => (
+        posts.slice(0, 6).map((post) => (
+            
           <Card key={post._id} className="mb-4">
+            {console.log(post)}
             <Card.Body>
               <div className="d-flex align-items-center mb-3">
                 <Image
-                  src="https://placecats.com/40/40"
+                  src={"https://placecats.com/40/40"}
                   roundedCircle
                   className="me-3"
                 />

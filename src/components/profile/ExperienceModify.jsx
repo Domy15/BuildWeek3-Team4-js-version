@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import { FloatingLabel, Form } from "react-bootstrap";
 
@@ -16,7 +16,7 @@ const ExperienceModify = (props) => {
     description: props.item.description,
     area: props.item.area,
   });
-  //   console.log(props.item.startDate);
+
   const putExperience = async () => {
     try {
       const URL = `api.herokuapp.com/api/profile/67975ee416f6350015fecb97/experiences/${props.item._id}`;
@@ -40,9 +40,13 @@ const ExperienceModify = (props) => {
   };
   return (
     <>
-      <Form className="modifyForm">
+      <Form className="modifyForm my-3">
         <div className="mb-3">
-          <FloatingLabel controlId="floatingInput" label="Qualifica">
+          {/* <FloatingLabel
+            controlId="floatingInput"
+            label="Qualifica"
+            className=""
+          >
             <Form.Control
               type="text"
               size="sm"
@@ -51,10 +55,24 @@ const ExperienceModify = (props) => {
               value={value.role}
               onChange={(e) => setValue({ ...value, role: e.target.value })}
             />
-          </FloatingLabel>
+          </FloatingLabel> */}
 
-          <FloatingLabel>
-            Azienda o organizzazione
+          <InputGroup className="mb-1">
+            <InputGroup.Text id="basic-addon2">Qualifica</InputGroup.Text>
+            <Form.Control
+              placeholder="Esempio: Retail Sales Manager"
+              aria-label="Qualifica"
+              aria-describedby="basic-addon2"
+              required
+              value={value.role}
+              onChange={(e) => setValue({ ...value, role: e.target.value })}
+            />
+          </InputGroup>
+
+          {/* <FloatingLabel
+            controlId="floatingInput"
+            label="Azienda o organizzazione"
+          >
             <Form.Control
               type="text"
               size="sm"
@@ -63,15 +81,24 @@ const ExperienceModify = (props) => {
               value={value.company}
               onChange={(e) => setValue({ ...value, company: e.target.value })}
             />
-          </FloatingLabel>
+          </FloatingLabel> */}
 
-          <Form.Check
-            type="checkbox"
-            label="Attualmente ricopro questo incarico"
-          />
+          <InputGroup className="mb-1">
+            <InputGroup.Text id="basic-addon2">
+              Azienda o organizzazione
+            </InputGroup.Text>
+            <Form.Control
+              placeholder="Esempio: Retex"
+              aria-label="Qualifica"
+              aria-describedby="basic-addon2"
+              required
+              value={value.role}
+              onChange={(e) => setValue({ ...value, company: e.target.value })}
+            />
+          </InputGroup>
+
           <div className="d-flex gap-5">
-            <FloatingLabel>
-              Data di inizio
+            {/* <FloatingLabel controlId="floating3" label="Data di inizio">
               <Form.Control
                 type="date"
                 size="sm"
@@ -82,10 +109,40 @@ const ExperienceModify = (props) => {
                   setValue({ ...value, startDate: e.target.value })
                 }
               />
-            </FloatingLabel>
+            </FloatingLabel> */}
 
-            <FloatingLabel>
-              Data di fine
+            <InputGroup className="mb-1">
+              <InputGroup.Text id="basic-addon2">
+                Data di inizio
+              </InputGroup.Text>
+              <Form.Control
+                type="date"
+                size="sm"
+                name="start"
+                required
+                value={value.startDate}
+                onChange={(e) =>
+                  setValue({ ...value, startDate: e.target.value })
+                }
+              />
+            </InputGroup>
+
+            <InputGroup className="mb-1">
+              <InputGroup.Text id="basic-addon2">Data di fine</InputGroup.Text>
+              <Form.Control
+                type="date"
+                size="sm"
+                name="start"
+                required
+                value={value.endDate}
+                onChange={(e) =>
+                  setValue({ ...value, endDate: e.target.value })
+                }
+              />
+            </InputGroup>
+
+            {/* 
+            <FloatingLabel controlId="floatingInput" label="Data di fine">
               <Form.Control
                 type="date"
                 size="sm"
@@ -95,35 +152,57 @@ const ExperienceModify = (props) => {
                   setValue({ ...value, endDate: e.target.value })
                 }
               />
-            </FloatingLabel>
+            </FloatingLabel> */}
           </div>
-
-          <FloatingLabel>Località</FloatingLabel>
-          <Form.Control
-            type="text"
-            size="sm"
-            placeholder="Esempio: Milano, Italia"
-            required
-            value={value.area}
-            onChange={(e) => setValue({ ...value, area: e.target.value })}
-          />
-
-          <FloatingLabel>
-            Descrizione
+          <InputGroup className="mb-1">
+            <InputGroup.Text id="basic-addon2">Località</InputGroup.Text>
             <Form.Control
-              as="textarea"
+              type="text"
+              placeholder="Esempio: Milano, Italia"
+              required
+              value={value.area}
+              onChange={(e) => setValue({ ...value, area: e.target.value })}
+            />
+          </InputGroup>
+          <InputGroup className="mb-1">
+            <InputGroup.Text id="basic-addon2">Descrizione</InputGroup.Text>
+            <Form.Control
+              type="text"
               size="sm"
               placeholder="Descrivi la tua esperienza"
-              style={{ height: "100px" }}
               required
               value={value.description}
               onChange={(e) =>
                 setValue({ ...value, description: e.target.value })
               }
             />
+          </InputGroup>
+          {/* 
+          <FloatingLabel controlId="floatingInput" label="Località">
+            <Form.Control
+              type="text"
+              placeholder="Esempio: Milano, Italia"
+              required
+              value={value.area}
+              onChange={(e) => setValue({ ...value, area: e.target.value })}
+            />
           </FloatingLabel>
+          <FloatingLabel controlId="floatingInput" label="Descrizione">
+            <Form.Control
+              as="textarea"
+              size="sm"
+              placeholder="Descrivi la tua esperienza"
+              style={{ height: "50px" }}
+              required
+              value={value.description}
+              onChange={(e) =>
+                setValue({ ...value, description: e.target.value })
+              }
+            />
+          </FloatingLabel> */}
         </div>
-        <Button variant="primary" type="submit">
+        <div className="text-end">
+           <Button variant="primary" type="submit">
           Submit
         </Button>
         <Button
@@ -136,6 +215,8 @@ const ExperienceModify = (props) => {
         >
           Annulla
         </Button>
+        </div>
+       
       </Form>
     </>
   );

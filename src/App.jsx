@@ -14,6 +14,7 @@ function App() {
       {/* <LinkedinNavbar /> */}
       <Routes>
         <Route path="/" element={<ProfilePage />} />
+        <Route path= '/profile/:id' element= {<ProfilePage/>}/>
         <Route path="/profile/put" element={<ProfilePut />} />
       </Routes>
       <FooterSection />

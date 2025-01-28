@@ -30,7 +30,6 @@ const NewsHome = () => {
 
       const data = await response.json();
       setPosts(data.reverse());
-      console.log(data);
     } catch (error) {
       console.error("Error fetching posts:", error.message);
     } finally {
@@ -80,6 +79,7 @@ const NewsHome = () => {
       });
       if (response.ok) {
         console.log('immagine caricata');
+        fetchPosts();
       } else {
         throw new Error('Errore');
       }

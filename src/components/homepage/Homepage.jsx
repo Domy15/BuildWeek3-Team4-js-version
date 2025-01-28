@@ -1,11 +1,22 @@
 
+import { Col, Container, Row } from "react-bootstrap";
 import NewsHome from "../homepage/NewsHome";
+import HomeJobs from "./HomeJobs";
 
 const Homepage = () => {
   return (
-    <div>      
-        <NewsHome />       
-    </div>
+    <Container> 
+      <Row> 
+        <Col md ={3}>
+        </Col>
+        <Col md ={6}>
+        <NewsHome />
+        </Col>
+        <Col md ={3}>
+        <HomeJobs/>
+        </Col>
+         </Row>               
+    </Container>
   );
 };
 

@@ -5,6 +5,7 @@ import "./style.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
 import FooterSection from "./components/Footer";
+import NewsHome from "./components/NewsHome"
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProfilePage />} />
       </Routes>
+      <NewsHome />
       <FooterSection />
     </BrowserRouter>
   )

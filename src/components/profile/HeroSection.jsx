@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { PencilFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 
-const HeroSection = ({param}) => {
+const HeroSection = ({ param }) => {
   const profile = useSelector((state) => state.user);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const fetchProfile = async () => {
-    const id = param || "me"; 
+    const id = param || "me";
     try {
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
@@ -41,13 +41,13 @@ const HeroSection = ({param}) => {
 
   useEffect(() => {
     fetchProfile();
-  }, [param]);
+  }, [param, profile.update]);
 
   if (error) {
     return <div className="text-danger text-center mt-4">{error}</div>;
   }
 
-  if (!profile) {
+  if (!profile.profile) {
     return <div className="text-center mt-4">Loading...</div>;
   }
 
@@ -55,24 +55,24 @@ const HeroSection = ({param}) => {
     <div className="mt-5">
       <div>
         <div>
-          <div className="bg-light position-relative">
+          <div className="bg-light position-relative rounded bg-white border border-1">
             {/* Profile Image */}
 
             <img
               src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
               alt="background"
-              className="bckImageProfile img-fluid w-100 "
+              className="bckImageProfile img-fluid w-100 rounded-top"
             />
 
             <img
-              src={profile.image || "https://via.placeholder.com/150"}
+              src={profile.profile.image || "https://via.placeholder.com/150"}
               alt="Profile"
               className="rounded-circle profilePicture position-absolute"
             />
 
             <div className="d-flex align-items-end">
               <h1 className="fw-bold titleProfile mx-3">
-                {profile.name} {profile.surname}
+                {profile.profile.name} {profile.profile.surname}
               </h1>
               <Button
                 variant="link"
@@ -83,22 +83,30 @@ const HeroSection = ({param}) => {
             </div>
             <div className="p-3">
               <p className="h5 fw-light mb-1 text-black fw-bold">
-                {profile.title}
+                {profile.profile.title}
               </p>
               <p className="mb-2 text-muted">{profile.area}</p>
               <div className="d-flex gap-2">
                 <Button variant="primary">Connect</Button>
                 <Button variant="outline-secondary">Message</Button>
                 <Button variant="outline-secondary">More</Button>
-                <Button variant="transparent" className="ms-auto" onClick={() => {navigate('/profile/put')}}>
-                  <PencilFill size={25} />
-                </Button>
+                {!param && (
+                  <Button
+                    variant="transparent"
+                    className="ms-auto"
+                    onClick={() => {
+                      navigate("/profile/put");
+                    }}
+                  >
+                    <PencilFill size={25} />
+                  </Button>
+                )}
               </div>
             </div>
           </div>
-          <div className="p-3 border rounded-2 my-3">
+          <div className="p-3 border rounded-2 my-3 bg-white">
             <h4 className="">Informazioni</h4>
-            <p>{profile.bio}</p>
+            <p>{profile.profile.bio}</p>
           </div>
         </div>
       </div>

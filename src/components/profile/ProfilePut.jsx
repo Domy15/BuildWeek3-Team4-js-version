@@ -1,43 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const ProfilePut = () => {
   const navigate = useNavigate();
-  const [profileBody, setProfileBody] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    username: "",
-    bio: "",
-    title: "",
-    area: "",
-  });
+  const dispatch = useDispatch();
+  const user = useSelector((state) => (state.user));
+  const [profileBody, setProfileBody] = useState(user.profile);
   const [imgProfile, setImgProfile] = useState({img: null});
-
-  const fetchProfile = async () => {
-    try {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
-
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/me",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setProfileBody(data);
-      } else {
-        throw new Error("errore nella fetch dei dati");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const putData = async () => {
     try {
@@ -54,7 +25,6 @@ const ProfilePut = () => {
       );
       if (response.ok) {
         console.log('dati aggioranti');
-        
       } else {
         throw new Error("Errore nell'invio dei dati");
       }
@@ -85,6 +55,9 @@ const ProfilePut = () => {
       );
       if (response.ok) {
         console.log('immagine del profilo aggiornata');
+        dispatch({
+          type: "UPDATE"
+        })
       } else {
         throw new Error("errore nella fetch dei dati");
       }
@@ -93,18 +66,14 @@ const ProfilePut = () => {
     }
   };
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
   return (
     <Container>
       <Form
         onSubmit={(e) => {
           e.preventDefault();
-          putData();
           postPfp();
-          navigate("/");
+          putData();
+          navigate("/profile");
         }}
       >
         <Form.Group className="mb-3" controlId="name">
@@ -134,16 +103,6 @@ const ProfilePut = () => {
             value={profileBody.email}
             onChange={(e) => {
               setProfileBody({ ...profileBody, email: e.target.value });
-            }}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            value={profileBody.username}
-            onChange={(e) => {
-              setProfileBody({ ...profileBody, username: e.target.value });
             }}
           />
         </Form.Group>

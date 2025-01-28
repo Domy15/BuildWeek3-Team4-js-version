@@ -43,9 +43,8 @@ const Experience = ({ param }) => {
   }, []);
 
   return (
-    <div className="mb-3 border rounded-2">
-
     <div className=" d-flex justify-content-between">
+    <div className="mb-3 border rounded-2 bg-white">
       <h4 className="pt-3 ps-3">Esperienza</h4>
       <Button
         variant="transparent"

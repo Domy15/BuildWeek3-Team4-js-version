@@ -9,19 +9,18 @@ import ProfilePut from "./components/profile/ProfilePut";
 import ExperiencesSetting from "./components/profile/ExperiencesSetting";
 
 function App() {
-
   return (
     <BrowserRouter>
       {/* <LinkedinNavbar /> */}
       <Routes>
-        <Route path="/" element={<ProfilePage />} />
-        <Route path= '/profile/:id' element= {<ProfilePage/>}/>
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path= '/profile/:id' element= {<ProfilePage/>} />
         <Route path="/profile/put" element={<ProfilePut />} />
         <Route path="/profile/setting/experiences" element= {<ExperiencesSetting/>}/>
       </Routes>
       <FooterSection />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

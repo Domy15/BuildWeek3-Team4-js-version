@@ -5,12 +5,11 @@ import "./style.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
 import FooterSection from "./components/Footer";
-import NewsHome from "./components/homepage/NewsHome"
+import Homepage from "./components/homepage/Homepage";
+import NewsHome from "./components/homepage/NewsHome";
 import ProfilePut from "./components/profile/ProfilePut";
 
-
 function App() {
-
   return (
     <BrowserRouter>
       {/* <LinkedinNavbar /> */}
@@ -21,7 +20,7 @@ function App() {
       </Routes>
       <FooterSection />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

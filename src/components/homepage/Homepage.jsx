@@ -1,9 +1,16 @@
-import NewsHome from './NewsHome'
 
-const Homepage = ()=>{
-    return(
-        <NewsHome/>
-    )
+import NewsHome from "../homepage/NewsHome";
 
-}
-export default Homepage
+const Homepage = () => {
+  return (
+    <div>      
+        <NewsHome />       
+    </div>
+  );
+};
+
+export default Homepage;
+
+
+
+

@@ -2,19 +2,22 @@ import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PencilFill } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 
-const HeroSection = () => {
+const HeroSection = ({param}) => {
   const profile = useSelector((state) => state.user);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const fetchProfile = async () => {
+    const id = param || "me"; 
     try {
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
 
       const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/me",
+        `https://striveschool-api.herokuapp.com/api/profile/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -38,7 +41,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [param]);
 
   if (error) {
     return <div className="text-danger text-center mt-4">{error}</div>;
@@ -87,7 +90,7 @@ const HeroSection = () => {
                 <Button variant="primary">Connect</Button>
                 <Button variant="outline-secondary">Message</Button>
                 <Button variant="outline-secondary">More</Button>
-                <Button variant="transparent" className="ms-auto">
+                <Button variant="transparent" className="ms-auto" onClick={() => {navigate('/profile/put')}}>
                   <PencilFill size={25} />
                 </Button>
               </div>

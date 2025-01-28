@@ -1,4 +1,4 @@
-import { Button, InputGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useState } from "react";
 import { FloatingLabel, Form } from "react-bootstrap";
 
@@ -17,20 +17,28 @@ const ExperienceModify = (props) => {
     area: props.item.area,
   });
 
+  const [imgExp, setImgExp] = useState({
+    img: null,
+  });
+
   const putExperience = async () => {
+    console.log(props.item._id);
+
     try {
-      const URL = `api.herokuapp.com/api/profile/67975ee416f6350015fecb97/experiences/${props.item._id}`;
+      const URL = `http://striveschool-api.herokuapp.com/api/profile/67975ee416f6350015fecb97/experiences/${props.item._id}`;
       const response = await fetch(URL, {
         method: "PUT",
         body: JSON.stringify(value),
         headers: {
-          Authorization: `${TOKEN}`,
+          Authorization: TOKEN,
           "Content-Type": "application/json",
         },
       });
 
       if (response.ok) {
         console.log("dati aggiornati");
+        props.formModify();
+        props.changeUpdate();
       } else {
         throw new Error("errore");
       }
@@ -38,15 +46,57 @@ const ExperienceModify = (props) => {
       console.log(error);
     }
   };
+  const putImage = async () => {
+    try {
+      const formData = new FormData();
+      if (imgExp) {
+        formData.append("experience", imgExp.img);
+      }
+
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+      console.log(formData);
+
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/67975ee416f6350015fecb97/experiences/${props.item._id}/picture`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        console.log("immagine cambiata");
+      } else {
+        throw new Error("errore nella fetch dei dati");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
-      <Form className="modifyForm my-3">
+      <Form
+        className="modifyForm my-3"
+        onSubmit={(e) => {
+          e.preventDefault();
+          putExperience();
+          putImage();
+        }}
+      >
+        {console.log(imgExp)}
+        <Form.Group>
+          <Form.Label>Immagine Experience:</Form.Label>
+          <Form.Control
+            type="file"
+            onChange={(e) => setImgExp({ img: e.target.files[0] })}
+          ></Form.Control>
+        </Form.Group>
         <div className="mb-3">
-          {/* <FloatingLabel
-            controlId="floatingInput"
-            label="Qualifica"
-            className=""
-          >
+          <FloatingLabel controlId="floatingInput" label="Qualifica">
             <Form.Control
               type="text"
               size="sm"
@@ -55,21 +105,9 @@ const ExperienceModify = (props) => {
               value={value.role}
               onChange={(e) => setValue({ ...value, role: e.target.value })}
             />
-          </FloatingLabel> */}
+          </FloatingLabel>
 
-          <InputGroup className="mb-1">
-            <InputGroup.Text id="basic-addon2">Qualifica</InputGroup.Text>
-            <Form.Control
-              placeholder="Esempio: Retail Sales Manager"
-              aria-label="Qualifica"
-              aria-describedby="basic-addon2"
-              required
-              value={value.role}
-              onChange={(e) => setValue({ ...value, role: e.target.value })}
-            />
-          </InputGroup>
-
-          {/* <FloatingLabel
+          <FloatingLabel
             controlId="floatingInput"
             label="Azienda o organizzazione"
           >
@@ -81,24 +119,10 @@ const ExperienceModify = (props) => {
               value={value.company}
               onChange={(e) => setValue({ ...value, company: e.target.value })}
             />
-          </FloatingLabel> */}
-
-          <InputGroup className="mb-1">
-            <InputGroup.Text id="basic-addon2">
-              Azienda o organizzazione
-            </InputGroup.Text>
-            <Form.Control
-              placeholder="Esempio: Retex"
-              aria-label="Qualifica"
-              aria-describedby="basic-addon2"
-              required
-              value={value.role}
-              onChange={(e) => setValue({ ...value, company: e.target.value })}
-            />
-          </InputGroup>
+          </FloatingLabel>
 
           <div className="d-flex gap-5">
-            {/* <FloatingLabel controlId="floating3" label="Data di inizio">
+            <FloatingLabel controlId="floating3" label="Data di inizio">
               <Form.Control
                 type="date"
                 size="sm"
@@ -109,39 +133,8 @@ const ExperienceModify = (props) => {
                   setValue({ ...value, startDate: e.target.value })
                 }
               />
-            </FloatingLabel> */}
+            </FloatingLabel>
 
-            <InputGroup className="mb-1">
-              <InputGroup.Text id="basic-addon2">
-                Data di inizio
-              </InputGroup.Text>
-              <Form.Control
-                type="date"
-                size="sm"
-                name="start"
-                required
-                value={value.startDate}
-                onChange={(e) =>
-                  setValue({ ...value, startDate: e.target.value })
-                }
-              />
-            </InputGroup>
-
-            <InputGroup className="mb-1">
-              <InputGroup.Text id="basic-addon2">Data di fine</InputGroup.Text>
-              <Form.Control
-                type="date"
-                size="sm"
-                name="start"
-                required
-                value={value.endDate}
-                onChange={(e) =>
-                  setValue({ ...value, endDate: e.target.value })
-                }
-              />
-            </InputGroup>
-
-            {/* 
             <FloatingLabel controlId="floatingInput" label="Data di fine">
               <Form.Control
                 type="date"
@@ -152,32 +145,9 @@ const ExperienceModify = (props) => {
                   setValue({ ...value, endDate: e.target.value })
                 }
               />
-            </FloatingLabel> */}
+            </FloatingLabel>
           </div>
-          <InputGroup className="mb-1">
-            <InputGroup.Text id="basic-addon2">Località</InputGroup.Text>
-            <Form.Control
-              type="text"
-              placeholder="Esempio: Milano, Italia"
-              required
-              value={value.area}
-              onChange={(e) => setValue({ ...value, area: e.target.value })}
-            />
-          </InputGroup>
-          <InputGroup className="mb-1">
-            <InputGroup.Text id="basic-addon2">Descrizione</InputGroup.Text>
-            <Form.Control
-              type="text"
-              size="sm"
-              placeholder="Descrivi la tua esperienza"
-              required
-              value={value.description}
-              onChange={(e) =>
-                setValue({ ...value, description: e.target.value })
-              }
-            />
-          </InputGroup>
-          {/* 
+
           <FloatingLabel controlId="floatingInput" label="Località">
             <Form.Control
               type="text"
@@ -189,7 +159,7 @@ const ExperienceModify = (props) => {
           </FloatingLabel>
           <FloatingLabel controlId="floatingInput" label="Descrizione">
             <Form.Control
-              as="textarea"
+              type="text"
               size="sm"
               placeholder="Descrivi la tua esperienza"
               style={{ height: "50px" }}
@@ -199,24 +169,24 @@ const ExperienceModify = (props) => {
                 setValue({ ...value, description: e.target.value })
               }
             />
-          </FloatingLabel> */}
+          </FloatingLabel>
         </div>
         <div className="text-end">
-           <Button variant="primary" type="submit">
-          Submit
-        </Button>
-        <Button
-          variant="danger"
-          type="button"
-          className="ms-3"
-          onClick={() => {
-            props.hide();
-          }}
-        >
-          Annulla
-        </Button>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+          <Button
+            variant="danger"
+            type="button"
+            className="ms-3"
+            onClick={(e) => {
+              e.preventDefault();
+              props.formModify();
+            }}
+          >
+            Annulla
+          </Button>
         </div>
-       
       </Form>
     </>
   );

@@ -29,15 +29,23 @@ const SingleExpSettings = (props) => {
       console.log("Errore: ", error);
     }
   };
-
+  const formModify = () => {
+    setForm(!form);
+  };
   return (
     <Row className=" align-items-center custom-border-bottom">
       <Col xs={10}>
         {form && <SingleExperience exp={props.exp} />}
-        {!form && <ExperienceModify item={props.exp} />}
+        {!form && (
+          <ExperienceModify
+            item={props.exp}
+            formModify={formModify}
+            changeUpdate={props.changeUpdate}
+          />
+        )}
       </Col>
       <Col className=" d-flex gap-4 justify-content-end">
-        {form && <PencilFill size={30} onClick={() => setForm(false)} />}
+        {form && <PencilFill size={30} onClick={() => formModify()} />}
         {console.log(props.exp._id)}
 
         {form && (

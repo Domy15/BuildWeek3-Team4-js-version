@@ -40,6 +40,9 @@ body {
   width: 100%;
 }
 
+.navbar-nav .dropdown-menu{
+  position: absolute
+}
 
 /*Navbar*/
 /*

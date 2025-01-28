@@ -66,7 +66,7 @@ const NewsHome = () => {
 
   const addImgPost = async(id) => {
     try {
-      const formData = FormData()
+      const formData = new FormData()
       if (imgPost) {
         formData.append("post", imgPost);
       }

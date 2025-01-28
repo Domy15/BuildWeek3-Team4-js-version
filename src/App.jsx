@@ -15,7 +15,6 @@ function App() {
       <Routes>
         <Route path="/" element={<ProfilePage />} />
       </Routes>
-      <NewsHome />
       <FooterSection />
     </BrowserRouter>
   )

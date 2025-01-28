@@ -6,9 +6,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
 import FooterSection from "./components/Footer";
 import ProfilePut from "./components/profile/ProfilePut";
+import Homepage from "./components/homepage/Homepage";
 import NavBarNew from "./components/NavBarNew";
 import ExperiencesSetting from "./components/profile/ExperiencesSetting";
-
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
       {/* <LinkedinNavbar /> */}
       <NavBarNew />
       <Routes>
+        <Route path="/" element={<Homepage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/profile/put" element={<ProfilePut />} />

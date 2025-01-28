@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 
-const HomePage = () => {
+const NewsHome = () => {
   const [posts, setPosts] = useState([]);
   const [newPostText, setNewPostText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -126,4 +126,4 @@ const HomePage = () => {
 };
 
 
-export default HomePage;
+export default NewsHome;

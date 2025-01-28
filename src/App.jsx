@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
 import FooterSection from "./components/Footer";
 import ProfilePut from "./components/profile/ProfilePut";
+import ExperiencesSetting from "./components/profile/ExperiencesSetting";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<ProfilePage />} />
         <Route path= '/profile/:id' element= {<ProfilePage/>}/>
         <Route path="/profile/put" element={<ProfilePut />} />
+        <Route path="/profile/setting/experiences" element= {<ExperiencesSetting/>}/>
       </Routes>
       <FooterSection />
     </BrowserRouter>

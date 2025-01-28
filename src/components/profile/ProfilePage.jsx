@@ -4,14 +4,16 @@ import Competency from "./Competency";
 import AsideSection from "./AsideSection";
 import HeroSection from "./HeroSection";
 import Languages from "./Languages";
+import { useParams } from "react-router-dom";
 
 const ProfilePage = () => {
+  const param = useParams()
   return (
     <Container>
       <Row>
         <Col xs={12} md={8}>
-          <HeroSection />
-          <Experience />
+          <HeroSection param={param.id}/>
+          <Experience param={param.id}/>
           <Competency />
           <Languages/>
         </Col>

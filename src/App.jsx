@@ -5,8 +5,6 @@ import "./style.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
 import FooterSection from "./components/Footer";
-import Homepage from "./components/homepage/Homepage";
-import NewsHome from "./components/homepage/NewsHome";
 import ProfilePut from "./components/profile/ProfilePut";
 
 function App() {
@@ -14,8 +12,8 @@ function App() {
     <BrowserRouter>
       {/* <LinkedinNavbar /> */}
       <Routes>
-        <Route path="/" element={<ProfilePage />} />
-        <Route path= '/profile/:id' element= {<ProfilePage/>}/>
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path= '/profile/:id' element= {<ProfilePage/>} />
         <Route path="/profile/put" element={<ProfilePut />} />
       </Routes>
       <FooterSection />

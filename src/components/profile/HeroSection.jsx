@@ -4,15 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { PencilFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 
-const HeroSection = ({param}) => {
+const HeroSection = ({ param }) => {
   const profile = useSelector((state) => state.user);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const fetchProfile = async () => {
-    const id = param || "me"; 
+    const id = param || "me";
     try {
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
@@ -56,13 +55,13 @@ const HeroSection = ({param}) => {
     <div className="mt-5">
       <div>
         <div>
-          <div className="bg-light position-relative">
+          <div className="bg-light position-relative rounded">
             {/* Profile Image */}
 
             <img
               src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
               alt="background"
-              className="bckImageProfile img-fluid w-100 "
+              className="bckImageProfile img-fluid w-100 rounded-top"
             />
 
             <img
@@ -91,9 +90,17 @@ const HeroSection = ({param}) => {
                 <Button variant="primary">Connect</Button>
                 <Button variant="outline-secondary">Message</Button>
                 <Button variant="outline-secondary">More</Button>
-                <Button variant="transparent" className="ms-auto" onClick={() => {navigate('/profile/put')}}>
-                  <PencilFill size={25} />
-                </Button>
+                {!param && (
+                  <Button
+                    variant="transparent"
+                    className="ms-auto"
+                    onClick={() => {
+                      navigate("/profile/put");
+                    }}
+                  >
+                    <PencilFill size={25} />
+                  </Button>
+                )}
               </div>
             </div>
           </div>

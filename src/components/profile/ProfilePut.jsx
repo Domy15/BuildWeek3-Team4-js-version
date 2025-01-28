@@ -73,7 +73,7 @@ const ProfilePut = () => {
           e.preventDefault();
           postPfp();
           putData();
-          navigate("/");
+          navigate("/profile");
         }}
       >
         <Form.Group className="mb-3" controlId="name">
@@ -103,16 +103,6 @@ const ProfilePut = () => {
             value={profileBody.email}
             onChange={(e) => {
               setProfileBody({ ...profileBody, email: e.target.value });
-            }}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="username">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            value={profileBody.username}
-            onChange={(e) => {
-              setProfileBody({ ...profileBody, username: e.target.value });
             }}
           />
         </Form.Group>

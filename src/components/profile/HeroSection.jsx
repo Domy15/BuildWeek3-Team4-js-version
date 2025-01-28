@@ -55,7 +55,7 @@ const HeroSection = ({ param }) => {
     <div className="mt-5">
       <div>
         <div>
-          <div className="bg-light position-relative rounded">
+          <div className="bg-light position-relative rounded bg-white border border-1">
             {/* Profile Image */}
 
             <img
@@ -104,7 +104,7 @@ const HeroSection = ({ param }) => {
               </div>
             </div>
           </div>
-          <div className="p-3 border rounded-2 my-3">
+          <div className="p-3 border rounded-2 my-3 bg-white">
             <h4 className="">Informazioni</h4>
             <p>{profile.profile.bio}</p>
           </div>

@@ -41,7 +41,7 @@ const Experience = ({param}) => {
   }, []);
 
   return (
-    <div className="mb-3 border rounded-2">
+    <div className="mb-3 border rounded-2 bg-white">
       <h4 className="pt-3 ps-3">Esperienza</h4>
       {exp &&
         exp.map(

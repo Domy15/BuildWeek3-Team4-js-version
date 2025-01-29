@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
+}
+body{
+  background-color: #f4f2ee;
 }
 
 .imgExp {
@@ -36,7 +40,7 @@
   width: 100%;
 }
 
-/*HOME*/
+
 .profileHome{
   width: 100px;
   height: 100px;

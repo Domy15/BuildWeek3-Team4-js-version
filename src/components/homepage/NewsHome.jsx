@@ -1,16 +1,19 @@
-import  { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Card, Col, Container, Image, Row } from "react-bootstrap";
+import { Images } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Image from "react-bootstrap/Image";
 
-const HomePage = () => {
+const NewsHome = () => {
   const [posts, setPosts] = useState([]);
   const [newPostText, setNewPostText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showmore, setShowmore] = useState(6);
+  const [imgPost, setImgPost] = useState();
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
-  const AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+  const AUTH_TOKEN =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
 
   const fetchPosts = async () => {
     try {
@@ -54,9 +57,42 @@ const HomePage = () => {
       const newPost = await response.json();
       setPosts([newPost, ...posts]);
       setNewPostText("");
+      addImgPost(newPost._id);
     } catch (error) {
       console.error("Error creating post:", error.message);
     }
+  };
+
+  const addImgPost = async (id) => {
+    try {
+      const formData = new FormData();
+      if (imgPost) {
+        formData.append("post", imgPost);
+      }
+
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/" + id,
+        {
+          method: "POST",
+          headers: {
+            Authorization: AUTH_TOKEN,
+          },
+          body: formData,
+        }
+      );
+      if (response.ok) {
+        console.log("immagine caricata");
+        fetchPosts();
+      } else {
+        throw new Error("Errore");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleShowMore = () => {
+    setShowmore(showmore + 6);
   };
 
   useEffect(() => {
@@ -64,55 +100,81 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="container mt-4">
-      <Card className="mb-4 p-4">
-        <div className="d-flex align-items-center">
+    <Container className="mt-4">
+      <Row className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
+        <Col xs={1}>
           <Image
             src="https://placecats.com/40/40"
             roundedCircle
             className="me-3"
           />
+        </Col>
+        <Col xs={10}>
           <Form.Control
             type="text"
             placeholder="Start a post..."
             value={newPostText}
             onChange={(e) => setNewPostText(e.target.value)}
-            className="me-3"
+            className="me-3 rounded-5"
           />
+        </Col>
+        <Col xs={1}>
           <Button onClick={createPost} disabled={!newPostText.trim()}>
             Post
           </Button>
-        </div>
-      </Card>
+        </Col>
+        <Col xs={4} className="d-flex align-items-center fs-3 text-primary">
+          <Images />
+          <Form.Control
+            type="file"
+            onChange={(e) => {
+              setImgPost(e.target.files[0]);
+            }}
+            className="fileInput"
+          />
+        </Col>
+        <Col></Col>
+        <Col></Col>
+      </Row>
 
       {loading ? (
         <p>Loading posts...</p>
       ) : (
-        posts.slice(0, 6).map((post) => (
-            
+        posts.slice(0, showmore).map((post) => (
           <Card key={post._id} className="mb-4">
-            {console.log(post)}
-            <Card.Body>
-              <div className="d-flex align-items-center mb-3">
-                <Image
-                  src={"https://placecats.com/40/40"}
-                  roundedCircle
-                  className="me-3"
-                />
-                <div>
-                  <p className="mb-0 fw-bold">{post.username || "Anonymous"}</p>
-                  <small className="text-muted">
-                    {new Date(post.createdAt).toLocaleString()}
-                  </small>
+            <Card.Body className="p-0">
+              <div className="p-3">
+                <div className="d-flex align-items-center mb-3">
+                  <Image
+                    src={post.user.image}
+                    roundedCircle
+                    className="me-3"
+                    width={50}
+                    height={50}
+                  />
+                  <div>
+                    <p className="mb-0 fw-bold">
+                      {post.user.name || "Anonymous"}
+                    </p>
+                    <small className="text-muted">
+                      {new Date(post.createdAt).toLocaleString()}
+                    </small>
+                  </div>
                 </div>
+                <p>{post.text}</p>
               </div>
-              <p>{post.text}</p>
+              {post.image && <img src={post.image} style={{ width: "100%" }} />}
             </Card.Body>
           </Card>
         ))
       )}
-    </div>
+      <div className="text-center mt-4">
+        <button className="btn btn-primary" onClick={handleShowMore}>
+          Show More
+        </button>
+      </div>
+    </Container>
   );
 };
 
-export default HomePage;
+export default NewsHome;

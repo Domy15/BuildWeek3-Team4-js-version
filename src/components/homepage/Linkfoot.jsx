@@ -2,100 +2,77 @@ import { Row, Col, Dropdown } from "react-bootstrap";
 
 const Linkfoot = () => {
   return (
-        <Row className="justify-content-center">
-          <Col xs={12} md={3} className="d-flex align-items-center">
-            <div className="text-center  ">
-              <div className="d-flex justify-content-center gap-2 lh-lg">
-                <a href="#" className="text-muted text-decoration-none ">
-                  <small>Informazioni</small>
-                </a>
-                <a href="#" className="text-muted text-decoration-none">
-                  <small> Accessibilità </small>
-                </a>
-              </div>
-              <a href="#" className="text-muted text-decoration-none d-block">
-                <small> Centro assistenza</small>
-              </a>
-            </div>
-            <div className="text-center ">
-              <div className="d-flex justify-content-center gap-2 lh-lg">
-                <Dropdown>
-                  <Dropdown.Toggle
-                    variant="link"
-                    className="text-muted text-decoration-none p-0 "
-                  >
-                    <small>Privacy e condizioni</small>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <small>
-                      {" "}
-                      <Dropdown.Item href="#">Privacy Policy</Dropdown.Item>
-                    </small>
-                    <small>
-                      {" "}
-                      <Dropdown.Item href="#">
-                        Condizioni d&apos;uso
-                      </Dropdown.Item>
-                    </small>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
-              <div className="justify-content-end ">
-                <small>
-                  
-                  <a href="#" className="text-muted text-decoration-none lh-lg">
-                    Opzioni per gli annunci pubblicitari
-                  </a>
-                </small>
-              </div>
+    <Row className="justify-content-center">
+      <Col xs={11} >
+        <div className="d-flex flex-wrap justify-content-center mb-3 gap-1">
+          <a href="#" className="nav-link opacity-75 me-3">
+            <small>Informazioni</small>
+          </a>
+          <a href="#" className="nav-link opacity-75 me-3">
+            <small> Accessibilità </small>
+          </a>
+          <a href="#" className="nav-link opacity-75 me-3">
+            <small> Centro assistenza</small>
+          </a>
+          <Dropdown>
+            <Dropdown.Toggle
+              variant="link"
+              className="text-muted text-decoration-none p-0 "
+            >
+              <small>Privacy e condizioni</small>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
               <small>
-               
-                <a
-                  href="#"
-                  className="text-muted text-decoration-none  d-block lh-lg">
-                  Pubblicità
-                </a>
-              </small>
-            </div>
-            <div className="text-center ">
-              <Dropdown>
-                <Dropdown.Toggle
-                  variant="link"
-                  className="text-muted text-decoration-none p-0 lh-lg">
-                  <small>Servizi alle aziende</small>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#">
-                    <small>Soluzioni aziendali</small>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#">
-                    <small>Marketing </small>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <small>
-                <a href="#" className="text-muted text-decoration-none d-block lh-lg">
-                  Scarica l&apos;app LinkedIn
-                </a>
+                {" "}
+                <Dropdown.Item href="#">Privacy Policy</Dropdown.Item>
               </small>
               <small>
                 {" "}
-                <a href="#" className="text-muted text-decoration-none d-block lh-lg">
-                  Altro
-                </a>
+                <Dropdown.Item href="#">Condizioni d&apos;uso</Dropdown.Item>
               </small>
-            </div>
-            <div className=" text-center lh-lg mt-2">
-              <small>
-                <span className="me-1">
-                  <strong>Linked</strong>
-                  <strong style={{ color: "#0A66C2" }}>in</strong>
-                </span>
-                Corporation © 2025
-              </small>
-            </div>
-          </Col>
-        </Row>
+            </Dropdown.Menu>
+          </Dropdown>
+          <a href="#" className="nav-link opacity-75 me-3">
+            <small>Opzioni per gli annunci pubblicitari</small>
+          </a>
+          <a href="#" className="nav-link opacity-75 me-3">
+            <small>Pubblicità</small>
+          </a>
+          <Dropdown>
+            <Dropdown.Toggle
+              variant="link"
+              className="nav-link opacity-75 me-3"
+            >
+              <small>Servizi alle aziende</small>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="#">
+                <small>Soluzioni aziendali</small>
+              </Dropdown.Item>
+              <Dropdown.Item href="#">
+                <small>Marketing </small>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <a href="#" className="nav-link opacity-75 me-3">
+            <small>Scarica l&apos;app LinkedIn</small>
+          </a>{" "}
+          <a href="#" className="nav-link opacity-75 me-3">
+            <small>Altro</small>
+          </a>
+        </div>
+        <div className="text-center">
+          <small >
+          <span className="me-1">
+            <strong>Linked</strong>
+            <strong style={{ color: "#0A66C2" }}>in</strong>
+          </span>
+          Corporation © 2025
+        </small>
+        </div>
+        
+      </Col>
+    </Row>
   );
 };
 

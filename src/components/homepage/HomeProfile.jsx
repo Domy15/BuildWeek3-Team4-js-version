@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Card, Container, Row } from "react-bootstrap";
-import { BookmarkFill, CalendarEvent, Newspaper, PeopleFill } from "react-bootstrap-icons";
+import {
+  BookmarkFill,
+  CalendarEvent,
+  Newspaper,
+  PeopleFill,
+} from "react-bootstrap-icons";
 
 const HomeProfile = () => {
   const [profile, setprofile] = useState();
@@ -54,77 +59,81 @@ const HomeProfile = () => {
 
   return (
     <>
-      <Card className="mt-5 sticky-top">
-        <div className="bg-light position-relative pb-2">
-          {/* Profile Image */}
+      <div className="sticky-top z-custom">
+        <Card className="mt-5 bg-white">
+          <div className="position-relative pb-2">
+            {/* Profile Image */}
 
-          <img
-            src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
-            alt="background"
-            className="imageHome img-fluid w-100"
-          />
+            <img
+              src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
+              alt="background"
+              className="imageHome img-fluid w-100 rounded-top"
+            />
 
-          <img
-            src={profile.image}
-            alt="Profile"
-            className="profileHome rounded-circle  position-absolute"
-          />
+            <img
+              src={profile.image}
+              alt="Profile"
+              className="profileHome rounded-circle  position-absolute"
+            />
 
-          <div className="d-flex mt-5 ">
-            <h4 className=" ms-3">
-              {profile.name} {profile.surname}
-            </h4>
+            <div className="d-flex mt-5 ">
+              <h4 className=" ms-3">
+                {profile.name} {profile.surname}
+              </h4>
+            </div>
+            <div className="ms-3">
+              <p className="mb-1 ">{profile.title}</p>
+              <p className="mb-2 text-muted">{profile.area}</p>
+            </div>
+
+            {/*numeri random*/}
+
+            <Container className="d-sm-none d-md-block">
+              <hr />
+              <Row>
+                <div className="d-flex justify-content-between">
+                  <span className="text-secondary ">
+                    {" "}
+                    Visitatori del profilo{" "}
+                  </span>
+                  <span className="text-primary"> {randomNumber()}</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span className="text-secondary">Impressioni del post </span>
+                  <span className="text-primary">{randomNumber()}</span>
+                </div>
+              </Row>
+            </Container>
           </div>
-          <div className="ms-3">
-            <p className="mb-1 ">{profile.title}</p>
-            <p className="mb-2 text-muted">{profile.area}</p>
+        </Card>
+
+        {/* Card con icoe */}
+        <Card className="mt-1 d-sm-none d-md-block">
+          <div className="m-2">
+            <BookmarkFill />
+            <span className="ms-2">
+              <a href="#" className="text-dark text-decoration-none">
+                Elementi salvati
+              </a>
+            </span>
           </div>
 
-          
+          <div className="m-2">
+            <PeopleFill />
+            <span className="ms-2">Gruppi</span>
+          </div>
 
-          {/*numeri random*/}
+          <div className="m-2">
+            <Newspaper />
+            <span className="ms-2">Newsletter</span>
+          </div>
 
-          <Container className="d-sm-none d-md-block">
-            <hr />
-            <Row>
-              <div className="d-flex justify-content-between">
-                <span className="text-secondary ">
-                  {" "}
-                  Visitatori del profilo{" "}
-                </span>
-                <span className="text-primary"> {randomNumber()}</span>
-              </div>
-              <div className="d-flex justify-content-between">
-                <span className="text-secondary">Impressioni del post </span>
-                <span className="text-primary">{randomNumber()}</span>
-              </div>
-            </Row>
-          </Container>
-        </div>
-      </Card>
-
-      {/* Card con icoe */}
-      <Card className="mt-1 d-sm-none d-md-block">
-        <div className="m-2">
-        <BookmarkFill/>
-        <span className="ms-2"><a href="#" className="text-dark text-decoration-none">Elementi salvati</a></span>
-        </div>
-
-        <div className="m-2">
-        <PeopleFill/>
-        <span className="ms-2">Gruppi</span>
-        </div>
-
-        <div className="m-2">
-        <Newspaper/>
-        <span className="ms-2">Newsletter</span>
-        </div>
-
-        <div className="m-2">
-        <CalendarEvent/>
-        <span className="ms-2">Eventi</span>
-        </div>
-      </Card>
+          <div className="m-2">
+            <CalendarEvent />
+            <span className="ms-2">Eventi</span>
+          </div>
+        </Card>
+      </div>
     </>
   );
 };

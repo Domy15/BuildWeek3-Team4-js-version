@@ -14,6 +14,10 @@ body {
   color: #666666;
 }
 
+.z-custom {
+  z-index:-1;
+}
+
 /* profile info */
 
 .imgExp {

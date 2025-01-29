@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { PersonFillAdd, PersonFillDash } from "react-bootstrap-icons";
 import CompanyAside from "./CompanyAside";
 
-const AsideSection = () => {
+const AsideSection = ({param}) => {
   const users = useSelector((state) => state.friends);
   const follow = useSelector((state) => state.interaction.favourites);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const AsideSection = () => {
 
   useEffect(() => {
     dispatch(ProfilesApi(url, token, randomProfiles));
-  }, []);
+  }, [param]);
 
   return (
     <div>
@@ -59,7 +59,6 @@ const AsideSection = () => {
                         <Link
                           to={`/profile/${u._id}`}
                           className="text-decoration-none text-black"
-                          onClick={dispatch({type: 'UPDATE'})}
                         >
                           {`${u.name} ${u.surname}`}
                         </Link>

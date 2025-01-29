@@ -3,6 +3,7 @@ import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import { Images } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 const NewsHome = () => {
   const [posts, setPosts] = useState([]);
@@ -155,9 +156,9 @@ const NewsHome = () => {
                     height={50}
                   />
                   <div>
-                    <p className="mb-0 fw-bold">
+                    <Link to={`/profile/${post.user._id}`} className="mb-0 fw-bold nav-link"> 
                       {post.user.name || "Anonymous"}
-                    </p>
+                    </Link>
                     <small className="text-muted">
                       {new Date(post.createdAt).toLocaleString()}
                     </small>

@@ -5,7 +5,8 @@ import HomeProfile from "./HomeProfile";
 
 const Homepage = () => {
   return (
-    <Container> 
+
+    <Container className="containerHome"> 
       <Row> 
         <Col md ={3} sm={12}>
         <HomeProfile />
@@ -18,7 +19,9 @@ const Homepage = () => {
         </Col>
       </Row>
     </Container>
+
   );
+
 };
 
 export default Homepage;

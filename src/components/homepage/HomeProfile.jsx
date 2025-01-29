@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
+import { BookmarkFill, CalendarEvent, Newspaper, PeopleFill } from "react-bootstrap-icons";
 
 const HomeProfile = () => {
   const [profile, setprofile] = useState();
   const [error, setError] = useState(null);
 
- 
   const fetchProfile = async () => {
     const id = "me";
     try {
@@ -42,18 +42,19 @@ const HomeProfile = () => {
 
   if (!profile) {
     return <div className="text-center mt-4">Loading...</div>;
-  } 
+  }
 
-  
-  
-  {/*funzione per numeri random*/}
+  {
+    /*funzione per numeri random*/
+  }
 
   const randomNumber = () => {
     return Math.floor(Math.random() * (100 + 1)) + 10;
   };
 
   return (
-    <div className="mt-5">
+    <>
+      <Card className="mt-5 sticky-top">
         <div className="bg-light position-relative pb-2">
           {/* Profile Image */}
 
@@ -69,36 +70,62 @@ const HomeProfile = () => {
             className="profileHome rounded-circle  position-absolute"
           />
 
-          <div className="d-flex mt-5">
-            <h2 className="fw-bold ms-2 mt-3">
+          <div className="d-flex mt-5 ">
+            <h4 className=" ms-3">
               {profile.name} {profile.surname}
-            </h2>
+            </h4>
           </div>
-          <div className="p-3">
-            <p className="h5 fw-light mb-1 text-black">{profile.title}</p>
+          <div className="ms-3">
+            <p className="mb-1 ">{profile.title}</p>
             <p className="mb-2 text-muted">{profile.area}</p>
           </div>
-      
-      <hr />
 
-      {/*numeri random*/}
+          
 
-      <Container>
-        <Row>
-          <div className="d-flex justify-content-between">
-            <span className="text-secondary "> Visitatori del profilo </span>
-            <span className="text-primary"> {randomNumber()}</span>
-          </div>
-          <div className="d-flex justify-content-between">
-            <span className="text-secondary">Impressioni del post </span>
-            <span className="text-primary">{randomNumber()}</span>
-          </div>
-        </Row>
-      </Container>
-    </div>
+          {/*numeri random*/}
 
+          <Container className="d-sm-none d-md-block">
+            <hr />
+            <Row>
+              <div className="d-flex justify-content-between">
+                <span className="text-secondary ">
+                  {" "}
+                  Visitatori del profilo{" "}
+                </span>
+                <span className="text-primary"> {randomNumber()}</span>
+              </div>
+              <div className="d-flex justify-content-between">
+                <span className="text-secondary">Impressioni del post </span>
+                <span className="text-primary">{randomNumber()}</span>
+              </div>
+            </Row>
+          </Container>
+        </div>
+      </Card>
 
-    </div>
+      {/* Card con icoe */}
+      <Card className="mt-1 d-sm-none d-md-block">
+        <div className="m-2">
+        <BookmarkFill/>
+        <span className="ms-2"><a href="#" className="text-dark text-decoration-none">Elementi salvati</a></span>
+        </div>
+
+        <div className="m-2">
+        <PeopleFill/>
+        <span className="ms-2">Gruppi</span>
+        </div>
+
+        <div className="m-2">
+        <Newspaper/>
+        <span className="ms-2">Newsletter</span>
+        </div>
+
+        <div className="m-2">
+        <CalendarEvent/>
+        <span className="ms-2">Eventi</span>
+        </div>
+      </Card>
+    </>
   );
 };
 

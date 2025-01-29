@@ -5,20 +5,23 @@ import HomeProfile from "./HomeProfile";
 
 const Homepage = () => {
   return (
-    <Container> 
+
+    <Container className="containerHome"> 
       <Row> 
-        <Col md ={3} sm={12}>
+        <Col md ={3} sm={12} lg={3}  >
         <HomeProfile/>
         </Col>
-        <Col lg ={6} sm={12} md ={7}>
+        <Col lg ={6} sm={12} md ={9}>
         <NewsHome />
         </Col>
-        <Col lg ={3} md ={2} className=" d-lg-block d-sm-none d-xxs-none">
+        <Col lg ={3} className=" d-lg-block d-sm-none d-sm-none">
         <HomeJobs/>
         </Col>
          </Row>               
     </Container>
+
   );
+
 };
 
 export default Homepage;

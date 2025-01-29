@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import SingleComp from "./SingleComp";
 
 
-const Competency = () => {
+const Competency = ({param}) => {
   const competencyArray = [
     {
       ability: "Competenze analitiche",
@@ -148,7 +148,7 @@ const Competency = () => {
 
   useEffect(() => {
     getRandom(competencyArray);
-  }, []);
+  }, [param]);
 
   return (
     <>

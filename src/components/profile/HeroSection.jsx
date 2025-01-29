@@ -65,7 +65,7 @@ const HeroSection = ({ param }) => {
             />
 
             <img
-              src={profile.profile.image || "https://via.placeholder.com/150"}
+              src={profile.profile.image}
               alt="Profile"
               className="rounded-circle profilePicture position-absolute"
             />

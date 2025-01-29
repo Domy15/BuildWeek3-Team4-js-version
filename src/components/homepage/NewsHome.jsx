@@ -63,30 +63,33 @@ const NewsHome = () => {
     }
   };
 
-  const addImgPost = async(id) => {
+  const addImgPost = async (id) => {
     try {
-      const formData = new FormData()
+      const formData = new FormData();
       if (imgPost) {
         formData.append("post", imgPost);
       }
 
-      const response = await fetch('https://striveschool-api.herokuapp.com/api/posts/' + id, {
-        method: "POST",
-        headers: {
-          Authorization: AUTH_TOKEN,
-        },
-        body: formData,
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/" + id,
+        {
+          method: "POST",
+          headers: {
+            Authorization: AUTH_TOKEN,
+          },
+          body: formData,
+        }
+      );
       if (response.ok) {
-        console.log('immagine caricata');
+        console.log("immagine caricata");
         fetchPosts();
       } else {
-        throw new Error('Errore');
+        throw new Error("Errore");
       }
-  } catch (err) {
-    console.log(err);
-  }
-}
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleShowMore = () => {
     setShowmore(showmore + 6);
@@ -121,8 +124,8 @@ const NewsHome = () => {
           </Button>
         </Col>
         <Col xs={4} className="d-flex align-items-center fs-3 text-primary">
-        <Images />
-        <Form.Control
+          <Images />
+          <Form.Control
             type="file"
             onChange={(e) => {
               setImgPost(e.target.files[0]);
@@ -140,25 +143,27 @@ const NewsHome = () => {
         posts.slice(0, showmore).map((post) => (
           <Card key={post._id} className="mb-4">
             <Card.Body className="p-0">
-              <div className="d-flex align-items-center mb-3">
-                <Image
-                  src={post.user.image}
-                  roundedCircle
-                  className="me-3"
-                  width={50}
-                  height={50}
-                />
-                <div>
-                  <p className="mb-0 fw-bold">
-                    {post.user.name || "Anonymous"}
-                  </p>
-                  <small className="text-muted">
-                    {new Date(post.createdAt).toLocaleString()}
-                  </small>
+              <div className="p-3">
+                <div className="d-flex align-items-center mb-3">
+                  <Image
+                    src={post.user.image}
+                    roundedCircle
+                    className="me-3"
+                    width={50}
+                    height={50}
+                  />
+                  <div>
+                    <p className="mb-0 fw-bold">
+                      {post.user.name || "Anonymous"}
+                    </p>
+                    <small className="text-muted">
+                      {new Date(post.createdAt).toLocaleString()}
+                    </small>
+                  </div>
                 </div>
+                <p>{post.text}</p>
               </div>
-              <p>{post.text}</p>
-              {post.image && <img src={post.image} style={{width: '100%'}} />}
+              {post.image && <img src={post.image} style={{ width: "100%" }} />}
             </Card.Body>
           </Card>
         ))

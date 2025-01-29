@@ -10,6 +10,7 @@ import ProfilePut from "./components/profile/ProfilePut";
 import NavBarNew from "./components/NavBarNew";
 import ExperiencesSetting from "./components/profile/ExperiencesSetting";
 
+
 function App() {
   return (
     <BrowserRouter>

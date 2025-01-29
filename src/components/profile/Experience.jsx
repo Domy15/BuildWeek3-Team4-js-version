@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import SingleExperience from "./SingleExperience";
 import { Button } from "react-bootstrap";
@@ -48,31 +49,19 @@ const Experience = ({ param }) => {
     <div className="mb-3 border rounded-2 bg-white">
       <div className=" d-flex justify-content-between">
         <h4 className="pt-3 ps-3">Esperienza</h4>
-        <Button
-          variant="transparent"
-          className="ms-auto"
-          onClick={() => {
-            navigate("/profile/setting/experiences");
-          }}
-        >
-          <PencilFill size={25} />
-        </Button>
+        {!param && (
+          <Button
+            variant="transparent"
+            className="ms-auto"
+            onClick={() => {
+              navigate("/profile/setting/experiences");
+            }}
+          >
+            <PencilFill size={25} />
+          </Button>
+        )}
       </div>
 
-    <div className="mb-3 border rounded-2 bg-white">
-    <div className=" d-flex justify-content-between">
-      <h4 className="pt-3 ps-3">Esperienza</h4>
-      {!param && <Button
-        variant="transparent"
-        className="ms-auto"
-        onClick={() => {
-          navigate("/profile/setting/experiences");
-        }}
-      >
-      <PencilFill size={25} />
-      </Button>}
-    </div>
-      
       {exp &&
         exp.map(
           (exp, i) => i < numExp && <SingleExperience key={exp._id} exp={exp} />

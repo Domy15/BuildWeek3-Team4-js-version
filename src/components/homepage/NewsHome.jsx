@@ -3,8 +3,7 @@ import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import {
   BlockquoteLeft,
   Calendar2,
-  HandThumbsUp,
-  HandThumbsUpFill,
+  HeartFill,
   Images,
   ThreeDots,
   XLg,
@@ -233,12 +232,29 @@ const NewsHome = () => {
                 {post.image && (
                   <img src={post.image} style={{ width: "100%" }} />
                 )}
+
                 <div className="mx-3">
-                  <HandThumbsUpFill size={15} />
+                  <HeartFill size={15} className="iconLabel4" />
                 </div>
                 <hr className="m-1" />
-                <div className="p-3">
-                  <HandThumbsUp />
+                <div className="d-flex w-100 flex-wrap align-items-center">
+                  <div className="d-flex align-items-center p-2 w-25">
+                    <i className="bi bi-hand-thumbs-up me-2 fs-4 fs-md-4 fs-lg-3"></i>
+                    <p className="m-0 subtitlesHome">Consiglia</p>
+                  </div>
+                  <div className="d-flex align-items-center p-2 w-25">
+                    <i className="bi bi-chat-square me-2 fs-4 fs-md-4 fs-lg-3"></i>
+                    <p className="m-0 subtitlesHome">Commenta</p>
+                  </div>
+                  <div className="d-flex align-items-center p-2 w-25 flex-sm-row flex-md-column flex-lg-row text-md-center">
+                    <i className="bi bi-share me-2 me-md-0 fs-4 fs-md-4 fs-lg-3"></i>
+                    <p className="m-0 ms-2 subtitlesHome">Diffondi il post</p>
+                  </div>
+
+                  <div className="d-flex align-items-center p-2 w-25">
+                    <i className="bi bi-send me-2 fs-4 fs-md-4 fs-lg-3"></i>
+                    <p className="m-0 subtitlesHome">Invia</p>
+                  </div>
                 </div>
               </Card.Body>
             </Card>

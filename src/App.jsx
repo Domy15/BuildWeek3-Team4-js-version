@@ -4,19 +4,31 @@ import "./App.css";
 import "./style.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
+import Homepage from "./components/homepage/Homepage";
+import ProfilePut from "./components/profile/ProfilePut";
+import NavBarNew from "./components/NavBarNew";
+import ExperiencesSetting from "./components/profile/ExperiencesSetting";
+import Favourites from "./components/settingPage/Favourites";
 import FooterSection from "./components/Footer";
 
 function App() {
-
   return (
     <BrowserRouter>
-      {/* <LinkedinNavbar /> */}
+      <NavBarNew />
       <Routes>
-        <Route path="/" element={<ProfilePage />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/:id" element={<ProfilePage />} />
+        <Route path="/profile/put" element={<ProfilePut />} />
+        <Route
+          path="/profile/setting/experiences"
+          element={<ExperiencesSetting />}
+        />
+        <Route path="/profile/setting/preferiti" element={<Favourites />} />
       </Routes>
       <FooterSection />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

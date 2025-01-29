@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 
-const HomeProfile = ({ param }) => {
+const HomeProfile = () => {
   const [profile, setprofile] = useState();
   const [error, setError] = useState(null);
 
@@ -34,8 +34,7 @@ const HomeProfile = ({ param }) => {
 
   useEffect(() => {
     fetchProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [param]);
+  }, []);
 
   if (error) {
     return <div className="text-danger text-center mt-4">{error}</div>;

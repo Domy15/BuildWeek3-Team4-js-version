@@ -190,7 +190,7 @@ const HeroSection = ({ param }) => {
                     <Link to="" className="btn btn-outline-secondary">
                       Modifica Profile
                     </Link>
-                    <Link to="" className="btn btn-outline-secondary">
+                    <Link to="/profile/setting/preferiti" className="btn btn-outline-secondary">
                       <BookmarkFill /> Elementi salvati
                     </Link>
                     <Button

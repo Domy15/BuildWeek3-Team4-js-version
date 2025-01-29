@@ -53,7 +53,7 @@ const Experience = ({ param }) => {
           navigate("/profile/setting/experiences");
         }}
       >
-        <PencilFill size={25} />
+        {param && <PencilFill size={25} />}
       </Button>
     </div>
       

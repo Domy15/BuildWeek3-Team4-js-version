@@ -139,7 +139,7 @@ const NewsHome = () => {
       ) : (
         posts.slice(0, showmore).map((post) => (
           <Card key={post._id} className="mb-4">
-            <Card.Body>
+            <Card.Body className="p-0">
               <div className="d-flex align-items-center mb-3">
                 <Image
                   src={post.user.image}
@@ -157,8 +157,8 @@ const NewsHome = () => {
                   </small>
                 </div>
               </div>
-              {post.image && <img src={post.image} width={500} height={500} />}
               <p>{post.text}</p>
+              {post.image && <img src={post.image} style={{width: '100%'}} />}
             </Card.Body>
           </Card>
         ))

@@ -25,8 +25,8 @@ const HomeJobs = ({ searchQuery }) => {
     }
   };
   return (
-    <div className="sticky-top z-custom">
-      <Card className="mt-5 p-3 rounded-2 bg-white">
+    <div className="sticky-top z-custom ">
+      <Card className="mt-5 p-3 rounded-2 bg-white mb-3 d-none d-lg-block">
         <h4>Annunci di Lavoro</h4>
         <h6 className="text-secondary">consigliati per te</h6>
         <hr />

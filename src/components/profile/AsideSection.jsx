@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { ProfilesApi } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";

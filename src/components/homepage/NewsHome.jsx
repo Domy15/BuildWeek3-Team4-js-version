@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
-import { Images } from "react-bootstrap-icons";
+import {
+  ChatDots,
+  HandThumbsUp,
+  HandThumbsUpFill,
+  Images,
+} from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const NewsHome = () => {
@@ -11,10 +17,36 @@ const NewsHome = () => {
   const [loading, setLoading] = useState(false);
   const [showmore, setShowmore] = useState(6);
   const [imgPost, setImgPost] = useState();
+  const [profile, setProfile] = useState();
+  const dispatch = useDispatch();
+  const favoritesPosts = useSelector(
+    (state) => state.interaction.favouritesPosts
+  );
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
   const AUTH_TOKEN =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+
+  const fetchProfile = async () => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/me`,
+        {
+          headers: {
+            Authorization: AUTH_TOKEN,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setProfile(data);
+      } else {
+        throw new Error("errore nella fetch dei dati del tuo profilo");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const fetchPosts = async () => {
     try {
@@ -31,8 +63,6 @@ const NewsHome = () => {
 
       const data = await response.json();
       setPosts(data.reverse());
-      console.log(data);
-      
     } catch (error) {
       console.error("Error fetching posts:", error.message);
     } finally {
@@ -99,6 +129,7 @@ const NewsHome = () => {
   };
 
   useEffect(() => {
+    fetchProfile();
     fetchPosts();
   }, []);
 
@@ -106,11 +137,15 @@ const NewsHome = () => {
     <Container className="mt-4">
       <Row className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
         <Col xs={1}>
-          <Image
-            src="https://placecats.com/40/40"
-            roundedCircle
-            className="me-3"
-          />
+          {profile && (
+            <Image
+              src={profile.image}
+              roundedCircle
+              className="me-3"
+              width={40}
+              height={40}
+            />
+          )}
         </Col>
         <Col xs={10}>
           <Form.Control
@@ -156,7 +191,10 @@ const NewsHome = () => {
                     height={50}
                   />
                   <div>
-                    <Link to={`/profile/${post.user._id}`} className="mb-0 fw-bold nav-link"> 
+                    <Link
+                      to={`/profile/${post.user._id}`}
+                      className="mb-0 fw-bold nav-link"
+                    >
                       {post.user.name || "Anonymous"}
                     </Link>
                     <small className="text-muted">
@@ -167,6 +205,38 @@ const NewsHome = () => {
                 <p>{post.text}</p>
               </div>
               {post.image && <img src={post.image} style={{ width: "100%" }} />}
+              <div style={{ width: "90%", margin: "auto" }}>
+                <Row className="mt-4 py-2 border-top">
+                  <Col className="d-flex justify-content-center">
+                    {!favoritesPosts.includes(post) ? (
+                      <button
+                        className="d-flex justify-content-center align-items-center border-0 bg-transparent"
+                        onClick={() => dispatch({ type: "ADD_POST", payload: post })}
+                      >
+                        <HandThumbsUp />
+                        <p className="m-0 ms-2">Mi Piace</p>
+                      </button>
+                    ) : (
+                      <button
+                        className="d-flex justify-content-center align-items-center border-0 bg-transparent"
+                        onClick={() => dispatch({
+                          type: "REMOVE_POST",
+                          payload: post,
+                        })}
+                      >
+                        <HandThumbsUpFill className="text-primary"/>
+                        <p className="m-0 ms-2">Mi Piace</p>
+                      </button>
+                    )}
+                  </Col>
+                  <Col className="d-flex justify-content-center">
+                    <button className="d-flex justify-content-center align-items-center border-0 bg-transparent">
+                      <ChatDots />
+                      <p className="m-0 ms-2">Commenta</p>
+                    </button>
+                  </Col>
+                </Row>
+              </div>
             </Card.Body>
           </Card>
         ))

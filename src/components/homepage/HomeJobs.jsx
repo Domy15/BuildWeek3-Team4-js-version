@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { Button, Card } from "react-bootstrap";
 
 const HomeJobs = ({ searchQuery }) => {
   const [randomJobs, setRandomJobs] = useState([]);
@@ -14,7 +14,7 @@ const HomeJobs = ({ searchQuery }) => {
       );
       if (response.ok) {
         const { data } = await response.json();
-        const random = [...data].sort(() => Math.random() - 0.5).slice(0, 3);
+        const random = [...data].sort(() => Math.random() - 0.5).slice(0, 6);
         setRandomJobs(random);
       } else {
         alert("Errore nel recupero dei dati");
@@ -23,67 +23,46 @@ const HomeJobs = ({ searchQuery }) => {
       console.error("Errore nella fetch:", error);
     }
   };
+   
 
-  const formatDate = (isoDate) => {
-    const date = new Date(isoDate);
-    return date.toLocaleString({
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      hour24: true,
-    });
-  };
+
   return (
-    <div style={{ padding: "20px" }}>
-      <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
-        Annunci di Lavoro
-      </h3>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(1, 1fr)",
-          gap: "20px",
-          maxWidth: "600px",
-          margin: "0 auto",
-        }}
+    <Card className="mt-5 p-3 rounded-2 sticky-top z-custom bg-white"
+    >
+      <h4>Annunci di Lavoro</h4>
+      <h6
+        className="text-secondary"
       >
-        {randomJobs.map((job) => (
-          <div
-            key={job._id}
-            className="bg-light"
-            style={{
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              padding: "15px",
-              boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <h4 style={{ fontSize: "18px", margin: "10px 0" }}>{job.title}</h4>
+        consigliati per te
+      </h6>
+      <hr/>
+      {randomJobs.map((job) => (
+        <ul
+          key={job._id}
+          className=" mb-4 list-unstyled"
+        >
+          <li className="list-unstyled mb-1 accordio fw-bolder "
+          style={{
+            
+            fontSize:"14px",
+          }}
+          >{job.title}</li>
 
-            {job.company_name && (
-              <p style={{ margin: "5px 0" }}>{job.company_name}</p>
-            )}
-            {job.publication_date && <p> {formatDate(job.publication_date)}</p>}
-            <a
-              href={job.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                marginTop: "10px",
-                color: "#007BFF",
-                textDecoration: "none",
-              }}
-            >
-              Dettagli del lavoro
-            </a>
-          </div>
-        ))}
-      </div>      
-    </div>
+          {job.company_name && (
+            <li className="list-unstyled text-secondary" 
+             style={{
+            fontSize:"12px",
+            lineHeight:"0.5",
+          }}>{job.company_name}</li>
+          )}
+        </ul>
+      ))}
+
+    <Button className="w-100 rounded-5 pb-2" variant="outline-primary"
+    >
+Mostra altro
+    </Button>
+    </Card>
   );
 };
 

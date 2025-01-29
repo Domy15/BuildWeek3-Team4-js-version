@@ -87,7 +87,6 @@ const ExperienceModify = (props) => {
           putImage();
         }}
       >
-        {console.log(imgExp)}
         <Form.Group>
           <Form.Label>Immagine Experience:</Form.Label>
           <Form.Control

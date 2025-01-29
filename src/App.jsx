@@ -4,13 +4,13 @@ import "./App.css";
 import "./style.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
-
 import Homepage from "./components/homepage/Homepage";
 import ProfilePut from "./components/profile/ProfilePut";
-//import Homepage from "./components/homepage/Homepage";
 import NavBarNew from "./components/NavBarNew";
 import ExperiencesSetting from "./components/profile/ExperiencesSetting";
 import Linkfoot from "./components/profile/Linkfoot";
+import Favourites from "./components/settingPage/Favourites";
+
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/profile/put" element={<ProfilePut />} />
         <Route path="/profile/setting/experiences" element= {<ExperiencesSetting/>}/>
+        <Route path='/profile/setting/preferiti' element= {<Favourites/>}/>
       </Routes>
       <Linkfoot />
     </BrowserRouter>

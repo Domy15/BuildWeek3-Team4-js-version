@@ -5,6 +5,7 @@ import "./style.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
 import FooterSection from "./components/Footer";
+import Homepage from "./components/homepage/Homepage";
 import ProfilePut from "./components/profile/ProfilePut";
 import Homepage from "./components/homepage/Homepage";
 import NavBarNew from "./components/NavBarNew";
@@ -13,7 +14,6 @@ import ExperiencesSetting from "./components/profile/ExperiencesSetting";
 function App() {
   return (
     <BrowserRouter>
-      {/* <LinkedinNavbar /> */}
       <NavBarNew />
       <Routes>
         <Route path="/" element={<Homepage />} />

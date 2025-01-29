@@ -1,4 +1,4 @@
-import { Badge} from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 import {
   Search,
   HouseDoorFill,
@@ -16,25 +16,25 @@ import {
   PlusLg,
 } from "react-bootstrap-icons";
 
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
 
 function NavBarNew() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid className="m-0">
         <div className="d-flex align-items-center">
-          <Navbar.Brand href="#">
+          <Link to="/" className=" navbar-brand">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
               alt="LinkedIn Logo"
               height="30"
             />
-          </Navbar.Brand>
+          </Link>
           <Form className="d-flex align-items-center ">
             <Search size={25} className="mx-3" />
             <Form.Control
@@ -46,7 +46,7 @@ function NavBarNew() {
           </Form>
         </div>
         <Nav className=" d-flex align-items-center flex-row">
-          <Nav.Link href="#" className="position-relative mx-1">
+          <Link to="/" className="position-relative mx-1 nav-link">
             <div className="text-center">
               <HouseDoorFill size={25} className="position-relative" />
               <Badge
@@ -58,7 +58,7 @@ function NavBarNew() {
               </Badge>
               <p className="m-0">Home</p>
             </div>
-          </Nav.Link>
+          </Link>
           <Nav.Link href="#" className="text-center mx-1">
             <div className="d-flex flex-column align-items-center">
               <PeopleFill size={25} />
@@ -120,35 +120,33 @@ function NavBarNew() {
                     <p className="m-0">Your description</p>
                   </div>
                 </div>
-                <NavDropdown.Item href="#action/3.3">
-                  <Button
-                    type="button"
-                    className="btnDropdownMenu bg-transparent text-primary w-100 border-1 border-primary rounded-5"
+                <NavDropdown.Item>
+                  <Link
+                    to="/profile"
+                    className=" btn btnDropdownMenu bg-transparent text-primary w-100 border-1 border-primary rounded-5"
                   >
                     Visualizza Profilo
-                  </Button>
+                  </Link>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <div>
                   <h4 className="ps-3">Account</h4>
-                  <NavDropdown.Item href="#">
-                    Impostazioni e privacy
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#">Guida</NavDropdown.Item>
-                  <NavDropdown.Item href="#">Lingua</NavDropdown.Item>
+                  <NavDropdown.Item>Impostazioni e privacy</NavDropdown.Item>
+                  <NavDropdown.Item>Guida</NavDropdown.Item>
+                  <NavDropdown.Item>Lingua</NavDropdown.Item>
                 </div>
                 <NavDropdown.Divider />
                 <div>
                   <h4 className="ps-3">Gestisci</h4>
-                  <NavDropdown.Item href="#">Post e attività</NavDropdown.Item>
-                  <NavDropdown.Item href="#">
+                  <NavDropdown.Item>Post e attività</NavDropdown.Item>
+                  <NavDropdown.Item>
                     Account per la pubblicazione di offerte lavorative
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#">Lingua</NavDropdown.Item>
+                  <NavDropdown.Item>Lingua</NavDropdown.Item>
                 </div>
                 <NavDropdown.Divider />
                 <div>
-                  <NavDropdown.Item href="#">Esci</NavDropdown.Item>
+                  <NavDropdown.Item>Esci</NavDropdown.Item>
                 </div>
               </NavDropdown>
             </div>

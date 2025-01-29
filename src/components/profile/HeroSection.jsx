@@ -51,7 +51,7 @@ const HeroSection = ({ param }) => {
 
   useEffect(() => {
     fetchProfile();
-    {param && setwork(getRandom)}
+    setwork(getRandom)
   }, [param, profile.update]);
 
   if (error) {
@@ -77,18 +77,19 @@ const HeroSection = ({ param }) => {
             <div className="relative">
               <img
                 src={profile.profile.image}
-                className="rounded-circle profilePicture position-absolute"
+                alt="Profile"
+                className="rounded-circle profilePicture position-absolute "
               />
               {work === 1 && (
                 <img
-                  src="public\Open.png"
+                  src="/public/Open.png"
                   className="rounded-circle profilePicture position-absolute"
                   style={{zIndex: '1000'}}
                 />
               )}
               {work === 2 && (
                 <img
-                  src="public\Freelancer.png"
+                  src="/public/Freelancer.png"
                   className="rounded-circle profilePicture position-absolute"
                   style={{zIndex: '1000'}}
                 />
@@ -191,7 +192,7 @@ const HeroSection = ({ param }) => {
                     <Link to="" className="btn btn-outline-secondary">
                       Modifica Profile
                     </Link>
-                    <Link to="" className="btn btn-outline-secondary">
+                    <Link to="/profile/setting/preferiti" className="btn btn-outline-secondary">
                       <BookmarkFill /> Elementi salvati
                     </Link>
                     <Button

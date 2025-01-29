@@ -16,7 +16,7 @@ const HeroSection = ({ param }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [work, setwork] = useState(3);
+  const [work, setwork] = useState();
 
   const fetchProfile = async () => {
     const id = param || "me";
@@ -51,7 +51,7 @@ const HeroSection = ({ param }) => {
 
   useEffect(() => {
     fetchProfile();
-    {param && setwork(getRandom)}
+    setwork(getRandom)
   }, [param, profile.update]);
 
   if (error) {
@@ -78,19 +78,17 @@ const HeroSection = ({ param }) => {
               <img
                 src={profile.profile.image}
                 alt="Profile"
-                className="rounded-circle profilePicture position-absolute"
+                className="rounded-circle profilePicture position-absolute "
               />
               {work === 1 && (
                 <img
-                  src="public\Open.png"
-                  alt=""
+                  src="/public/Open.png"
                   className="rounded-circle profilePicture position-absolute"
                 />
               )}
               {work === 2 && (
                 <img
-                  src="public\Freelancer.png"
-                  alt="freelancer"
+                  src="/public/Freelancer.png"
                   className="rounded-circle profilePicture position-absolute"
                 />
               )}
@@ -177,7 +175,7 @@ const HeroSection = ({ param }) => {
                         </Dropdown.Item>
                         <Dropdown.Item
                           className=" dropdown-item"
-                          onClick={() => setwork(3)}
+                          onClick={() => setwork(0)}
                         >
                           <p className="fw-bold lh-1 p-0 m-0">
                             Non sto cercando lavoro

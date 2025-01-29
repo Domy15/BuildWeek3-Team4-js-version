@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import SingleComment from "./SingleComment";
 import { Button, Col, Form, Image, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const Comments = ({ id }) => {
   const [comments, setComments] = useState();
@@ -9,6 +10,7 @@ const Comments = ({ id }) => {
   const [profile, setProfile] = useState();
   const [update, setUpdate] = useState(false);
   const URL = "https://striveschool-api.herokuapp.com/api/comments/";
+  const updateComments = useSelector((state) => state.user.update);
 
   const fetchProfile = async () => {
     try {
@@ -87,7 +89,7 @@ const Comments = ({ id }) => {
 
   useEffect(() => {
     getComments();
-  }, [id, update]);
+  }, [id, update, updateComments]);
 
   useEffect(() => {
     fetchProfile();

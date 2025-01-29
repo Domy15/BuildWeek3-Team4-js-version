@@ -1,7 +1,10 @@
 import { Col, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import { ThreeDots } from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
 
 const SingleComment = ({ comment }) => {
+  const dispatch= useDispatch()
+
   const deleteComment = async () => {
     if (comment.author !== "Pablo") {
       return;
@@ -19,6 +22,9 @@ const SingleComment = ({ comment }) => {
       );
       if (response.ok) {
         console.log("commento eliminato");
+        dispatch({
+          type: 'UPDATE',
+        })
       } else {
         throw new Error("errore nell'eleliminazione del commento");
       }

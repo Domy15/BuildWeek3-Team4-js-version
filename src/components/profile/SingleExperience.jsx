@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 const SingleExperience = (props) => {
     const dateStart = new Date(props.exp.startDate);
     const dateEnd = props.exp.endDate ? new Date(props.exp.endDate) : null;

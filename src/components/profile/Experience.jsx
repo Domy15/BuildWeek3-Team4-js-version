@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import SingleExperience from "./SingleExperience";
 import { Button } from "react-bootstrap";
@@ -8,7 +9,7 @@ const TOKEN =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
 
 const Experience = ({ param }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [exp, setExp] = useState([]);
   const randomNumber = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
   const [numExp, setNumExp] = useState(randomNumber);
@@ -46,19 +47,21 @@ const Experience = ({ param }) => {
 
   return (
     <div className="mb-3 border rounded-2 bg-white">
-    <div className=" d-flex justify-content-between">
-      <h4 className="pt-3 ps-3">Esperienza</h4>
-      {!param && <Button
-        variant="transparent"
-        className="ms-auto"
-        onClick={() => {
-          navigate("/profile/setting/experiences");
-        }}
-      >
-      <PencilFill size={25} />
-      </Button>}
-    </div>
-      
+      <div className=" d-flex justify-content-between">
+        <h4 className="pt-3 ps-3">Esperienza</h4>
+        {!param && (
+          <Button
+            variant="transparent"
+            className="ms-auto"
+            onClick={() => {
+              navigate("/profile/setting/experiences");
+            }}
+          >
+            <PencilFill size={25} />
+          </Button>
+        )}
+      </div>
+
       {exp &&
         exp.map(
           (exp, i) => i < numExp && <SingleExperience key={exp._id} exp={exp} />

@@ -4,7 +4,6 @@ import SingleComment from "./SingleComment";
 
 const Comments = ({ id }) => {
   const [comments, setComments] = useState();
-  console.log(id);
 
   const getComments = async () => {
     try {

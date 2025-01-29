@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 
 const HomeProfile = ({ param }) => {
-  const profile = useSelector((state) => state.user);
+  const [profile, setprofile] = useState();
   const [error, setError] = useState(null);
-  const dispatch = useDispatch();
 
  
   const fetchProfile = async () => {
-    const id = param || "me";
+    const id = "me";
     try {
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
@@ -24,10 +22,7 @@ const HomeProfile = ({ param }) => {
       );
       if (response.ok) {
         const data = await response.json();
-        dispatch({
-          type: "PROFILE",
-          payload: data,
-        });
+        setprofile(data);
         setError(null);
       } else {
         setError(`Error ${response.status}: ${response.statusText}`);

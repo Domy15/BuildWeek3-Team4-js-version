@@ -4,12 +4,13 @@ import "./App.css";
 import "./style.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/profile/ProfilePage";
-import FooterSection from "./components/Footer";
+
 import Homepage from "./components/homepage/Homepage";
 import ProfilePut from "./components/profile/ProfilePut";
-import Homepage from "./components/homepage/Homepage";
+//import Homepage from "./components/homepage/Homepage";
 import NavBarNew from "./components/NavBarNew";
 import ExperiencesSetting from "./components/profile/ExperiencesSetting";
+import Linkfoot from "./components/profile/Linkfoot";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path="/profile/put" element={<ProfilePut />} />
         <Route path="/profile/setting/experiences" element= {<ExperiencesSetting/>}/>
       </Routes>
-      <FooterSection />
+      <Linkfoot />
     </BrowserRouter>
   );
 }

@@ -16,7 +16,7 @@ const HeroSection = ({ param }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [work, setwork] = useState(3);
+  const [work, setwork] = useState(0);
 
   const fetchProfile = async () => {
     const id = param || "me";
@@ -77,21 +77,20 @@ const HeroSection = ({ param }) => {
             <div className="relative">
               <img
                 src={profile.profile.image}
-                alt="Profile"
                 className="rounded-circle profilePicture position-absolute"
               />
               {work === 1 && (
                 <img
                   src="public\Open.png"
-                  alt=""
                   className="rounded-circle profilePicture position-absolute"
+                  style={{zIndex: '1000'}}
                 />
               )}
               {work === 2 && (
                 <img
                   src="public\Freelancer.png"
-                  alt="freelancer"
                   className="rounded-circle profilePicture position-absolute"
+                  style={{zIndex: '1000'}}
                 />
               )}
             </div>
@@ -177,7 +176,7 @@ const HeroSection = ({ param }) => {
                         </Dropdown.Item>
                         <Dropdown.Item
                           className=" dropdown-item"
-                          onClick={() => setwork(3)}
+                          onClick={() => setwork(0)}
                         >
                           <p className="fw-bold lh-1 p-0 m-0">
                             Non sto cercando lavoro

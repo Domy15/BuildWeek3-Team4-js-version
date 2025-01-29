@@ -15,7 +15,7 @@ body {
 }
 
 .z-custom {
-  z-index:-1;
+  z-index: -1;
 }
 
 /* profile info */
@@ -114,6 +114,33 @@ body {
   margin-bottom: 1em;
 }
 
+/* comment section */
+
+.searchComment input,
+.searchComment input:focus,
+.searchComment input:-webkit-autofill,
+.searchComment input:-webkit-autofill:focus {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.searchComment {
+  padding: 0.8em 1em !important;
+}
+
+.btnSectionComm {
+  white-space: nowrap;
+  min-width: fit-content;
+  margin: 0 3px !important;
+}
+
+.btnSectionComm:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+
+  cursor: pointer;
+}
+
 /* aside */
 
 .asideSection {
@@ -131,7 +158,8 @@ body {
   max-width: 400px;
 }
 
-.descriptionAside {
+.descriptionAside,
+.commentHomeSection {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;

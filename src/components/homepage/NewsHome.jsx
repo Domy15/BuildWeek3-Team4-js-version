@@ -124,80 +124,82 @@ const NewsHome = () => {
   }, []);
 
   return (
-      <Container className="mt-4 mb-3">
-        <div className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
-          <Row className="px-3 mb-3">
-            <Col xs={2} xl={1}>
-              {profile && <Image
+    <Container className="mt-5">
+      <div className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
+        <Row className="px-3 mb-3">
+          <Col xs={2} xl={1}>
+            {profile && (
+              <Image
                 src={profile.image}
                 roundedCircle
                 className="me-3"
                 width={40}
                 height={40}
-              />}
-            </Col>
-            <Col xs={8} xl={9}>
-              <Form.Control
-                type="text"
-                placeholder="Start a post..."
-                value={newPostText}
-                onChange={(e) => setNewPostText(e.target.value)}
-                className="me-3 rounded-5 mb-3"
               />
-            </Col>
-            <Col xs={2}>
-              <Button onClick={createPost} disabled={!newPostText.trim()}>
-                Post
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={5}>
-              <div className="d-flex align-items-center">
-                <label
-                  htmlFor="file-upload"
-                  className="btn p-0 labelUpload d-flex align-items-center "
-                >
-                  <Images size={20} className="iconLabel " />
-                  <p className="subtitlesHome fw-medium align-self-center m-0 ps-2">
-                    Contenuti Multimediali
-                  </p>
-                </label>
-                <input
-                  type="file"
-                  id="file-upload"
-                  name=""
-                  className="d-none"
-                  onChange={(e) => {
-                    setImgPost(e.target.files[0]);
-                  }}
-                />
-              </div>
-            </Col>
-            <Col xs={3} className="p-0">
-              <div className="d-flex align-items-center justify-content-center fw-medium">
-                <Calendar2 size={20} className="iconLabel2" />
-                <p className="subtitlesHome m-0 ps-2">Evento</p>
-              </div>
-            </Col>
-            <Col xs={4}>
-              <div className="d-flex align-items-center justify-content-end fw-medium">
-                <BlockquoteLeft size={20} className="iconLabel3" />
-                <p className="subtitlesHome m-0 ps-2">Scrivi un articolo</p>
-              </div>
-            </Col>
-          </Row>
-        </div>
-        <hr />
-        <div className="d-flex justify-content-end">
-          <p className="titleHome mb-2 p-2">Visualizzazione del feed</p>
-        </div>
-        {loading ? (
-          <p>Loading posts...</p>
-        ) : (
-          posts.slice(0, showmore).map((post) => (
-          <CardPost key={post._id} post={post} />
-        ))
+            )}
+          </Col>
+          <Col xs={8} xl={9}>
+            <Form.Control
+              type="text"
+              placeholder="Start a post..."
+              value={newPostText}
+              onChange={(e) => setNewPostText(e.target.value)}
+              className="me-3 rounded-5 mb-3"
+            />
+          </Col>
+          <Col xs={2}>
+            <Button onClick={createPost} disabled={!newPostText.trim()}>
+              Post
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={5}>
+            <div className="d-flex align-items-center">
+              <label
+                htmlFor="file-upload"
+                className="btn p-0 labelUpload d-flex align-items-center "
+              >
+                <Images size={20} className="iconLabel " />
+                <p className="subtitlesHome fw-medium align-self-center m-0 ps-2">
+                  Contenuti Multimediali
+                </p>
+              </label>
+              <input
+                type="file"
+                id="file-upload"
+                name=""
+                className="d-none"
+                onChange={(e) => {
+                  setImgPost(e.target.files[0]);
+                }}
+              />
+            </div>
+          </Col>
+          <Col xs={3} className="p-0">
+            <div className="d-flex align-items-center justify-content-center fw-medium">
+              <Calendar2 size={20} className="iconLabel2" />
+              <p className="subtitlesHome m-0 ps-2">Evento</p>
+            </div>
+          </Col>
+          <Col xs={4}>
+            <div className="d-flex align-items-center justify-content-end fw-medium">
+              <BlockquoteLeft size={20} className="iconLabel3" />
+              <p className="subtitlesHome m-0 ps-2">Scrivi un articolo</p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <hr />
+      <div className="d-flex justify-content-end">
+        <p className="titleHome mb-2 p-2">Visualizzazione del feed</p>
+      </div>
+      {loading ? (
+        <p>Loading posts...</p>
+      ) : (
+        posts
+          .slice(0, showmore)
+          .map((post) => <CardPost key={post._id} post={post} />)
       )}
       <div className="text-center mt-4">
         <button className="btn btn-primary" onClick={handleShowMore}>
@@ -205,7 +207,7 @@ const NewsHome = () => {
         </button>
       </div>
     </Container>
-);
+  );
 };
 
 export default NewsHome;

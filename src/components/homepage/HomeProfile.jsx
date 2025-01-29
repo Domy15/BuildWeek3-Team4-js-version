@@ -44,38 +44,29 @@ const HomeProfile = () => {
   if (error) {
     return <div className="text-danger text-center mt-4">{error}</div>;
   }
-
+  
   if (!profile) {
     return <div className="text-center mt-4">Loading...</div>;
-  }
-
-  {
-    /*funzione per numeri random*/
   }
 
   const randomNumber = () => {
     return Math.floor(Math.random() * (100 + 1)) + 10;
   };
-
   return (
     <>
       <div className="sticky-top z-custom">
         <Card className="mt-5 bg-white">
           <div className="position-relative pb-2">
-            {/* Profile Image */}
-
             <img
               src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
               alt="background"
               className="imageHome img-fluid w-100 rounded-top"
             />
-
             <img
               src={profile.image}
               alt="Profile"
               className="profileHome rounded-circle  position-absolute"
             />
-
             <div className="d-flex mt-5 ">
               <h4 className=" ms-3">
                 {profile.name} {profile.surname}
@@ -85,9 +76,6 @@ const HomeProfile = () => {
               <p className="mb-1 ">{profile.title}</p>
               <p className="mb-2 text-muted">{profile.area}</p>
             </div>
-
-            {/*numeri random*/}
-
             <Container className="d-sm-none d-md-block">
               <hr />
               <Row>
@@ -106,8 +94,6 @@ const HomeProfile = () => {
             </Container>
           </div>
         </Card>
-
-        {/* Card con icoe */}
         <Card className="mt-1 d-sm-none d-md-block">
           <div className="m-2">
             <BookmarkFill />
@@ -117,17 +103,14 @@ const HomeProfile = () => {
               </a>
             </span>
           </div>
-
           <div className="m-2">
             <PeopleFill />
             <span className="ms-2">Gruppi</span>
           </div>
-
           <div className="m-2">
             <Newspaper />
             <span className="ms-2">Newsletter</span>
           </div>
-
           <div className="m-2">
             <CalendarEvent />
             <span className="ms-2">Eventi</span>

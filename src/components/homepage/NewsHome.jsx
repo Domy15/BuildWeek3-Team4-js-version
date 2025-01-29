@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
-import { Card, Col, Container, Image, Row } from "react-bootstrap";
-import {
-  ChatDots,
-  HandThumbsUp,
-  HandThumbsUpFill,
-  Images,
-} from "react-bootstrap-icons";
+import { Col, Container, Image, Row } from "react-bootstrap";
+import { Images } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import CardPost from "./CardPost";
 
 const NewsHome = () => {
   const [posts, setPosts] = useState([]);
@@ -18,10 +12,6 @@ const NewsHome = () => {
   const [showmore, setShowmore] = useState(6);
   const [imgPost, setImgPost] = useState();
   const [profile, setProfile] = useState();
-  const dispatch = useDispatch();
-  const favoritesPosts = useSelector(
-    (state) => state.interaction.favouritesPosts
-  );
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
   const AUTH_TOKEN =
@@ -179,66 +169,7 @@ const NewsHome = () => {
         <p>Loading posts...</p>
       ) : (
         posts.slice(0, showmore).map((post) => (
-          <Card key={post._id} className="mb-4">
-            <Card.Body className="p-0">
-              <div className="p-3">
-                <div className="d-flex align-items-center mb-3">
-                  <Image
-                    src={post.user.image}
-                    roundedCircle
-                    className="me-3"
-                    width={50}
-                    height={50}
-                  />
-                  <div>
-                    <Link
-                      to={`/profile/${post.user._id}`}
-                      className="mb-0 fw-bold nav-link"
-                    >
-                      {post.user.name || "Anonymous"}
-                    </Link>
-                    <small className="text-muted">
-                      {new Date(post.createdAt).toLocaleString()}
-                    </small>
-                  </div>
-                </div>
-                <p>{post.text}</p>
-              </div>
-              {post.image && <img src={post.image} style={{ width: "100%" }} />}
-              <div style={{ width: "90%", margin: "auto" }}>
-                <Row className="mt-4 py-2 border-top">
-                  <Col className="d-flex justify-content-center">
-                    {!favoritesPosts.includes(post) ? (
-                      <button
-                        className="d-flex justify-content-center align-items-center border-0 bg-transparent"
-                        onClick={() => dispatch({ type: "ADD_POST", payload: post })}
-                      >
-                        <HandThumbsUp />
-                        <p className="m-0 ms-2">Mi Piace</p>
-                      </button>
-                    ) : (
-                      <button
-                        className="d-flex justify-content-center align-items-center border-0 bg-transparent"
-                        onClick={() => dispatch({
-                          type: "REMOVE_POST",
-                          payload: post,
-                        })}
-                      >
-                        <HandThumbsUpFill className="text-primary"/>
-                        <p className="m-0 ms-2">Mi Piace</p>
-                      </button>
-                    )}
-                  </Col>
-                  <Col className="d-flex justify-content-center">
-                    <button className="d-flex justify-content-center align-items-center border-0 bg-transparent">
-                      <ChatDots />
-                      <p className="m-0 ms-2">Commenta</p>
-                    </button>
-                  </Col>
-                </Row>
-              </div>
-            </Card.Body>
-          </Card>
+          <CardPost key={post._id} post={post} />
         ))
       )}
       <div className="text-center mt-4">

@@ -7,6 +7,7 @@ const Comments = ({ id }) => {
   const [comments, setComments] = useState();
   const [singleComment, setSingleComment] = useState('');
   const [profile, setProfile] = useState();
+  const [update, setUpdate] = useState(false);
   const URL = "https://striveschool-api.herokuapp.com/api/comments/";
 
   const fetchProfile = async () => {
@@ -86,7 +87,7 @@ const Comments = ({ id }) => {
 
   useEffect(() => {
     getComments();
-  }, [id]);
+  }, [id, update]);
 
   useEffect(() => {
     fetchProfile();
@@ -114,7 +115,7 @@ const Comments = ({ id }) => {
               />
             </Col>
             <Col xs={2}>
-              <Button onClick={postComment}>
+              <Button onClick={() => {postComment(), setUpdate(!update)}}>
                 Post
               </Button>
             </Col>

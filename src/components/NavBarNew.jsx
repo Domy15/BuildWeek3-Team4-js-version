@@ -132,7 +132,7 @@ function NavBarNew() {
               />
             )}
 
-            <div className="mx-2 ">
+            <div className="mx-2">
               <NavDropdown
                 title="Profile"
                 id="basic-nav-dropdown"

@@ -127,13 +127,13 @@ const NewsHome = () => {
     <Container className="mt-4">
       <Row className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
         <Col xs={1}>
-          <Image
-            src={profile.image}
+        {profile && <Image
+              src={profile.image}
             roundedCircle
             className="me-3"
             width={40}
             height={40}
-          />
+          />}
         </Col>
         <Col xs={10}>
           <Form.Control

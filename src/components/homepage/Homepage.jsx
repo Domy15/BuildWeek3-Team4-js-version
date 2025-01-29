@@ -10,13 +10,13 @@ const Homepage = () => {
         <Col md ={3} sm={12}>
         <HomeProfile />
         </Col>
-        <Col lg ={6} sm={12} md ={7}>
-        <NewsHome />
+        <Col lg={6} sm={12} md={7}>
+          <NewsHome />
         </Col>
-        <Col lg ={3} md ={2} className=" d-lg-block d-sm-none d-xxs-none">
-        <HomeJobs/>
+        <Col lg={3} md={2} className=" d-none d-lg-block">
+          <HomeJobs />
         </Col>
-         </Row>               
+      </Row>
     </Container>
   );
 };

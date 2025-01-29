@@ -1,5 +1,8 @@
 const initialState = {
-  user: [],
+  user: {
+    update: false,
+    profile: {},
+  },
   friends: [],
   interaction: {
     favourites: [],
@@ -17,7 +20,19 @@ const mainReducer = (state = initialState, action) => {
     case "PROFILE":
       return {
         ...state,
-        user: action.payload,
+        user: {
+          ...state.user,
+          profile: action.payload,
+        },
+      };
+
+    case "UPDATE":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          update: !state.user.update,
+        },
       };
 
     case "ADD":

@@ -1,4 +1,3 @@
-
 import { Col, Container, Row } from "react-bootstrap";
 import NewsHome from "../homepage/NewsHome";
 import HomeJobs from "./HomeJobs";
@@ -21,7 +20,3 @@ const Homepage = () => {
 };
 
 export default Homepage;
-
-
-
-

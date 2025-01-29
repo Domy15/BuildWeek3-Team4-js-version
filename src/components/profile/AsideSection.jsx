@@ -25,7 +25,7 @@ const AsideSection = () => {
   return (
     <div>
       <section>
-        <div className="asideSection p-2">
+        <div className="asideSection p-2 bg-white border border-1">
           <div className="bg-light p-2">
             <div>
               <img

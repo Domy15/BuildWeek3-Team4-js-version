@@ -45,7 +45,7 @@ const Languages = () => {
 
     return (
         <>
-            <Container className="border rounded-2 p-0 pt-3">
+            <Container className="border rounded-2 p-0 pt-3 bg-white">
                 {lang && (
                     <>
                         <Row className="px-3">

@@ -27,6 +27,7 @@ const Favourites = () => {
             className={`border-bottom p-3 m-0 d-flex align-items-center ${
               selected === 1 ? "selected-border" : ""
             }`}
+            style={{cursor: 'pointer'}}
             onClick={() => setSelected(1)}
           >
             <h5 className="m-0">
@@ -40,6 +41,7 @@ const Favourites = () => {
             className={`border-bottom p-3 m-0 d-flex align-items-center ${
               selected === 2 ? "selected-border" : ""
             }`}
+            style={{cursor: 'pointer'}}
             onClick={() => setSelected(2)}
           >
             <h5 className="m-0">
@@ -51,6 +53,7 @@ const Favourites = () => {
             className={`border-bottom p-3 m-0 d-flex align-items-center ${
               selected === 3 ? "selected-border" : ""
             }`}
+            style={{cursor: 'pointer'}}
             onClick={() => setSelected(3)}
           >
             <h5 className="m-0">

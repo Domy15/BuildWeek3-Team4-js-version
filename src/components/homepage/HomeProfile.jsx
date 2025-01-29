@@ -6,6 +6,7 @@ import {
   Newspaper,
   PeopleFill,
 } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 const HomeProfile = () => {
   const [profile, setprofile] = useState();
@@ -67,10 +68,10 @@ const HomeProfile = () => {
               alt="Profile"
               className="profileHome rounded-circle  position-absolute"
             />
-            <div className="d-flex mt-5 ">
-              <h4 className=" ms-3">
+            <div className="d-flex mt-5">
+              <Link to='/profile' className="ms-3 h4 text-decoration-none">
                 {profile.name} {profile.surname}
-              </h4>
+              </Link>
             </div>
             <div className="ms-3">
               <p className="mb-1 ">{profile.title}</p>
@@ -98,9 +99,9 @@ const HomeProfile = () => {
           <div className="m-2">
             <BookmarkFill />
             <span className="ms-2">
-              <a href="#" className="text-dark text-decoration-none">
+              <Link to='/profile/setting/preferiti' className="text-dark text-decoration-none">
                 Elementi salvati
-              </a>
+              </Link>
             </span>
           </div>
           <div className="m-2">

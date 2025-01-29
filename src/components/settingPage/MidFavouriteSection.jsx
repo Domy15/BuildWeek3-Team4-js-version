@@ -2,7 +2,6 @@ import { Col, Row } from "react-bootstrap";
 import SinglePost from "./SinglePost";
 
 const MidFavouriteSection = (props) => {
-  console.log(props.item);
   return (
     <>
       <Row className=" border rounded-3 bg-white">

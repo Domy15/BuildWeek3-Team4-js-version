@@ -3,8 +3,8 @@ import { Row, Col, Dropdown } from "react-bootstrap";
 const Linkfoot = () => {
   return (
     <Row className="justify-content-center">
-      <Col xs={11} >
-        <div className="d-flex flex-wrap justify-content-center mb-3 gap-1">
+      <Col xs={11}>
+        <div className="d-flex flex-wrap justify-content-center mb-3 gap-1 text-center">
           <a href="#" className="nav-link opacity-75 me-3">
             <small>Informazioni</small>
           </a>

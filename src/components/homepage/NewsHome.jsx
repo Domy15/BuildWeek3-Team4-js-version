@@ -11,10 +11,32 @@ const NewsHome = () => {
   const [loading, setLoading] = useState(false);
   const [showmore, setShowmore] = useState(6);
   const [imgPost, setImgPost] = useState();
+  const [profile, setProfile] = useState();
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
   const AUTH_TOKEN =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(
+          `https://striveschool-api.herokuapp.com/api/profile/me`,
+          {
+            headers: {
+              Authorization: AUTH_TOKEN,
+            },
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setProfile(data);
+        } else {
+          throw new Error('errore nella fetch dei dati del tuo profilo')
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
   const fetchPosts = async () => {
     try {
@@ -31,8 +53,6 @@ const NewsHome = () => {
 
       const data = await response.json();
       setPosts(data.reverse());
-      console.log(data);
-      
     } catch (error) {
       console.error("Error fetching posts:", error.message);
     } finally {
@@ -99,6 +119,7 @@ const NewsHome = () => {
   };
 
   useEffect(() => {
+    fetchProfile();
     fetchPosts();
   }, []);
 
@@ -107,9 +128,11 @@ const NewsHome = () => {
       <Row className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
         <Col xs={1}>
           <Image
-            src="https://placecats.com/40/40"
+            src={profile.image}
             roundedCircle
             className="me-3"
+            width={40}
+            height={40}
           />
         </Col>
         <Col xs={10}>

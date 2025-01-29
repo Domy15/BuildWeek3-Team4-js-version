@@ -7,9 +7,14 @@ import {
   Images,
   ThreeDots,
   XLg,
+  ChatDots,
+  HandThumbsUp,
+  HandThumbsUpFill,
+  Images,
 } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const NewsHome = () => {
@@ -18,10 +23,36 @@ const NewsHome = () => {
   const [loading, setLoading] = useState(false);
   const [showmore, setShowmore] = useState(6);
   const [imgPost, setImgPost] = useState();
+  const [profile, setProfile] = useState();
+  const dispatch = useDispatch();
+  const favoritesPosts = useSelector(
+    (state) => state.interaction.favouritesPosts
+  );
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
   const AUTH_TOKEN =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+
+  const fetchProfile = async () => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/me`,
+        {
+          headers: {
+            Authorization: AUTH_TOKEN,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setProfile(data);
+      } else {
+        throw new Error("errore nella fetch dei dati del tuo profilo");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const fetchPosts = async () => {
     try {
@@ -38,7 +69,6 @@ const NewsHome = () => {
 
       const data = await response.json();
       setPosts(data.reverse());
-      console.log(data);
     } catch (error) {
       console.error("Error fetching posts:", error.message);
     } finally {
@@ -105,6 +135,7 @@ const NewsHome = () => {
   };
 
   useEffect(() => {
+    fetchProfile();
     fetchPosts();
   }, []);
 

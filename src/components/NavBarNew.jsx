@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Badge } from "react-bootstrap";
 import {
   Search,
@@ -24,6 +25,35 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 
 function NavBarNew() {
+  const [profile, setProfile] = useState();
+  const AUTH_TOKEN =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+
+  const fetchProfile = async () => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/me`,
+        {
+          headers: {
+            Authorization: AUTH_TOKEN,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setProfile(data);
+      } else {
+        throw new Error("errore nella fetch dei dati del tuo profilo");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid className="m-0">
@@ -92,13 +122,15 @@ function NavBarNew() {
           </Nav.Link>
 
           <div className="text-center">
-            <img
-              src="https://placecats.com/30/30"
-              alt="Profilo"
-              className="rounded-circle img-fluid"
-              width="25"
-              height="25"
-            />
+            {profile && (
+              <img
+                src={profile.image}
+                alt="Profilo"
+                className="rounded-circle img-fluid"
+                width="25"
+                height="25"
+              />
+            )}
 
             <div className="mx-2 ">
               <NavDropdown
@@ -108,26 +140,28 @@ function NavBarNew() {
                 className=" dropdown-menu-end"
               >
                 <div className="d-flex align-items-center p-3">
-                  <img
-                    src="https://placecats.com/70/70"
-                    alt="Profilo"
-                    className="rounded-circle"
-                    width="70"
-                    height="70"
-                  />
+                  {profile && (
+                    <img
+                      src={profile.image}
+                      alt="Profilo"
+                      className="rounded-circle"
+                      width="70"
+                      height="70"
+                    />
+                  )}
                   <div className="ms-4">
                     <h5>Your Profile</h5>
                     <p className="m-0">Your description</p>
                   </div>
                 </div>
-
-                <Link
-                  to="/profile"
-                  className=" btn btnDropdownMenu bg-transparent text-primary w-100 border-1 border-primary rounded-5"
-                >
-                  Visualizza Profilo
-                </Link>
-
+                <Container>
+                  <Link
+                    to="/profile"
+                    className=" btn btnDropdownMenu bg-transparent text-primary w-100 border-1 border-primary rounded-5"
+                  >
+                    Visualizza Profilo
+                  </Link>
+                </Container>
                 <NavDropdown.Divider />
                 <div>
                   <h4 className="ps-3">Account</h4>

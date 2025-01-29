@@ -46,8 +46,6 @@ const SingleExpSettings = (props) => {
       </Col>
       <Col className=" d-flex gap-4 justify-content-end">
         {form && <PencilFill size={30} onClick={() => formModify()} />}
-        {console.log(props.exp._id)}
-
         {form && (
           <Trash3Fill
             size={30}

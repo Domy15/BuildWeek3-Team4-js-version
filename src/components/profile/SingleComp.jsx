@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+ import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap"
 import { PeopleFill, Receipt } from "react-bootstrap-icons"
 

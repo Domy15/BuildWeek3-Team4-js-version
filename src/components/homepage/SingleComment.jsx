@@ -6,28 +6,30 @@ import {
 } from "react-bootstrap-icons";
 
 const SingleComment = ({ comment }) => {
+  const bntOption = [
+    "Mi piace",
+    "Geniale",
+    "Suggerimenti Utili",
+    "Molto Utile",
+    "Interessante",
+    "Ottimo consiglio",
+    "Concordo",
+  ];
   return (
     <div className="p-3">
       <hr />
 
       <div className="d-flex overflow-auto">
-        {[
-          "Mi piace",
-          "Geniale",
-          "Suggerimenti Utili",
-          "Molto Utile",
-          "Interessante",
-          "Ottimo consiglio",
-          "Concordo",
-        ].map((btn, i) => (
+        {bntOption.map((btn, i) => (
           <p
             key={i}
-            className="btnSectionComm btn bg-transparent border border-1 border-black rounded-4 m-0 flex-grow-1 text-center px-2"
+            className="btnSectionComm btn bg-transparent border border-1 border-black rounded-4 m-0 text-center px-2 "
           >
             {btn}
           </p>
         ))}
       </div>
+      <hr />
 
       <div className="d-flex align-items-center justify-content-start p-0 mt-3">
         <img

@@ -135,6 +135,12 @@ body {
   margin: 0 3px !important;
 }
 
+.btnSectionComm:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+
+  cursor: pointer;
+}
+
 /* aside */
 
 .asideSection {

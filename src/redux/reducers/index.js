@@ -6,6 +6,8 @@ const initialState = {
   friends: [],
   interaction: {
     favourites: [],
+    favouritesPosts: [],
+    favouritesJobs: [],
   },
 };
 
@@ -35,6 +37,26 @@ const mainReducer = (state = initialState, action) => {
         },
       };
 
+      case "ADD_POST":
+      return {
+        ...state,
+        interaction: {
+          ...state.interaction,
+          favouritesPosts: state.interaction.favouritesPosts.concat(action.payload),
+        },
+      };
+
+      case "REMOVE_POST":
+      return {
+        ...state,
+        interaction: {
+          ...state.interaction,
+          favouritesPosts: state.interaction.favouritesPosts.filter((item) => {
+            return action.payload !== item;
+          }),
+        },
+      };
+
     case "ADD":
       return {
         ...state,
@@ -43,6 +65,7 @@ const mainReducer = (state = initialState, action) => {
           favourites: state.interaction.favourites.concat(action.payload),
         },
       };
+
     case "REMOVE":
       return {
         ...state,

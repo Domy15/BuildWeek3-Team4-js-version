@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { ProfilesApi } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
@@ -5,7 +6,7 @@ import { Link } from "react-router-dom";
 import { PersonFillAdd, PersonFillDash } from "react-bootstrap-icons";
 import CompanyAside from "./CompanyAside";
 
-const AsideSection = () => {
+const AsideSection = ({param}) => {
   const users = useSelector((state) => state.friends);
   const follow = useSelector((state) => state.interaction.favourites);
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const AsideSection = () => {
 
   useEffect(() => {
     dispatch(ProfilesApi(url, token, randomProfiles));
-  }, []);
+  }, [param]);
 
   return (
     <div>
@@ -66,13 +67,13 @@ const AsideSection = () => {
                       <p className="descriptionAside text-muted mb-2">
                         {u.title}
                       </p>
-                      {!follow.includes(u._id) ? (
+                      {!follow.includes(u) ? (
                         <button
                           className="followBtn btn border-1 border-black btn-sm d-flex align-items-center"
                           onClick={() => {
                             dispatch({
                               type: "ADD",
-                              payload: u._id,
+                              payload: u,
                             });
                           }}
                         >
@@ -85,7 +86,7 @@ const AsideSection = () => {
                           onClick={() => {
                             dispatch({
                               type: "REMOVE",
-                              payload: u._id,
+                              payload: u,
                             });
                           }}
                         >

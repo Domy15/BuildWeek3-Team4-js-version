@@ -1,5 +1,3 @@
-import { Row, Col, Dropdown } from "react-bootstrap";
-
 const Linkfoot = () => {
   return (
     <Row className="justify-content-center">

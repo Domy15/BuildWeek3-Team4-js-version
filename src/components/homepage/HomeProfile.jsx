@@ -64,7 +64,7 @@ const HomeProfile = () => {
           />
 
           <img
-            src={profile.image || "https://via.placeholder.com/150"}
+            src={profile.image}
             alt="Profile"
             className="profileHome rounded-circle  position-absolute"
           />

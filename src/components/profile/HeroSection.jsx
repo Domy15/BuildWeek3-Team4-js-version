@@ -16,7 +16,7 @@ const HeroSection = ({ param }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [work, setwork] = useState();
+  const [work, setwork] = useState(0);
 
   const fetchProfile = async () => {
     const id = param || "me";
@@ -84,12 +84,14 @@ const HeroSection = ({ param }) => {
                 <img
                   src="/public/Open.png"
                   className="rounded-circle profilePicture position-absolute"
+                  style={{zIndex: '1000'}}
                 />
               )}
               {work === 2 && (
                 <img
                   src="/public/Freelancer.png"
                   className="rounded-circle profilePicture position-absolute"
+                  style={{zIndex: '1000'}}
                 />
               )}
             </div>

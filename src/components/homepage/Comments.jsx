@@ -1,25 +1,51 @@
-const Comments = ({id}) => {
-    
-    const getComments = async() => {
-        try {
-            const response = await fetch('https://striveschool-api.herokuapp.com/api/comments/' ,{
-                header:{
-                    Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVjMDAxY2QyMjA3MTAwMTVkZTJmNTUiLCJpYXQiOjE3MzgxNjAxMTcsImV4cCI6MTczOTM2OTcxN30.25IKkY2JudekPfeU60ZBpDgarUKp-pV9xEgMYov4NiM'
-                }
-            });
-            if (response.ok) {
-                const data = response.json();
-            } else {
-                throw new Error("errore nell'acquisizione dei dati");
-            }
-        } catch (error) {
-            console.log(error);
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import SingleComment from "./SingleComment";
+
+const Comments = ({ id }) => {
+  const [comments, setComments] = useState();
+  console.log(id);
+
+  const getComments = async () => {
+    try {
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/comments/",
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhNDQ5ZmU4NWJhZDAwMTUyOWIzYmYiLCJpYXQiOjE3MzgxNjMzNTksImV4cCI6MTczOTM3Mjk1OX0.S9qk4G5SYOLIs4g-EIbipTCE-zz2V6sAdpIYzaJ6tEY",
+          },
         }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setComments(
+          data.filter((comment) => {
+            return comment.elementId === id;
+          })
+        );
+      } else {
+        throw new Error("errore nell'acquisizione dei dati");
+      }
+    } catch (error) {
+      console.log(error);
     }
-    
-    return (
-        <p>ciao</p>
-    )
-}
+  };
+
+  useEffect(() => {
+    getComments();
+  }, [id]);
+
+  return (
+    <>
+      {comments && comments.length > 0 && (
+        comments.map((comment) => {
+            return (
+            <SingleComment key={comment._id} comment={comment}/>
+        )})
+      )}
+    </>
+  );
+};
 
 export default Comments;

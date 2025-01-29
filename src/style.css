@@ -54,6 +54,11 @@ body {
   width: 100%;
 }
 
+.selected-border{
+  border-left: #2264a6 4px solid;
+  color: #2264a6;
+}
+
 .bckImageProfile {
   height: 300px;
 }

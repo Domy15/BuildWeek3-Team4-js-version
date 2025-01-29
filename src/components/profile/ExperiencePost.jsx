@@ -4,7 +4,9 @@ import { useDispatch } from "react-redux";
 
 const ExperiencePost = (props) => {
   const dispatch = useDispatch();
-
+  const [imgExp, setImgExp] = useState({
+    img: null,
+  });
   const [value, setValue] = useState({
     role: "",
     company: "",
@@ -31,16 +33,48 @@ const ExperiencePost = (props) => {
         
       });
       if (response.ok) {
-        dispatch({ type: "UPDATE" });
-        props.changeUpdate()
-        props.hide()
-
+        const data = await response.json();
+        putImage(data._id);
         console.log(`Esperienza aggiunta!`);
       } else {
         throw new Error("Errore nella fetch dei dati");
       }
     } catch (error) {
       console.log("Errore: ", error);
+    }
+  };
+  const putImage = async (id) => {
+    try {
+      const formData = new FormData();
+      if (imgExp) {
+        formData.append("experience", imgExp.img);
+      }
+
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+      console.log(formData);
+
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/67975ee416f6350015fecb97/experiences/${id}/picture`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        console.log("immagine cambiata");
+        dispatch({ type: "UPDATE" });
+        props.changeUpdate()
+        props.hide()
+      } else {
+        throw new Error("errore nella fetch dei dati");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
   return (
@@ -101,6 +135,11 @@ const ExperiencePost = (props) => {
             value={value.description}
             onChange={(e)=>setValue({ ...value, description: e.target.value})}
           />
+          <Form.Label>Immagine Experience:</Form.Label>
+          <Form.Control
+            type="file"
+            onChange={(e) => setImgExp({ img: e.target.files[0] })}
+          ></Form.Control>
         </div>
         <Button variant="primary" type="submit">
           Submit

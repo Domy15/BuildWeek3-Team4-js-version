@@ -5,9 +5,6 @@ import { FloatingLabel, Form } from "react-bootstrap";
 const ExperienceModify = (props) => {
   const TOKEN =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
-
-  //   const [show, setShow] = useState(false);
-  //   const [update, setUpdate] = useState(true);
   const [value, setValue] = useState({
     role: props.item.role,
     company: props.item.company,

@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Image, Row } from "react-bootstrap";
-import { Images } from "react-bootstrap-icons";
+import {
+  BlockquoteLeft,
+  Calendar2,
+  HandThumbsUp,
+  HandThumbsUpFill,
+  Images,
+  ThreeDots,
+  XLg,
+} from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
@@ -32,7 +40,6 @@ const NewsHome = () => {
       const data = await response.json();
       setPosts(data.reverse());
       console.log(data);
-      
     } catch (error) {
       console.error("Error fetching posts:", error.message);
     } finally {
@@ -103,80 +110,147 @@ const NewsHome = () => {
   }, []);
 
   return (
-    <Container className="mt-4">
-      <Row className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
-        <Col xs={1}>
-          <Image
-            src="https://placecats.com/40/40"
-            roundedCircle
-            className="me-3"
-          />
-        </Col>
-        <Col xs={10}>
-          <Form.Control
-            type="text"
-            placeholder="Start a post..."
-            value={newPostText}
-            onChange={(e) => setNewPostText(e.target.value)}
-            className="me-3 rounded-5"
-          />
-        </Col>
-        <Col xs={1}>
-          <Button onClick={createPost} disabled={!newPostText.trim()}>
-            Post
-          </Button>
-        </Col>
-        <Col xs={4} className="d-flex align-items-center fs-3 text-primary">
-          <Images />
-          <Form.Control
-            type="file"
-            onChange={(e) => {
-              setImgPost(e.target.files[0]);
-            }}
-            className="fileInput"
-          />
-        </Col>
-        <Col></Col>
-        <Col></Col>
-      </Row>
+    <>
+      <Container className="mt-4">
+        <div className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
+          <Row className="px-3 mb-3">
+            <Col xs={2}>
+              <Image
+                src="https://placecats.com/40/40"
+                roundedCircle
+                className="me-3"
+              />
+            </Col>
+            <Col xs={8}>
+              <Form.Control
+                type="text"
+                placeholder="Start a post..."
+                value={newPostText}
+                onChange={(e) => setNewPostText(e.target.value)}
+                className="me-3 rounded-5 mb-3"
+              />
+            </Col>
+            <Col xs={2}>
+              <Button onClick={createPost} disabled={!newPostText.trim()}>
+                Post
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={5}>
+              {/* <Form>
+            <Form.Group className="d-flex align-items-center">
+              <Form.Label className="descFileInp position-absolute">
+                <Images size={25} />
+                Contenuti multimediali
+              </Form.Label>
+              <Form.Control
+                type="file"
+                onChange={(e) => {
+                  setImgPost(e.target.files[0]);
+                }}
+                className="fileInput position-absolute"
+              />
+            </Form.Group>
+          </Form> */}
+              <div className="d-flex align-items-center">
+                <label
+                  htmlFor="file-upload"
+                  className="btn p-0 labelUpload d-flex align-items-center "
+                >
+                  <Images size={20} className="iconLabel " />
+                  <p className="subtitlesHome fw-medium align-self-center m-0 ps-2">
+                    Contenuti Multimediali
+                  </p>
+                </label>
+                <input
+                  type="file"
+                  id="file-upload"
+                  name=""
+                  className="d-none"
+                  onChange={(e) => {
+                    setImgPost(e.target.files[0]);
+                  }}
+                />
+              </div>
+            </Col>
+            <Col xs={3} className="p-0">
+              <div className="d-flex align-items-center justify-content-center fw-medium">
+                <Calendar2 size={20} className="iconLabel2" />
+                <p className="subtitlesHome m-0 ps-2">Evento</p>
+              </div>
+            </Col>
+            <Col xs={4}>
+              <div className="d-flex align-items-center justify-content-end fw-medium">
+                <BlockquoteLeft size={20} className="iconLabel3" />
+                <p className="subtitlesHome m-0 ps-2">Scrivi un articolo</p>
+              </div>
+            </Col>
+          </Row>
+        </div>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <p className="titleHome mb-2 p-2">Visualizzazione del feed</p>
+        </div>
+        {loading ? (
+          <p>Loading posts...</p>
+        ) : (
+          posts.slice(0, showmore).map((post) => (
+            <Card key={post._id} className="mb-4">
+              <Card.Body className="p-0">
+                <div className="p-3">
+                  <div className="d-flex align-items-center mb-3 justify-content-between">
+                    <div className="d-flex">
+                      <Image
+                        src={post.user.image}
+                        roundedCircle
+                        className="me-3"
+                        width={50}
+                        height={50}
+                      />
 
-      {loading ? (
-        <p>Loading posts...</p>
-      ) : (
-        posts.slice(0, showmore).map((post) => (
-          <Card key={post._id} className="mb-4">
-            <Card.Body className="p-0">
-              <div className="p-3">
-                <div className="d-flex align-items-center mb-3">
-                  <Image
-                    src={post.user.image}
-                    roundedCircle
-                    className="me-3"
-                    width={50}
-                    height={50}
-                  />
-                  <div>
-                    <Link to={`/profile/${post.user._id}`} className="mb-0 fw-bold nav-link"> 
-                      {post.user.name || "Anonymous"}
-                    </Link>
-                    <small className="text-muted">
-                      {new Date(post.createdAt).toLocaleString()}
-                    </small>
+                      <div>
+                        <Link
+                          to={`/profile/${post.user._id}`}
+                          className="mb-0 fw-bold nav-link"
+                        >
+                          {post.user.name || "Anonymous"}
+                        </Link>
+                        <small className="text-muted">
+                          {new Date(post.createdAt).toLocaleString()}
+                        </small>
+                      </div>
+                    </div>
+                    <div className="d-flex justify-content-end">
+                      <ThreeDots size={20} className="m-2" />
+                      <XLg size={20} className="m-2" />
+                    </div>
+                  </div>
+                  <div className="bg-white p-2 rounded border border-1">
+                    <p>{post.text}</p>
                   </div>
                 </div>
-                <p>{post.text}</p>
-              </div>
-              {post.image && <img src={post.image} style={{ width: "100%" }} />}
-            </Card.Body>
-          </Card>
-        ))
-      )}
-      <div className="text-center mt-4">
-        <button className="btn btn-primary" onClick={handleShowMore}>
-          Show More
-        </button>
-      </div>
-    </Container>
+                {post.image && (
+                  <img src={post.image} style={{ width: "100%" }} />
+                )}
+                <div className="mx-3">
+                  <HandThumbsUpFill size={15} />
+                </div>
+                <hr className="m-1" />
+                <div className="p-3">
+                  <HandThumbsUp />
+                </div>
+              </Card.Body>
+            </Card>
+          ))
+        )}
+        <div className="text-center mt-4">
+          <button className="btn btn-primary" onClick={handleShowMore}>
+            Show More
+          </button>
+        </div>
+      </Container>
+    </>
   );
 };
 

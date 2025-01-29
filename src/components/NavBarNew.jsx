@@ -59,25 +59,25 @@ function NavBarNew() {
               <p className="m-0">Home</p>
             </div>
           </Link>
-          <Nav.Link href="#" className="text-center mx-1">
+          <Nav.Link className="text-center mx-1">
             <div className="d-flex flex-column align-items-center">
               <PeopleFill size={25} />
               <p className="m-0">Rete</p>
             </div>
           </Nav.Link>
-          <Nav.Link href="#" className="text-center mx-1">
+          <Nav.Link className="text-center mx-1">
             <div className="d-flex flex-column align-items-center">
               <BriefcaseFill size={25} />
               <p className="m-0">Lavoro</p>
             </div>
           </Nav.Link>
-          <Nav.Link href="#" className="text-center mx-1">
+          <Nav.Link className="text-center mx-1">
             <div className="d-flex flex-column align-items-center">
               <ChatRightDotsFill size={25} />
               <p className="m-0">Messaggistica</p>
             </div>
           </Nav.Link>
-          <Nav.Link href="#" className="position-relative mx-1">
+          <Nav.Link className="position-relative mx-1">
             <div className="text-center">
               <BellFill size={25} />
               <Badge
@@ -120,14 +120,14 @@ function NavBarNew() {
                     <p className="m-0">Your description</p>
                   </div>
                 </div>
-                <NavDropdown.Item>
-                  <Link
-                    to="/profile"
-                    className=" btn btnDropdownMenu bg-transparent text-primary w-100 border-1 border-primary rounded-5"
-                  >
-                    Visualizza Profilo
-                  </Link>
-                </NavDropdown.Item>
+
+                <Link
+                  to="/profile"
+                  className=" btn btnDropdownMenu bg-transparent text-primary w-100 border-1 border-primary rounded-5"
+                >
+                  Visualizza Profilo
+                </Link>
+
                 <NavDropdown.Divider />
                 <div>
                   <h4 className="ps-3">Account</h4>

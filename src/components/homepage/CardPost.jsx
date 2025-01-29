@@ -55,15 +55,15 @@ const CardPost = ({ post }) => {
           </div>
           {post.image && <img src={post.image} style={{ width: "100%" }} />}
           <hr className="mx-3" />
-          <div className="d-flex w-100 flex-wrap align-items-center">
+          <div className="d-flex w-100 flex-wrap align-items-center justify-content-center">
             <div className="d-flex align-items-center p-2 w-25">
               {!favoritesPosts.includes(post) ? (
                 <button
                   className="d-flex justify-content-center align-items-center border-0 bg-transparent"
                   onClick={() => dispatch({ type: "ADD_POST", payload: post })}
                 >
-                  <HandThumbsUp />
-                  <p className="m-0 ms-2">Mi Piace</p>
+                  <HandThumbsUp className="me-2 fs-4 fs-md-4 fs-lg-3" />
+                  <p className="m-0 ms-2 subtitlesHome">Mi Piace</p>
                 </button>
               ) : (
                 <button
@@ -83,7 +83,7 @@ const CardPost = ({ post }) => {
             <div
               className="d-flex align-items-center p-2 w-25"
               onClick={() => setShow(!show)}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: "pointer" }}
             >
               <i className="bi bi-chat-square me-2 fs-4 fs-md-4 fs-lg-3"></i>
               <p className="m-0 subtitlesHome">Commenta</p>

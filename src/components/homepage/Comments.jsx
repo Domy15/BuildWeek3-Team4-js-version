@@ -11,6 +11,15 @@ const Comments = ({ id }) => {
   const [update, setUpdate] = useState(false);
   const URL = "https://striveschool-api.herokuapp.com/api/comments/";
   const updateComments = useSelector((state) => state.user.update);
+  const bntOption = [
+    "Mi piace",
+    "Geniale",
+    "Suggerimenti Utili",
+    "Molto Utile",
+    "Interessante",
+    "Ottimo consiglio",
+    "Concordo",
+  ];
 
   const fetchProfile = async () => {
     try {
@@ -97,6 +106,16 @@ const Comments = ({ id }) => {
 
   return (
     <>
+    <div className="d-flex overflow-auto mt-2">
+        {bntOption.map((btn, i) => (
+          <p
+            key={i}
+            className="btnSectionComm btn bg-transparent border border-1 border-black rounded-4 m-0 text-center px-2 "
+          >
+            {btn}
+          </p>
+        ))}
+      </div>
      <Row className="px-3 mb-3">
             <Col xs={2} xl={1}>
               {profile && <Image

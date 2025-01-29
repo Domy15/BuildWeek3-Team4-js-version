@@ -1,7 +1,6 @@
 const Linkfoot = () => {
   return (
     <>
-    <p>ciao</p>
     </>
   );
 };

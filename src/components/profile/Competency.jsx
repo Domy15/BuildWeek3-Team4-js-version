@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import SingleComp from "./SingleComp";
 
 
-const Competency = () => {
+const Competency = ({param}) => {
   const competencyArray = [
     {
       ability: "Competenze analitiche",
@@ -148,11 +149,11 @@ const Competency = () => {
 
   useEffect(() => {
     getRandom(competencyArray);
-  }, []);
+  }, [param]);
 
   return (
     <>
-      <Container className="border rounded-2 p-0 pt-3 mb-3">
+      <Container className="border rounded-2 p-0 pt-3 mb-3 bg-white">
         {comp && (
           <>
             <Row className="px-3">

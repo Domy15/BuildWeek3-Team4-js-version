@@ -7,7 +7,6 @@ import Languages from "./Languages";
 import { useParams } from "react-router-dom";
 
 const ProfilePage = () => {
-
   const param = useParams()
 
   return (

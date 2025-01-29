@@ -8,9 +8,8 @@ import Homepage from "./components/homepage/Homepage";
 import ProfilePut from "./components/profile/ProfilePut";
 import NavBarNew from "./components/NavBarNew";
 import ExperiencesSetting from "./components/profile/ExperiencesSetting";
-import Linkfoot from "./components/profile/Linkfoot";
 import Favourites from "./components/settingPage/Favourites";
-
+import FooterSection from "./components/Footer";
 
 function App() {
   return (
@@ -21,10 +20,13 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/profile/put" element={<ProfilePut />} />
-        <Route path="/profile/setting/experiences" element= {<ExperiencesSetting/>}/>
-        <Route path='/profile/setting/preferiti' element= {<Favourites/>}/>
+        <Route
+          path="/profile/setting/experiences"
+          element={<ExperiencesSetting />}
+        />
+        <Route path="/profile/setting/preferiti" element={<Favourites />} />
       </Routes>
-      <Linkfoot />
+      <FooterSection />
     </BrowserRouter>
   );
 }

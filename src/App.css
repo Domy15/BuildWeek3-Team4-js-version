@@ -2,10 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
-
-body {
-  background-color: #F4F2EE;
+body{
+  background-color: #f4f2ee;
 }
 
 .imgExp {
@@ -42,6 +42,19 @@ body {
 
 .navbar-nav .dropdown-menu{
   position: absolute
+}
+
+.profileHome{
+  width: 100px;
+  height: 100px;
+  border: 5px solid white;
+  top: 100px;
+  left: 20px;
+  /* transform: translate(40px, -50px); */
+}
+
+.imageHome{
+  height: 150px;
 }
 
 /*Navbar*/

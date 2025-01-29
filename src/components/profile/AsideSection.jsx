@@ -59,6 +59,7 @@ const AsideSection = () => {
                         <Link
                           to={`/profile/${u._id}`}
                           className="text-decoration-none text-black"
+                          onClick={dispatch({type: 'UPDATE'})}
                         >
                           {`${u.name} ${u.surname}`}
                         </Link>
@@ -66,13 +67,13 @@ const AsideSection = () => {
                       <p className="descriptionAside text-muted mb-2">
                         {u.title}
                       </p>
-                      {!follow.includes(u._id) ? (
+                      {!follow.includes(u) ? (
                         <button
                           className="followBtn btn border-1 border-black btn-sm d-flex align-items-center"
                           onClick={() => {
                             dispatch({
                               type: "ADD",
-                              payload: u._id,
+                              payload: u,
                             });
                           }}
                         >
@@ -85,7 +86,7 @@ const AsideSection = () => {
                           onClick={() => {
                             dispatch({
                               type: "REMOVE",
-                              payload: u._id,
+                              payload: u,
                             });
                           }}
                         >

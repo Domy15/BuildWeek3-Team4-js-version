@@ -3,6 +3,7 @@ import SingleExperience from "./SingleExperience";
 import { Button } from "react-bootstrap";
 import { PencilFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const TOKEN =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
 
@@ -11,6 +12,7 @@ const Experience = ({ param }) => {
   const [exp, setExp] = useState([]);
   const randomNumber = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
   const [numExp, setNumExp] = useState(randomNumber);
+  const update = useSelector((state) => state.user.update);
 
   const getExperience = async () => {
     const id = param || "67975ee416f6350015fecb97";
@@ -40,7 +42,7 @@ const Experience = ({ param }) => {
 
   useEffect(() => {
     getExperience();
-  }, []);
+  }, [update]);
 
   return (
     <div className="mb-3 border rounded-2 bg-white">
@@ -57,6 +59,20 @@ const Experience = ({ param }) => {
         </Button>
       </div>
 
+    <div className="mb-3 border rounded-2 bg-white">
+    <div className=" d-flex justify-content-between">
+      <h4 className="pt-3 ps-3">Esperienza</h4>
+      {!param && <Button
+        variant="transparent"
+        className="ms-auto"
+        onClick={() => {
+          navigate("/profile/setting/experiences");
+        }}
+      >
+      <PencilFill size={25} />
+      </Button>}
+    </div>
+      
       {exp &&
         exp.map(
           (exp, i) => i < numExp && <SingleExperience key={exp._id} exp={exp} />

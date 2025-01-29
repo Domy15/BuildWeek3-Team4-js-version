@@ -1,11 +1,9 @@
-import { Container, Row, Col, Dropdown } from "react-bootstrap";
+import { Row, Col, Dropdown } from "react-bootstrap";
 
-const Footer = () => {
+const Linkfoot = () => {
   return (
-    <footer className="bg-light text-muted py-2 sticky-footer position-sticky end-0 lh-lg "style={{ height: "50vh" }}>
-      <Container >
-        <Row className="justify-content-end">
-          <Col xs={12} md={3} className="d-flex flex-column align-items-center">
+        <Row className="justify-content-center">
+          <Col xs={12} md={3} className="d-flex align-items-center">
             <div className="text-center  ">
               <div className="d-flex justify-content-center gap-2 lh-lg">
                 <a href="#" className="text-muted text-decoration-none ">
@@ -98,9 +96,7 @@ const Footer = () => {
             </div>
           </Col>
         </Row>
-      </Container>
-    </footer>
   );
 };
 
-export default Footer;
+export default Linkfoot;

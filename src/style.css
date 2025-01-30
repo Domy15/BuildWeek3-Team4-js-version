@@ -10,12 +10,17 @@ body {
   position: absolute;
 }
 
+.modal-dialog {
+  top: 8%;
+}
+
 .navBarNew {
   z-index: 1000000;
 }
 
 .classMargin {
   margin-top: 6rem;
+  top: 10%;
 }
 
 .available-custom .dropdown-toggle::after {

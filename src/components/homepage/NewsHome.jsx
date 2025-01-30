@@ -87,6 +87,7 @@ const NewsHome = () => {
       setPosts([newPost, ...posts]);
       setNewPostText("");
       addImgPost(newPost._id);
+      setUpdate(!update);
     } catch (error) {
       console.error("Error creating post:", error.message);
     }

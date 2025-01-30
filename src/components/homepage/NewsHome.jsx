@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { BlockquoteLeft, Calendar2, Images } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CardPost from "./CardPost";
+import { useDispatch, useSelector } from "react-redux";
 
 const NewsHome = () => {
   const [posts, setPosts] = useState([]);
@@ -12,6 +14,9 @@ const NewsHome = () => {
   const [showmore, setShowmore] = useState(6);
   const [imgPost, setImgPost] = useState();
   const [profile, setProfile] = useState();
+  const [update, setUpdate] = useState(false);
+  const update2 = useSelector((state) => state.user.update);
+  const dispatch = useDispatch();
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
   const AUTH_TOKEN =
@@ -30,6 +35,7 @@ const NewsHome = () => {
       if (response.ok) {
         const data = await response.json();
         setProfile(data);
+        dispatch({type: 'SAVE_PROFILE', payload: data})
       } else {
         throw new Error("errore nella fetch dei dati del tuo profilo");
       }
@@ -119,8 +125,11 @@ const NewsHome = () => {
   };
 
   useEffect(() => {
-    fetchProfile();
     fetchPosts();
+  }, [update, update2]);
+
+  useEffect(() => {
+    fetchProfile();
   }, []);
 
   return (

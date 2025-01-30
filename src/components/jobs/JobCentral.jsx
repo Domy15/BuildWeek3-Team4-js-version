@@ -25,12 +25,12 @@ const JobCentral = () => {
   const getRandomJob = async () => {
     try {
       const response = await fetch(
-        `https://strive-benchmark.herokuapp.com/api/jobs?${cat}=writing&limit=5`
+        `https://strive-benchmark.herokuapp.com/api/jobs?category=${cat}&limit=5`
       );
       if (response.ok) {
         const data = await response.json();
         setArray(data.data);
-        console.log('ciao')
+        console.log(array)
       } else {
         throw new Error("errore");
       }
@@ -67,7 +67,7 @@ const JobCentral = () => {
               setCat(item);
             }}
           >
-            {item}
+           <small>{item}</small> 
           </div>
         ))}
         {console.log(cat)}

@@ -83,7 +83,7 @@ const Setting = () => {
               <p className="fs-5 p-0 m-0 ms-auto"></p>
             </div>
             {show && (
-              <Row className=" ms-4 ">
+              <Row className=" mx-4 ">
                 <Col className="d-flex flex-column bg-white p-0">
                   <div
                     className={`border-bottom m-0 d-flex align-items-center p-2 ${

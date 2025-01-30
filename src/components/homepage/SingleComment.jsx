@@ -9,8 +9,9 @@ const SingleComment = ({ comment }) => {
   const dispatch= useDispatch()
   const date = new Date(comment.createdAt);
   const todayDate = new Date();
-  const hourDifference = (todayDate - date);
-  console.log(hourDifference/3600);
+  const hourDifference = (todayDate - date) / 1000 / 3600;
+  const hoursAgo = Math.floor(hourDifference);
+  const minutesAgo = Math.floor((hourDifference - hoursAgo) * 60);
   
 
   const deleteComment = async () => {
@@ -61,7 +62,7 @@ const SingleComment = ({ comment }) => {
         <div className="align-self-start">
           <div className="d-flex align-items-center gap-1">
             <ClockFill size={10} />
-            <p className="m-0">Ago</p>
+            <p className="m-0" style={{fontSize: '0.8em'}}>{hoursAgo > 1 ? `${hoursAgo} ore fa` : (hoursAgo > 0 ? `${hoursAgo} ora fa` : (minutesAgo > 1 ? `${minutesAgo} minuti fa` : `${minutesAgo} minuto fa`))}</p>
             <DropdownButton
           className="available-custom"
           variant="trasparent"

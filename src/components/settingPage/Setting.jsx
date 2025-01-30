@@ -1,15 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import MidFavouriteSection from "./MidFavouriteSection";
 import ProfilePut from "../profile/ProfilePut";
 import ExperiencesSetting from "../profile/ExperiencesSetting";
+import { useLocation } from "react-router-dom";
 
 const Setting = () => {
   const [selected, setSelected] = useState(0);
   const [show, setShow] = useState(false);
   const [saved, setSaved] = useState(0);
   const lenght = useSelector((state) => state.interaction);
+  const location = useLocation();
+  const state = location.state;
+
+  useEffect(() => {
+    switch (state) {
+      case 0:
+        return setSelected(0);
+      case 1:
+        return setSelected(1);
+      case 2:
+        return setSelected(2);
+      case 3:
+        return setSelected(3), setShow(true);
+      default:
+        return setSelected(0);
+    }
+  }, []);
 
   return (
     <Container className="p-0 py-3 mb-3">
@@ -65,7 +83,7 @@ const Setting = () => {
               <p className="fs-5 p-0 m-0 ms-auto"></p>
             </div>
             {show && (
-              <Row className=" ms-4 ">
+              <Row className=" mx-4 ">
                 <Col className="d-flex flex-column bg-white p-0">
                   <div
                     className={`border-bottom m-0 d-flex align-items-center p-2 ${

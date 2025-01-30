@@ -297,12 +297,7 @@ body {
   border: 5px solid white;
   top: 50px;
   left: 20px;
-  /* transform: translate(40px, -50px); */
 }
-
-/* .imageHome {
-  height: 90px;
-} */
 
 .pippo {
   height: 13vh;
@@ -310,4 +305,19 @@ body {
 
 .pluto {
   height: 21vh;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-select {
+  padding: 0 0.3em !important;
+  width: 150px;
+}
+
+.form-select:focus {
+  border: none !important;
+  box-shadow: none !important;
 }

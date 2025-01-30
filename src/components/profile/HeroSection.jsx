@@ -46,12 +46,11 @@ const HeroSection = ({ param }) => {
       console.log(err);
     }
   };
-  const getRandom = Math.floor(Math.random() *(3-1+1)*1)
-
+  const getRandom = Math.floor(Math.random() * (3 - 1 + 1) * 1);
 
   useEffect(() => {
     fetchProfile();
-    setwork(getRandom)
+    setwork(getRandom);
   }, [param, profile.update]);
 
   if (error) {
@@ -63,7 +62,7 @@ const HeroSection = ({ param }) => {
   }
 
   return (
-    <div className="mt-5">
+    <div className="mt-3">
       <div>
         <div>
           <div className="bg-light position-relative rounded bg-white border border-1">
@@ -84,14 +83,14 @@ const HeroSection = ({ param }) => {
                 <img
                   src="/public/Open.png"
                   className="rounded-circle profilePicture position-absolute"
-                  style={{zIndex: '1000'}}
+                  style={{ zIndex: "1000" }}
                 />
               )}
               {work === 2 && (
                 <img
                   src="/public/Freelancer.png"
                   className="rounded-circle profilePicture position-absolute"
-                  style={{zIndex: '1000'}}
+                  style={{ zIndex: "1000" }}
                 />
               )}
             </div>
@@ -192,7 +191,10 @@ const HeroSection = ({ param }) => {
                     <Link to="" className="btn btn-outline-secondary">
                       Modifica Profile
                     </Link>
-                    <Link to="/profile/setting/preferiti" className="btn btn-outline-secondary">
+                    <Link
+                      to="/profile/setting/preferiti"
+                      className="btn btn-outline-secondary"
+                    >
                       <BookmarkFill /> Elementi salvati
                     </Link>
                     <Button

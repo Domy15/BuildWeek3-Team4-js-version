@@ -54,7 +54,7 @@ body {
   width: 100%;
 }
 
-.selected-border{
+.selected-border {
   border-left: #2264a6 4px solid;
   color: #2264a6;
 }
@@ -147,10 +147,6 @@ body {
 }
 
 /* aside */
-
-.asideSection {
-  width: fit-content;
-}
 
 .profileImageAside {
   width: 55px;

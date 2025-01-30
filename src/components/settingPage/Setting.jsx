@@ -25,7 +25,7 @@ const Setting = () => {
               selected === 1 ? "fw-bold" : ""
             }`}
             style={{ cursor: "pointer" }}
-            onClick={() => {setSelected(1); setShow(false)}}
+            onClick={() => {setSelected(1); setShow(false); setSaved(0)}}
           >
             <p className="m-0">Il mio profilo</p>
             <p className="fs-5 p-0 m-0 ms-auto"></p>
@@ -35,7 +35,7 @@ const Setting = () => {
               selected === 2 ? "fw-bold" : ""
             }`}
             style={{ cursor: "pointer" }}
-            onClick={() => {setSelected(2); setShow(false)}}
+            onClick={() => {setSelected(2); setShow(false); setSaved(0)}}
           >
             <p className="m-0">Le mie Esperienze</p>
             <p className="fs-5 p-0 m-0 ms-auto"></p>
@@ -45,7 +45,7 @@ const Setting = () => {
               selected === 3 ? "fw-bold" : ""
             }`}
             style={{ cursor: "pointer" }}
-            onClick={() => {setSelected(3); setShow(true)}}
+            onClick={() => {setSelected(3); setShow(true); setSaved(0)}}
           >
             <p className="m-0">I miei elementi salvati</p>
             <p className="fs-5 p-0 m-0 ms-auto"></p>

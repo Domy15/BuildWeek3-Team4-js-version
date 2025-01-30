@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 const ProfilePut = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => (state.user));
-  const [profileBody, setProfileBody] = useState(user.profile);
+  const user = useSelector((state) => (state.myProfile));
+  const [profileBody, setProfileBody] = useState(user);
   const [imgProfile, setImgProfile] = useState({img: null});
 
   const putData = async () => {

@@ -44,7 +44,7 @@ const HomeProfile = () => {
           <div className="m-2">
             <BookmarkFill />
             <span className="ms-2">
-              <Link to='/profile/setting/preferiti' className="text-dark text-decoration-none">
+              <Link to='/profile/setting' className="text-dark text-decoration-none">
                 Elementi salvati
               </Link>
             </span>

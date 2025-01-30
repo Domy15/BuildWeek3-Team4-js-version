@@ -22,9 +22,10 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavBarNew() {
+  const navigate = useNavigate()
   const [profile, setProfile] = useState();
   const AUTH_TOKEN =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
@@ -165,7 +166,7 @@ function NavBarNew() {
                 <NavDropdown.Divider />
                 <div>
                   <h4 className="ps-3">Account</h4>
-                  <NavDropdown.Item>Impostazioni e privacy</NavDropdown.Item>
+                  <NavDropdown.Item onClick={() => {navigate('/profile/setting')}}>Impostazioni e privacy</NavDropdown.Item>
                   <NavDropdown.Item>Guida</NavDropdown.Item>
                   <NavDropdown.Item>Lingua</NavDropdown.Item>
                 </div>

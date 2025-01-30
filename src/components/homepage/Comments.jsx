@@ -120,7 +120,7 @@ const Comments = ({ id }) => {
         <Col xs={2}>
           <Button
             onClick={() => {
-              postComment(), setUpdate(!update);
+              postComment(), setSingleComment(''), setUpdate(!update);
             }}
           >
             Post

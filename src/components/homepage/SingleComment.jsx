@@ -26,7 +26,7 @@ const SingleComment = ({ comment }) => {
       if (response.ok) {
         console.log("commento eliminato");
         dispatch({
-          type: 'UPDATE',
+          type: 'UPDATE2',
         })
       } else {
         throw new Error("errore nell'eleliminazione del commento");

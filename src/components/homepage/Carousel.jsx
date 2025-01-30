@@ -55,7 +55,7 @@ const Carousel = ({id}) => {
       });
       if (response.ok) {
         console.log("commento postato");
-        dispatch({type: 'UPDATE'});
+        dispatch({type: 'UPDATE2'});
       } else {
         throw new Error("errore nel post del commento");
       }

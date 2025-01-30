@@ -54,7 +54,7 @@ const SingleComment = ({ comment }) => {
         />
 
         <div className="d-flex flex-column" style={{ width: "400px" }}>
-          <h6 className="m-0 fw-bold">{comment.author}</h6>
+          <h6 className="m-0 fw-bold">{comment.author.split('@').slice(0, 1)}</h6>
           <p className="m-0 commentHomeSection">{comment.comment}</p>
 
           <p className="m-0 text-secondary fw-medium">Consiglia | Rispondi</p>

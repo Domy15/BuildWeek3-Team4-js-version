@@ -11,7 +11,7 @@ const FooterSection = () => {
 
   return (
     <>
-      {!(location.pathname === '/') || !(location.pathname === '/Jobs') && (
+      {location.pathname === !'/' || location.pathname === !'/Jobs' && (
         <Container className="container-fluid d-flex mt-5">
           <Row>
             <Col className="col-12 col-lg-2 justify-content-between ps-0 ">

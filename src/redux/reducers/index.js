@@ -96,6 +96,28 @@ const mainReducer = (state = initialState, action) => {
         },
       };
 
+      case "ADDJOB":
+        return {
+          ...state,
+          interaction: {
+            ...state.interaction,
+            favouritesJobs: state.interaction.favouritesJobs.concat(action.payload),
+          },
+        };
+  
+      case "REMOVEJOB":
+        return {
+          ...state,
+          interaction: {
+            ...state.interaction,
+            favouritesJobs: state.interaction.favouritesJobs.filter((item) => {
+              return action.payload !== item;
+            }),
+          },
+        };
+
+
+
     default:
       return state;
   }

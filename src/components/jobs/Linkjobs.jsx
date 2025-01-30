@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { Geo, GeoFill } from "react-bootstrap-icons";
+import { Geo } from "react-bootstrap-icons";
 
 const Linkjobs = () => {
   const [jobs, setJobs] = useState([]);

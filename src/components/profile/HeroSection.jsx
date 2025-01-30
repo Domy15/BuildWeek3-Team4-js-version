@@ -8,7 +8,9 @@ import {
   PersonFillAdd,
   PersonFillDash,
 } from "react-bootstrap-icons";
-import { Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import GetImage from "./GetImage";
+
 
 const HeroSection = ({ param }) => {
   const follow = useSelector((state) => state.interaction.favourites);
@@ -70,12 +72,10 @@ const HeroSection = ({ param }) => {
       <div className="bg-light position-relative rounded bg-white border border-1">
         {/* Profile Image */}
 
-        <img
-          src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
-          alt="background"
-          className="bckImageProfile img-fluid w-100 rounded-top"
-        />
         <div className="relative">
+          <div className="pluto">
+            <GetImage />
+          </div>
           <img
             src={profile.profile.image}
             alt="Profile"

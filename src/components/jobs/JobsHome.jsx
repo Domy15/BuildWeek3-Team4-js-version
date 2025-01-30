@@ -7,28 +7,26 @@ import JobsButton from "./JobsButton";
 
 const JobsHome = () => {
   return (
-    <>
-      <Container>
+    <Container className="p-0 py-3">
+      <div className="classMargin">
         <Row>
           <Col md={3}>
-          <div className=" sticky-top z-custom">
-            <Card className="mt-5 pb-3">
-              <CardProfile />  
-            </Card>
-            <JobsButton />        
-          </div>
+            <div className=" sticky-top z-custom">
+              <Card className="pb-3">
+                <CardProfile />
+              </Card>
+              <JobsButton />
+            </div>
           </Col>
-          <Col md={6}>
-          {/* <Linkjobs /> */}
-          </Col>
-          <Col md={3} className="mt-5">
-          <div className="sticky-top z-custom ">
-          <Linkfoot />
-          </div>
+          <Col md={6}>{/* <Linkjobs /> */}</Col>
+          <Col md={3}>
+            <div className="sticky-top z-custom ">
+              <Linkfoot />
+            </div>
           </Col>
         </Row>
-      </Container>
-    </>
+      </div>
+    </Container>
   );
 };
 

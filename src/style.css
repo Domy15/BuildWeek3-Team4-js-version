@@ -16,6 +16,7 @@ body {
 
 .classMargin {
   margin-top: 6rem;
+  top: 10%;
 }
 
 .available-custom .dropdown-toggle::after {

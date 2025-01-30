@@ -102,7 +102,7 @@ function NavBarNew() {
                 <p className="m-0 d-none d-lg-block">Rete</p>
               </div>
             </Nav.Link>
-            <Nav.Link className="text-center mx-1">
+            <Nav.Link className="text-center mx-1" onClick={() => {navigate("/Jobs")}}>
               <div className="d-flex flex-column align-items-center">
                 <BriefcaseFill size={25} />
                 <p className="m-0 d-none d-lg-block">Lavoro</p>

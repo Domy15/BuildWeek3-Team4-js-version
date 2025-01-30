@@ -16,10 +16,11 @@ const CardPost = ({ post }) => {
     (state) => state.interaction.favouritesPosts
   );
   const [show, setShow] = useState(false);
+  const [showPost, setShowPost] = useState(true);
 
   return (
     <>
-      <Card key={post._id} className="mb-4">
+     {showPost && <Card key={post._id} className="mb-4">
         <Card.Body className="p-0">
           <div className="px-3 pt-3">
             <div className="d-flex align-items-center mb-3 justify-content-between">
@@ -31,13 +32,13 @@ const CardPost = ({ post }) => {
                   width={50}
                   height={50}
                 />
-
                 <div>
                   <Link
-                    to={`/profile/${post.user._id}`}
-                    className="mb-0 fw-bold nav-link"
-                  >
-                    {post.user.name || "Anonymous"}
+                    to={post.user._id !== "67975ee416f6350015fecb97" ? (`/profile/${post.user._id}`) : ('/profile')}
+                    className="mb-0 fw-bold nav-link">
+                    {post.user.name} 
+                    {' '}
+                    {post.user.surname}
                   </Link>
                   <small className="text-muted">
                     {new Date(post.createdAt).toLocaleString()}
@@ -46,7 +47,7 @@ const CardPost = ({ post }) => {
               </div>
               <div className="d-flex justify-content-end">
                 <ThreeDots size={20} className="m-2" />
-                <XLg size={20} className="m-2" />
+                <XLg size={20} className="m-2" onClick={() => setShowPost(false)} style={{cursor: 'pointer'}} />
               </div>
             </div>
             <div className="bg-white p-2">
@@ -100,7 +101,7 @@ const CardPost = ({ post }) => {
           </div>
         </Card.Body>
         {show && <Comments id={post._id} />}
-      </Card>
+      </Card>}
     </>
   );
 };

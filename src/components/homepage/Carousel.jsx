@@ -4,20 +4,14 @@ import Slider from "react-slick";
 function SampleNextArrow(props) {
   const { style, onClick } = props;
   return (
-    <ChevronLeft
-    style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
+    <ChevronRight style={{ ...style, display: "block", position: "absolute", top: "28%", right: "-3%" }} onClick={onClick} />
   );
 }
 
 function SamplePrevArrow(props) {
   const { style, onClick } = props;
   return (
-    <ChevronRight
-    style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
+      <ChevronLeft style={{ ...style, display: "block", position: "absolute", top: "28%", left: "-3%" }} onClick={onClick} />
   );
 }
 
@@ -33,13 +27,13 @@ const Carousel = () => {
   ];
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 2,
     variableWidth: true,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <SamplePrevArrow />,
   };
 
   return (

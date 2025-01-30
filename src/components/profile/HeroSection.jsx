@@ -8,15 +8,19 @@ import {
   PersonFillAdd,
   PersonFillDash,
 } from "react-bootstrap-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const HeroSection = ({ param }) => {
   const follow = useSelector((state) => state.interaction.favourites);
   const profile = useSelector((state) => state.user);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [work, setwork] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [state, setState] = useState({
+    setting:0,
+    profile:1,
+  });
 
   const fetchProfile = async () => {
     const id = param || "me";
@@ -186,24 +190,24 @@ const HeroSection = ({ param }) => {
                     </Dropdown.Item>
                   </Dropdown>
                 </DropdownButton>
-                <Link to="" className="btn btn-outline-secondary">
+                <Link to="/profile/setting"
+                  state={state.setting}className="btn btn-outline-secondary">
                   Modifica Profile
                 </Link>
                 <Link
-                  to="/profile/setting/preferiti"
+                  to="/profile/setting"
+                  state={state.setting}
                   className="btn btn-outline-secondary"
                 >
                   <BookmarkFill /> Elementi salvati
                 </Link>
-                <Button
-                  variant="transparent"
-                  className="ms-auto"
-                  onClick={() => {
-                    navigate("/profile/put");
-                  }}
+                <Link
+                  to="/profile/setting"
+                  state={state.profile}
+                  className="ms-auto btn bg-transparent"
                 >
                   <PencilFill size={25} />
-                </Button>{" "}
+                </Link>
               </>
             )}
           </div>

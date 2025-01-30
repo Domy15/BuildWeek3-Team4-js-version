@@ -8,12 +8,14 @@ import {
 } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import CardProfile from "./CardProfile";
+import { useState } from "react";
 
 const HomeProfile = () => {
   const randomNumber = () => {
     return Math.floor(Math.random() * (100 + 1)) + 10;
   };
-
+// eslint-disable-next-line no-unused-vars
+const [state, setState] = useState(3)
 
   return (
     <>
@@ -43,7 +45,7 @@ const HomeProfile = () => {
           <div className="m-2">
             <BookmarkFill />
             <span className="ms-2">
-              <Link to='/profile/setting' className="text-dark text-decoration-none">
+              <Link to='/profile/setting' className="text-dark text-decoration-none" state={state}>
                 Elementi salvati
               </Link>
             </span>

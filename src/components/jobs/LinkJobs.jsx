@@ -116,17 +116,20 @@ const Linkjobs = () => {
                   {job.candidate_required_location}
                 </p>
               </div>
-              <div className="mt-2 d-flex justify-content-between text-muted">
+              <div className="mt-2 d-flex justify-content-between align-items-center text-muted">
                 <div>
                   {job.publication_date && (
                     <p> {formatDate(job.publication_date)}</p>
                   )}
                 </div>
+                <div className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0">
+                  Vedi di più
+                </div>
               </div>
             </div>
           ))}
         </div>
-        <div className="d-flex align-items-center justify-content-center g-1">
+        <div className="d-flex align-items-center justify-content g-1">
           <Button
             className="button-29 d-flex gap-1 rounded-5 me-2"
             onClick={() => setPage((prev) => prev + 1)}

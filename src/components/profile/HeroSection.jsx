@@ -62,160 +62,156 @@ const HeroSection = ({ param }) => {
   }
 
   return (
-    <div className="mt-3">
-      <div>
-        <div>
-          <div className="bg-light position-relative rounded bg-white border border-1">
-            {/* Profile Image */}
+    <div className="classMargin">
+      <div className="bg-light position-relative rounded bg-white border border-1">
+        {/* Profile Image */}
 
+        <img
+          src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
+          alt="background"
+          className="bckImageProfile img-fluid w-100 rounded-top"
+        />
+        <div className="relative">
+          <img
+            src={profile.profile.image}
+            alt="Profile"
+            className="rounded-circle profilePicture position-absolute "
+          />
+          {work === 1 && (
             <img
-              src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
-              alt="background"
-              className="bckImageProfile img-fluid w-100 rounded-top"
+              src="/public/Open.png"
+              className="rounded-circle profilePicture position-absolute"
+              style={{ zIndex: "1000" }}
             />
-            <div className="relative">
-              <img
-                src={profile.profile.image}
-                alt="Profile"
-                className="rounded-circle profilePicture position-absolute "
-              />
-              {work === 1 && (
-                <img
-                  src="/public/Open.png"
-                  className="rounded-circle profilePicture position-absolute"
-                  style={{ zIndex: "1000" }}
-                />
-              )}
-              {work === 2 && (
-                <img
-                  src="/public/Freelancer.png"
-                  className="rounded-circle profilePicture position-absolute"
-                  style={{ zIndex: "1000" }}
-                />
-              )}
-            </div>
-            <div className="d-flex align-items-end">
-              <h1 className="fw-bold titleProfile mx-3">
-                {profile.profile.name} {profile.profile.surname}
-              </h1>
-              <Button
-                variant="link"
-                className="verifyBtn btn-light border-2 rounded-4 m-2 border-primary text-decoration-none"
-              >
-                Aggiungi badge di verifica
-              </Button>
-            </div>
-            <div className="p-3">
-              <p className="h5 fw-light mb-1 text-black fw-bold">
-                {profile.profile.title}
-              </p>
-              <p className="mb-2 text-muted">{profile.area}</p>
-              <div className="d-flex gap-2">
-                {param && (
-                  <>
-                    {!follow.includes(profile.profile) ? (
-                      <Button
-                        variant="primary"
-                        className="d-flex align-items-center"
-                        onClick={() => {
-                          dispatch({
-                            type: "ADD",
-                            payload: profile.profile,
-                          });
-                        }}
-                      >
-                        <PersonFillAdd size={20} className="me-1" />
-                        Segui
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="primary"
-                        className="d-flex align-items-center"
-                        onClick={() => {
-                          dispatch({
-                            type: "REMOVE",
-                            payload: profile.profile,
-                          });
-                        }}
-                      >
-                        <PersonFillDash size={20} className="me-1" />
-                        Smetti di seguire
-                      </Button>
-                    )}
-
-                    <Button variant="outline-secondary">Messaggio</Button>
-                  </>
+          )}
+          {work === 2 && (
+            <img
+              src="/public/Freelancer.png"
+              className="rounded-circle profilePicture position-absolute"
+              style={{ zIndex: "1000" }}
+            />
+          )}
+        </div>
+        <div className="d-flex align-items-end">
+          <h1 className="fw-bold titleProfile mx-3">
+            {profile.profile.name} {profile.profile.surname}
+          </h1>
+          <Button
+            variant="link"
+            className="verifyBtn btn-light border-2 rounded-4 m-2 border-primary text-decoration-none"
+          >
+            Aggiungi badge di verifica
+          </Button>
+        </div>
+        <div className="p-3">
+          <p className="h5 fw-light mb-1 text-black fw-bold">
+            {profile.profile.title}
+          </p>
+          <p className="mb-2 text-muted">{profile.area}</p>
+          <div className="d-flex gap-2">
+            {param && (
+              <>
+                {!follow.includes(profile.profile) ? (
+                  <Button
+                    variant="primary"
+                    className="d-flex align-items-center"
+                    onClick={() => {
+                      dispatch({
+                        type: "ADD",
+                        payload: profile.profile,
+                      });
+                    }}
+                  >
+                    <PersonFillAdd size={20} className="me-1" />
+                    Segui
+                  </Button>
+                ) : (
+                  <Button
+                    variant="primary"
+                    className="d-flex align-items-center"
+                    onClick={() => {
+                      dispatch({
+                        type: "REMOVE",
+                        payload: profile.profile,
+                      });
+                    }}
+                  >
+                    <PersonFillDash size={20} className="me-1" />
+                    Smetti di seguire
+                  </Button>
                 )}
 
-                {!param && (
-                  <>
-                    <DropdownButton
-                      id="dropdown-basic-button"
-                      title="Disponibile per"
-                      className="available-custom"
+                <Button variant="outline-secondary">Messaggio</Button>
+              </>
+            )}
+
+            {!param && (
+              <>
+                <DropdownButton
+                  id="dropdown-basic-button"
+                  title="Disponibile per"
+                  className="available-custom"
+                >
+                  <Dropdown>
+                    <Dropdown.Item onClick={() => setwork(1)}>
+                      <p className="fw-bold lh-1 p-0 m-0">
+                        Aperto a nuove disponibilità
+                      </p>
+                      <p>
+                        Questa opzione mostra ai recruiter e agli altri che sei
+                        disponibile a lavorare
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className=" dropdown-item"
+                      onClick={() => setwork(2)}
                     >
-                      <Dropdown>
-                        <Dropdown.Item onClick={() => setwork(1)}>
-                          <p className="fw-bold lh-1 p-0 m-0">
-                            Aperto a nuove disponibilità
-                          </p>
-                          <p>
-                            Questa opzione mostra ai recruiter e agli altri che
-                            sei disponibile a lavorare
-                          </p>
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          className=" dropdown-item"
-                          onClick={() => setwork(2)}
-                        >
-                          <p className="fw-bold lh-1 p-0 m-0">Freelancer</p>
-                          <p>
-                            Questa opzione è utile per consulenti, liberi
-                            professionisti e lavoratori autonomi
-                          </p>
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          className=" dropdown-item"
-                          onClick={() => setwork(0)}
-                        >
-                          <p className="fw-bold lh-1 p-0 m-0">
-                            Non sto cercando lavoro
-                          </p>
-                          <p>
-                            Questa opzione è utile se attualmente sei occupato e
-                            non stai cercando lavoro
-                          </p>
-                        </Dropdown.Item>
-                      </Dropdown>
-                    </DropdownButton>
-                    <Link to="" className="btn btn-outline-secondary">
-                      Modifica Profile
-                    </Link>
-                    <Link
-                      to="/profile/setting/preferiti"
-                      className="btn btn-outline-secondary"
+                      <p className="fw-bold lh-1 p-0 m-0">Freelancer</p>
+                      <p>
+                        Questa opzione è utile per consulenti, liberi
+                        professionisti e lavoratori autonomi
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className=" dropdown-item"
+                      onClick={() => setwork(0)}
                     >
-                      <BookmarkFill /> Elementi salvati
-                    </Link>
-                    <Button
-                      variant="transparent"
-                      className="ms-auto"
-                      onClick={() => {
-                        navigate("/profile/put");
-                      }}
-                    >
-                      <PencilFill size={25} />
-                    </Button>{" "}
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="p-3 border rounded-2 my-3 bg-white">
-            <h4 className="">Informazioni</h4>
-            <p>{profile.profile.bio}</p>
+                      <p className="fw-bold lh-1 p-0 m-0">
+                        Non sto cercando lavoro
+                      </p>
+                      <p>
+                        Questa opzione è utile se attualmente sei occupato e non
+                        stai cercando lavoro
+                      </p>
+                    </Dropdown.Item>
+                  </Dropdown>
+                </DropdownButton>
+                <Link to="" className="btn btn-outline-secondary">
+                  Modifica Profile
+                </Link>
+                <Link
+                  to="/profile/setting/preferiti"
+                  className="btn btn-outline-secondary"
+                >
+                  <BookmarkFill /> Elementi salvati
+                </Link>
+                <Button
+                  variant="transparent"
+                  className="ms-auto"
+                  onClick={() => {
+                    navigate("/profile/put");
+                  }}
+                >
+                  <PencilFill size={25} />
+                </Button>{" "}
+              </>
+            )}
           </div>
         </div>
+      </div>
+      <div className="p-3 border rounded-2 my-3 bg-white">
+        <h4 className="">Informazioni</h4>
+        <p>{profile.profile.bio}</p>
       </div>
     </div>
   );

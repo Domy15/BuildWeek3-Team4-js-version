@@ -45,7 +45,7 @@ const HomeProfile = () => {
   if (error) {
     return <div className="text-danger text-center mt-4">{error}</div>;
   }
-  
+
   if (!profile) {
     return <div className="text-center mt-4">Loading...</div>;
   }
@@ -55,7 +55,7 @@ const HomeProfile = () => {
   };
   return (
     <>
-      <div className="sticky-top z-custom">
+      <div className="sticky-top z-custom classMargin">
         <Card className="mt-5 bg-white">
           <div className="position-relative pb-2">
             <img
@@ -69,7 +69,7 @@ const HomeProfile = () => {
               className="profileHome rounded-circle  position-absolute"
             />
             <div className="d-flex mt-5">
-              <Link to='/profile' className="ms-3 h4 text-decoration-none">
+              <Link to="/profile" className="ms-3 h4 text-decoration-none">
                 {profile.name} {profile.surname}
               </Link>
             </div>
@@ -99,7 +99,10 @@ const HomeProfile = () => {
           <div className="m-2">
             <BookmarkFill />
             <span className="ms-2">
-              <Link to='/profile/setting/preferiti' className="text-dark text-decoration-none">
+              <Link
+                to="/profile/setting/preferiti"
+                className="text-dark text-decoration-none"
+              >
                 Elementi salvati
               </Link>
             </span>

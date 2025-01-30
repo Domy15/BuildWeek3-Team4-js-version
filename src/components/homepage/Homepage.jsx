@@ -10,7 +10,7 @@ const Homepage = () => {
         <Col lg={3} sm={12}>
           <HomeProfile />
         </Col>
-        <Col lg={6} sm={12} >
+        <Col lg={6} sm={12}>
           <NewsHome />
         </Col>
         <Col xs={12} lg={3}>

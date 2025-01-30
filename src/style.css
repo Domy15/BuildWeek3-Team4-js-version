@@ -6,6 +6,14 @@ body {
   position: absolute;
 }
 
+.navBarNew {
+  z-index: 1000000;
+}
+
+.classMargin {
+  margin-top: 6rem;
+}
+
 .available-custom .dropdown-toggle::after {
   display: none !important;
 }
@@ -170,7 +178,6 @@ body {
 .form-floating > .form-control:focus ~ label::after,
 .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
 .form-floating > .form-select ~ label::after {
-  background-color: #f4f2ee !important;
   padding: 0 !important;
 }
 

@@ -58,7 +58,7 @@ function NavBarNew() {
     <div>
       <Navbar
         expand="lg"
-        className="bg-white w-100 d-flex justify-content-between"
+        className="navBarNew bg-white w-100 d-flex justify-content-between position-fixed"
       >
         <div className="d-flex align-items-center">
           <Link to="/" className=" navbar-brand">

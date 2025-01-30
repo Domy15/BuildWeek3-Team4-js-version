@@ -132,7 +132,11 @@ const Linkjobs = () => {
                     <p> {formatDate(job.publication_date)}</p>
                   )}
                 </div>
-                <Link to='/Jobs/detailes' state={{ jobs: jobs, job: job }} className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0">
+                <Link
+                  to="/Jobs/detailes"
+                  state={{ jobs: jobs, job: job }}
+                  className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0"
+                >
                   Vedi di più
                 </Link>
               </div>

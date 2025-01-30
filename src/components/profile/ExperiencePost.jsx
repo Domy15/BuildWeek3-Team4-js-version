@@ -30,7 +30,6 @@ const ExperiencePost = (props) => {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        
       });
       if (response.ok) {
         const data = await response.json();
@@ -68,8 +67,8 @@ const ExperiencePost = (props) => {
       if (response.ok) {
         console.log("immagine cambiata");
         dispatch({ type: "UPDATE" });
-        props.changeUpdate()
-        props.hide()
+        props.changeUpdate();
+        props.hide();
       } else {
         throw new Error("errore nella fetch dei dati");
       }
@@ -78,8 +77,8 @@ const ExperiencePost = (props) => {
     }
   };
   return (
-    <>
-      <Form onSubmit={postExp}>
+    <div className="p-3 border rounded-2 my-3">
+      <Form className="formExpSetting" onSubmit={postExp}>
         <div className="mb-3">
           <Row className="mb-3">
             <Form.Group as={Col} controlId="Qualifica">
@@ -89,66 +88,104 @@ const ExperiencePost = (props) => {
                 placeholder="Esempio: Retail Sales Manager"
                 required
                 value={value.role}
-                onChange={(e)=>setValue({ ...value, role: e.target.value})}
+                onChange={(e) => setValue({ ...value, role: e.target.value })}
               />
             </Form.Group>
 
             <Form.Group as={Col} controlId="Azienda">
               <Form.Label>Azienda o organizzazione</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: Retex" required value={value.company} onChange={(e)=>setValue({ ...value, company: e.target.value})}/>
+              <Form.Control
+                type="text"
+                placeholder="Esempio: Retex"
+                required
+                value={value.company}
+                onChange={(e) =>
+                  setValue({ ...value, company: e.target.value })
+                }
+              />
             </Form.Group>
           </Row>
-
-          <Form.Check
-            type="checkbox"
-            label="Attualmente ricopro questo incarico"
-          />
-          <div className="d-flex gap-5">
-            <Form.Group as={Col} controlId="inizio">
+          <div className="mx-2">
+            <Form.Check
+              type="checkbox"
+              label="Attualmente ricopro questo incarico"
+              className="p-3"
+              height={20}
+              width={20}
+            />
+          </div>
+          <div className="d-flex">
+            <Form.Group as={Col} controlId="inizio" className="pe-3">
               <Form.Label>Data di inizio</Form.Label>
-              <Form.Control type="date" name="start" required value={value.startDate} onChange={(e)=>setValue({ ...value, startDate: e.target.value})}/>
+              <Form.Control
+                type="date"
+                name="start"
+                required
+                value={value.startDate}
+                onChange={(e) =>
+                  setValue({ ...value, startDate: e.target.value })
+                }
+              />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="fine">
+            <Form.Group as={Col} controlId="fine" className="ps-3">
               <Form.Label>Data di fine</Form.Label>
-              <Form.Control type="date" name="end" value={value.endDate} onChange={(e)=>setValue({ ...value, endDate: e.target.value})}/>
+              <Form.Control
+                type="date"
+                name="end"
+                value={value.endDate}
+                onChange={(e) =>
+                  setValue({ ...value, endDate: e.target.value })
+                }
+              />
             </Form.Group>
           </div>
 
-          <Form.Group controlId="Località" className="mb-3">
+          <Form.Group controlId="Località" className="my-3">
             <Form.Label>Località</Form.Label>
             <Form.Control
               type="text"
               placeholder="Esempio: Milano, Italia"
               required
               value={value.area}
-              onChange={(e)=>setValue({ ...value, area: e.target.value})}
+              onChange={(e) => setValue({ ...value, area: e.target.value })}
             />
           </Form.Group>
 
           <Form.Label>Descrizione</Form.Label>
           <Form.Control
             as="textarea"
+            className="textareaExpMod"
             placeholder="Descrivi la tua esperienza"
             style={{ height: "100px" }}
             required
             value={value.description}
-            onChange={(e)=>setValue({ ...value, description: e.target.value})}
+            onChange={(e) =>
+              setValue({ ...value, description: e.target.value })
+            }
           />
-          <Form.Label>Immagine Experience:</Form.Label>
+          <Form.Label className="mt-3">Immagine Experience:</Form.Label>
           <Form.Control
             type="file"
+            className="imgAreaExpMod"
             onChange={(e) => setImgExp({ img: e.target.files[0] })}
           ></Form.Control>
         </div>
         <Button variant="primary" type="submit">
           Submit
         </Button>
-        <Button variant="danger" type="button" className="ms-3" onClick={()=> {props.hide()}}>
+        <Button
+          variant="danger"
+          type="button"
+          className="ms-3"
+          onClick={() => {
+            props.hide();
+          }}
+        >
           Annulla
         </Button>
       </Form>
-    </>
+    </div>
   );
 };
 

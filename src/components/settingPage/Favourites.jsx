@@ -12,7 +12,7 @@ const Favourites = () => {
     <Container className=" p-0 pt-3 mb-3 ">
       <Row className="gap-3">
         <Col
-          className="d-flex flex-column border rounded-3 bg-white p-0"
+          className="d-flex flex-column border rounded-3 bg-white p-0 h-25"
           xs={12}
           md={3}
         >
@@ -70,7 +70,8 @@ const Favourites = () => {
           md={6}
           className=""
         >
-          {selected===1 && (<MidFavouriteSection title='Post salvati' item={lenght.favouritesPosts}/>)}
+          {selected===1 && (<MidFavouriteSection title='Post salvati' post={lenght.favouritesPosts}/>)}
+          {selected===2 && (<MidFavouriteSection title='Profili salvati' person={lenght.favourites}/>)}
         </Col>
         <Col xs={12} md={3}></Col>
       </Row>

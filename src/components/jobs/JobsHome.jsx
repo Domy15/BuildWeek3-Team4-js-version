@@ -1,9 +1,9 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import CardProfile from "../homepage/CardProfile";
-
 import Linkfoot from "../homepage/Linkfoot";
 import JobsButton from "./JobsButton";
 import Linkjobs from "./Linkjobs"; 
+
 
 const JobsHome = () => {
   return (

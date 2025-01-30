@@ -12,6 +12,7 @@ import NavBarNew from "./components/NavBarNew";
 import ExperiencesSetting from "./components/profile/ExperiencesSetting";
 import Favourites from "./components/settingPage/Favourites";
 import FooterSection from "./components/Footer";
+import Setting from "./components/settingPage/Setting";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           element={<ExperiencesSetting />}
         />
         <Route path="/profile/setting/preferiti" element={<Favourites />} />
+        <Route path="/profile/setting" element={<Setting />} />
       </Routes>
       <FooterSection />
     </BrowserRouter>

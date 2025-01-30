@@ -43,7 +43,8 @@ const SinglePost = ({ post }) => {
                   })
                 }
               >
-                <HandThumbsDownFill color="red" size={20} />
+                <HandThumbsDownFill className="text-primary fs-4 fs-md-4 fs-lg-3" />
+                <p className="m-0 ms-2 subtitlesHome">Non mi Piace</p>
               </button>
             )}
           </div>

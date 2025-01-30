@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { DashLg, Geo, PlusLg } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 const Linkjobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -108,7 +109,7 @@ const Linkjobs = () => {
         <div className="list-group ">
           {jobs.map((job) => (
             <div key={job._id} className="p-3 border rounded-2 my-3 bg-white">
-              <p className="fw-bold h4 m-0">{job.title}</p>
+              <Link to='/Jobs/detailes' state={{ jobs: jobs, job: job }} className="fw-bold h4 m-0">{job.title}</Link>
               <p className="m-0 my-2">{job.company_name}</p>
               <div className="d-flex align-items-center">
                 <Geo size={25} className="iconLabel3" />

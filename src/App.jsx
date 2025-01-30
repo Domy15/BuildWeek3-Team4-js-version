@@ -14,6 +14,7 @@ import Favourites from "./components/settingPage/Favourites";
 import FooterSection from "./components/Footer";
 import JobsHome from "./components/jobs/JobsHome";
 import Setting from "./components/settingPage/Setting";
+import JobDetails from "./components/jobsDetailes/JobDetailes";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/profile/setting/preferiti" element={<Favourites />} />
         <Route path="/profile/setting" element={<Setting />} />
         <Route path="/Jobs" element={<JobsHome />} />
+        <Route path="/Jobs/detailes" element={<JobDetails />} />
       </Routes>
       <FooterSection />
     </BrowserRouter>

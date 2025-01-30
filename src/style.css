@@ -379,13 +379,8 @@ body {
   background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
   border-radius: 125px;
   content: "";
-  height: 50%;
-  left: 4%;
   opacity: 0.5;
-  position: absolute;
-  top: 0;
   transition: all 0.3s;
-  width: 92%;
 }
 
 .button-71:hover {

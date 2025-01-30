@@ -9,7 +9,7 @@ const GetImage = () => {
   const pexelsPhotos = async () => {
     try {
       const response = await fetch(
-        `https://api.pexels.com/v1/curated?per_page=10`,
+        `https://api.pexels.com/v1/search?query=minimalist+abstract&per_page=100&orientation=landscape`,
         {
           headers: {
             Authorization: ACCESS_KEY,

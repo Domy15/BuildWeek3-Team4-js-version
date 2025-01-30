@@ -1,4 +1,3 @@
-
 import { Card, Container, Row } from "react-bootstrap";
 import {
   BookmarkFill,
@@ -14,15 +13,15 @@ const HomeProfile = () => {
   const randomNumber = () => {
     return Math.floor(Math.random() * (100 + 1)) + 10;
   };
-// eslint-disable-next-line no-unused-vars
-const [state, setState] = useState(3)
+  // eslint-disable-next-line no-unused-vars
+  const [state, setState] = useState(3);
 
   return (
     <>
       <div className="sticky-top z-custom classMargin">
         <Card className="mt-5 bg-white">
           <div className="position-relative pb-2">
-           <CardProfile/>
+            <CardProfile />
             <Container className="d-sm-none d-md-block">
               <hr />
               <Row>
@@ -45,7 +44,11 @@ const [state, setState] = useState(3)
           <div className="m-2">
             <BookmarkFill />
             <span className="ms-2">
-              <Link to='/profile/setting' className="text-dark text-decoration-none" state={state}>
+              <Link
+                to="/profile/setting"
+                className="text-dark text-decoration-none"
+                state={state}
+              >
                 Elementi salvati
               </Link>
             </span>

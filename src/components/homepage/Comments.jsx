@@ -11,7 +11,7 @@ const Comments = ({ id }) => {
   const [profile, setProfile] = useState();
   const [update, setUpdate] = useState(false);
   const URL = "https://striveschool-api.herokuapp.com/api/comments/";
-  const updateComments = useSelector((state) => state.user.update);
+  const updateComments = useSelector((state) => state.user.update2);
 
   const fetchProfile = async () => {
     try {
@@ -94,7 +94,7 @@ const Comments = ({ id }) => {
   return (
     <>
       <div className="px-4">
-        <Carousel />
+        <Carousel id={id} />
       </div>
       <Row className="px-3 mb-3">
         <Col xs={2} xl={1}>

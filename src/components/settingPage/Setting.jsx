@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import MidFavouriteSection from "./MidFavouriteSection";
 import ProfilePut from "../profile/ProfilePut";
+import ExperiencesSetting from "../profile/ExperiencesSetting";
 
 const Setting = () => {
   const [selected, setSelected] = useState(0);
@@ -89,7 +90,7 @@ const Setting = () => {
         </Col>
         <Col xs={12} md={9}>
         {selected ===1 && (<ProfilePut/>)}
-        {selected ===2 && ''}
+        {selected ===2 && <ExperiencesSetting/>}
         {selected ===3 && ''}
         {saved ===1 && <MidFavouriteSection
               title="Post salvati"

@@ -94,7 +94,7 @@ const Comments = ({ id }) => {
   return (
     <>
       <div className="px-4">
-        <Carousel />
+        <Carousel id={id} />
       </div>
       <Row className="px-3 mb-3">
         <Col xs={2} xl={1}>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { Geo } from "react-bootstrap-icons";
+import { DashLg, Geo, PlusLg } from "react-bootstrap-icons";
 
 const Linkjobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -70,15 +70,15 @@ const Linkjobs = () => {
   return (
     <>
       <div className="bg-white p-3 rounded shadow-sm mt-4">
-        <div className="d-flex justify-content-center align-items-end mb-4">
+        <div className="d-flex justify-content-center align-items-center mb-4">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
             alt="imageProfile"
             width={50}
             height={50}
-            className="rounded-circle border shadow-sm me-3"
+            className="rounded border shadow-sm me-3"
           />
-          <h5 className="fw-bold text-dark m-0">
+          <h5 className="fw-bold text-dark m-0 h2">
             Altre offerte di lavoro per te
           </h5>
         </div>
@@ -126,18 +126,18 @@ const Linkjobs = () => {
             </div>
           ))}
         </div>
-        <div className=" mt-3 ">
+        <div className="d-flex align-items-center justify-content-center g-1">
           <Button
-            className="btn btn-primary rounded-5 "
+            className="button-29 d-flex gap-1 rounded-5 me-2"
             onClick={() => setPage((prev) => prev + 1)}
           >
-            Carica più risultati
+            <PlusLg size={25} className="fw-bold" />
           </Button>
           <Button
-            className="btn btn-primary rounded-5 ms-3"
+            className="button-29 d-flex gap-1 rounded-5"
             onClick={() => setPage((prev) => prev - 1)}
           >
-            Mostra meno
+            <DashLg size={25} />
           </Button>
         </div>
       </div>

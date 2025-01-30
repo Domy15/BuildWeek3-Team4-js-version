@@ -4,6 +4,7 @@ import { BlockquoteLeft, Calendar2, Images } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CardPost from "./CardPost";
+import { useSelector } from "react-redux";
 
 const NewsHome = () => {
   const [posts, setPosts] = useState([]);
@@ -12,6 +13,8 @@ const NewsHome = () => {
   const [showmore, setShowmore] = useState(6);
   const [imgPost, setImgPost] = useState();
   const [profile, setProfile] = useState();
+  const [update, setUpdate] = useState(false);
+  const update2 = useSelector((state) => state.user.update);
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
   const AUTH_TOKEN =
@@ -119,8 +122,11 @@ const NewsHome = () => {
   };
 
   useEffect(() => {
-    fetchProfile();
     fetchPosts();
+  }, [update, update2]);
+
+  useEffect(() => {
+    fetchProfile();
   }, []);
 
   return (
@@ -148,7 +154,7 @@ const NewsHome = () => {
             />
           </Col>
           <Col xs={2}>
-            <Button onClick={createPost} disabled={!newPostText.trim()}>
+            <Button onClick={() => {createPost(); setUpdate(!update)}} disabled={!newPostText.trim()}>
               Post
             </Button>
           </Col>

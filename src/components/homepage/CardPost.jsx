@@ -162,7 +162,7 @@ const CardPost = ({ post }) => {
           </Card>
           <Modal show={showConfirm} onHide={() => setShowConfirm(false)}>
             <Modal.Header closeButton>
-              <Modal.Title className="d-flex align-items-center"><ExclamationLg className="text-danger" size={30} /><p className="p-0 m-0">ATTENZIONE</p><ExclamationLg className="text-danger" size={30} /></Modal.Title>
+              <Modal.Title className="d-flex align-items-center"><ExclamationLg className="text-danger" size={30} />ATTENZIONE<ExclamationLg className="text-danger" size={30} /></Modal.Title>
             </Modal.Header>
             {post.user._id === "67975ee416f6350015fecb97" ? (
               <Modal.Body>

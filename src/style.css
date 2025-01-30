@@ -74,12 +74,12 @@ body {
   width: 150px;
   height: 150px;
   border: 5px solid white;
-  top: 250px;
-  left: 50px;
+  top: 20%;
+  left: 6%;
 }
 
 .titleProfile {
-  margin-top: 2.8em;
+  margin-top: 1.8em;
 }
 
 .verifyBtn {
@@ -295,6 +295,14 @@ body {
   /* transform: translate(40px, -50px); */
 }
 
-.imageHome {
+/* .imageHome {
   height: 90px;
+} */
+
+.pippo {
+  height: 13vh;
+}
+
+.pluto {
+  height: 21vh;
 }

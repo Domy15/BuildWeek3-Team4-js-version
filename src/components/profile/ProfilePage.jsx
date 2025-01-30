@@ -5,6 +5,7 @@ import AsideSection from "./AsideSection";
 import HeroSection from "./HeroSection";
 import Languages from "./Languages";
 import { useParams } from "react-router-dom";
+// import GetImage from "./GetImage";
 
 const ProfilePage = () => {
   const param = useParams();

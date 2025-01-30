@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Linkjobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -96,7 +97,7 @@ const Linkjobs = () => {
         <ul className="list-group ">
           {jobs.map((job) => (
             <li key={job._id} className="list-group-item">
-              <h5 className="text-primary">{job.title}</h5>
+              <Link to='/Jobs/detailes' state={{ jobs: jobs, job: job }} className="h5 text-primary">{job.title}</Link>
               <p style={{ lineHeight: "0.6" }}>{job.company_name}</p>
               <p style={{ lineHeight: "0.5" }}>
                 {" "}
@@ -117,7 +118,7 @@ const Linkjobs = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <small>Dettagli</small>
+                  <Link to='/Jobs/detailes' state={{ jobs: jobs, job: job }}>Dettagli</Link>
                 </a>
               </div>
             </li>

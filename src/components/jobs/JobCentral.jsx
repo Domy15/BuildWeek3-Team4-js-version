@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Linkedin } from "react-bootstrap-icons";
@@ -32,10 +33,6 @@ const JobCentral = () => {
     }
   };
 
-  function Prova({ description }) {
-    return <div dangerouslySetInnerHTML={{ __html: description }}></div>;
-  }
-
   useEffect(() => {
     setCat(categories[Math.floor(Math.random() * categories.length)]);
     if (cat) {
@@ -46,7 +43,6 @@ const JobCentral = () => {
   return (
     <Container className="p-0 py-3 mb-3 bg-white rounded-3 border py-3 my-3">
       <Row className="m-2 border-bottom">
-        {cat && console.log(cat)}
         <Col>
           <div className="d-flex align-items-center">
             <Linkedin className="me-2" />

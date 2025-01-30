@@ -10,6 +10,10 @@ body {
   position: absolute;
 }
 
+.modal-dialog {
+  top: 8%;
+}
+
 .navBarNew {
   z-index: 1000000;
 }

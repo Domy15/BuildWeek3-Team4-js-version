@@ -7,6 +7,11 @@ import { useDispatch } from "react-redux";
 
 const SingleComment = ({ comment }) => {
   const dispatch= useDispatch()
+  const date = new Date(comment.createdAt);
+  const todayDate = new Date();
+  const hourDifference = (todayDate - date);
+  console.log(hourDifference/3600);
+  
 
   const deleteComment = async () => {
     if (comment.author !== "Pablo") {

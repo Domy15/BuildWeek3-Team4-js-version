@@ -112,7 +112,7 @@ const JobCentral = () => {
                       {new Date(item.publication_date).toLocaleDateString()}
                     </small>
                   </p>
-                  <Link to="/Jobs/detailes" state={array} className="nav-link">
+                  <Link to='/Jobs/detailes' state={{ jobs: array, job: item }} className="nav-link">
                     Dettagli
                   </Link>
                 </div>

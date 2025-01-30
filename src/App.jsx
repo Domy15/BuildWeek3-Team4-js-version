@@ -33,7 +33,7 @@ function App() {
         <Route path="/profile/setting/preferiti" element={<Favourites />} />
         <Route path="/profile/setting" element={<Setting />} />
         <Route path="/Jobs" element={<JobsHome />} />
-        <Route path="/Jobs/detailes" element={<JobDetails />} />
+        <Route path="/Jobs/detailes" element={<JobDetails/>}/>
       </Routes>
       <FooterSection />
     </BrowserRouter>

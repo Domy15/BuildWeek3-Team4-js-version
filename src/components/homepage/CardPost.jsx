@@ -110,7 +110,7 @@ const CardPost = ({ post }) => {
                   <p className="p-0 m-0">{post.text}</p>
                 </div>
               </div>
-              {post.image && <img src={post.image} style={{ width: "100%" }} />}
+              {post.image && <img src={post.image} style={{ width: "100%", height: "50%"}} />}
               <hr className="mx-3" />
               <div className="d-flex w-100 flex-wrap align-items-center justify-content-center">
                 <div className="d-flex align-items-center justify-content-center p-2 w-25">

@@ -186,7 +186,7 @@ const HeroSection = ({ param }) => {
                     </Dropdown.Item>
                   </Dropdown>
                 </DropdownButton>
-                <Link to="" className="btn btn-outline-secondary">
+                <Link to="/profile/put" className="btn btn-outline-secondary">
                   Modifica Profile
                 </Link>
                 <Link

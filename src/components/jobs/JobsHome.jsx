@@ -3,7 +3,7 @@ import CardProfile from "../homepage/CardProfile";
 
 import Linkfoot from "../homepage/Linkfoot";
 import JobsButton from "./JobsButton";
-/* import Linkjobs from "./Linkjobs"; */
+import Linkjobs from "./Linkjobs"; 
 
 const JobsHome = () => {
   return (
@@ -18,7 +18,7 @@ const JobsHome = () => {
               <JobsButton />
             </div>
           </Col>
-          <Col md={6}>{/* <Linkjobs /> */}</Col>
+          <Col md={6}>  <Linkjobs /></Col>
           <Col md={3}>
             <div className="sticky-top z-custom ">
               <Linkfoot />

@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import CardProfile from "./CardProfile";
 
 const HomeProfile = () => {
- 
   const randomNumber = () => {
     return Math.floor(Math.random() * (100 + 1)) + 10;
   };
@@ -18,7 +17,7 @@ const HomeProfile = () => {
 
   return (
     <>
-      <div className="sticky-top z-custom">
+      <div className="sticky-top z-custom classMargin">
         <Card className="mt-5 bg-white">
           <div className="position-relative pb-2">
            <CardProfile/>

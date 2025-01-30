@@ -142,4 +142,4 @@ const Linkjobs = () => {
   );
 };
 
-export default Linkjobs;
+export default Linkjobs

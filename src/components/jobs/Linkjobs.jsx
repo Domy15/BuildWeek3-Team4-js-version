@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-
+import { Button } from "react-bootstrap";
 
 const Linkjobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -9,7 +8,7 @@ const Linkjobs = () => {
   const [page, setPage] = useState(0);
   const [sortOrder, setSortOrder] = useState("recenti");
 
- const formatDate = (isoDate) => {
+  const formatDate = (isoDate) => {
     const date = new Date(isoDate);
     return date.toLocaleString({
       weekday: "long",
@@ -25,8 +24,8 @@ const Linkjobs = () => {
   const fetchJobs = async () => {
     try {
       const response = await fetch(
-        `https://strive-benchmark.herokuapp.com/api/jobs?limit=10&offset=${
-          page * 10
+        `https://strive-benchmark.herokuapp.com/api/jobs?limit=3&offset=${
+          page * 100
         }`
       );
       if (!response.ok) {
@@ -59,16 +58,18 @@ const Linkjobs = () => {
     setJobs([]);
     setPage(0);
     fetchJobs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortOrder]);
 
   useEffect(() => {
     fetchJobs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   return (
     <>
-      <div className="bg-white p-3 rounded shadow-sm">
-        <h4 className="bi-linkedin fw-bold"> Altre offerte di lavoro per te</h4>
+      <div className="bg-white p-3 rounded shadow-sm mt-4">
+        <h5 className="bi-linkedin fw-bold"> Altre offerte di lavoro per te</h5>
         <p className="text-muted">
           In base al tuo profilo, alle tue preferenze e ad attività come
           candidature, ricerche e salvataggi
@@ -92,54 +93,49 @@ const Linkjobs = () => {
         {loading && <p>Caricamento...</p>}
         {error && <p className="text-danger">Errore: {error}</p>}
 
-        <ul className="list-group">
+        <ul className="list-group ">
           {jobs.map((job) => (
             <li key={job._id} className="list-group-item">
               <h5 className="text-primary">{job.title}</h5>
-              <p>{job.company_name}</p>
-              <p>{job.candidate_required_location}</p>
-              <p> {job.publication_date && <p> {formatDate(job.publication_date)}</p>}</p>
-              <a href={job.url} target="_blank" rel="noopener noreferrer">
-                Dettagli
-              </a>
+              <p style={{ lineHeight: "0.6" }}>{job.company_name}</p>
+              <p style={{ lineHeight: "0.5" }}>
+                {" "}
+                {job.candidate_required_location}
+              </p>
+              <div className="d-flex justify-content-between">
+                <span className="text-muted" style={{ lineHeight: "0.5" }}>
+                  <small>
+                    {" "}
+                    {job.publication_date && (
+                      <p> {formatDate(job.publication_date)}</p>
+                    )}
+                  </small>
+                </span>
+                <a
+                  style={{ lineHeight: "0.2" }}
+                  href={job.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <small>Dettagli</small>
+                </a>
+              </div>
             </li>
           ))}
         </ul>
-
-        <button
-          className="btn btn-primary mt-3"
-          onClick={() => setPage((prev) => prev + 1)}
-        >
-          Carica più risultati
-        </button>
-      </div>
-
-      <div>
-        {/*sezione verifica */}
-        <div className="card border rounded p-3 mb-5 shadow-sm w-25">
-          <div className="d-flex align-items-center justify-content-between">
-            <div>
-              <h5>
-                Completa la verifica per distinguerti nella tua ricerca di
-                lavoro
-              </h5>
-              <p className="text-muted mb-2">
-                Gli utenti verificati ottengono in media il 60% di
-                visualizzazioni del profilo in più.
-              </p>
-              <button className="btn btn-primary d-flex align-items-center">
-                <i className="bi bi-shield-check me-2"></i> Verifica ora
-              </button>
-            </div>
-            <div className="ms-3 mt-4 ">
-              <img
-                src="../../../public/a man work in office.png"
-                alt="Verifica il tuo profilo"
-                className="img-fluid"
-                style={{ maxWidth: "150px" }}
-              />
-            </div>
-          </div>
+        <div className=" mt-3 ">
+          <Button
+            className="btn btn-primary rounded-5 "
+            onClick={() => setPage((prev) => prev + 1)}
+          >
+            Carica più risultati
+          </Button>
+          <Button
+            className="btn btn-primary rounded-5 ms-3"
+            onClick={() => setPage((prev) => prev - 1)}
+          >
+            Mostra meno
+          </Button>
         </div>
       </div>
     </>

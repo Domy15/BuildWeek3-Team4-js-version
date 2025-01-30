@@ -30,7 +30,7 @@ const JobCentral = () => {
       if (response.ok) {
         const data = await response.json();
         setArray(data.data);
-        console.log(array)
+        console.log(array);
       } else {
         throw new Error("errore");
       }
@@ -67,7 +67,7 @@ const JobCentral = () => {
               setCat(item);
             }}
           >
-           <small>{item}</small> 
+            <small>{item}</small>
           </div>
         ))}
         {console.log(cat)}

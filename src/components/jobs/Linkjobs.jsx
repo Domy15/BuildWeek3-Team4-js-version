@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { Linkedin } from "react-bootstrap-icons";
 
 const Linkjobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -69,7 +70,11 @@ const Linkjobs = () => {
   return (
     <>
       <div className="bg-white p-3 rounded shadow-sm mt-4">
-        <h5 className="bi-linkedin fw-bold"> Altre offerte di lavoro per te</h5>
+        <div className="d-flex align-items-end mb-3">
+          <Linkedin size={30} className="me-3 iconLabel" />
+          <h5 className="fw-bold m-0 p-0 "> Altre offerte di lavoro per te</h5>
+        </div>
+        <hr />
         <p className="text-muted">
           In base al tuo profilo, alle tue preferenze e ad attività come
           candidature, ricerche e salvataggi

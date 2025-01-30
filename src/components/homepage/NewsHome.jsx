@@ -35,7 +35,7 @@ const NewsHome = () => {
       if (response.ok) {
         const data = await response.json();
         setProfile(data);
-        dispatch({type: 'SAVE_PROFILE', payload: data})
+        dispatch({ type: "SAVE_PROFILE", payload: data });
       } else {
         throw new Error("errore nella fetch dei dati del tuo profilo");
       }
@@ -213,7 +213,7 @@ const NewsHome = () => {
             .map((post) => <CardPost key={post._id} post={post} />)
         )}
         <div className="text-center mt-4">
-          <button className="btn btn-primary" onClick={handleShowMore}>
+          <button className="btn btn-primary mb-3" onClick={handleShowMore}>
             Show More
           </button>
         </div>

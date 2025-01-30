@@ -128,7 +128,7 @@ const JobCentral = () => {
                   <Link
                     to="/Jobs/detailes"
                     state={{ jobs: array, job: item }}
-                    className="nav-link"
+                    className="text-decoration-underline nav-link"
                   >
                     Dettagli
                   </Link>

@@ -3,6 +3,8 @@ import CardProfile from "../homepage/CardProfile";
 import Linkfoot from "../homepage/Linkfoot";
 import JobsButton from "./JobsButton";
 import Linkjobs from "./Linkjobs";
+import JobCentral from "./JobCentral";
+
 
 const JobsHome = () => {
   return (
@@ -19,6 +21,7 @@ const JobsHome = () => {
           </Col>
           <Col md={6}>
             {" "}
+            <JobCentral/>
             <Linkjobs />
           </Col>
           <Col md={3}>

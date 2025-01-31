@@ -10,19 +10,18 @@ import Homepage from "./components/homepage/Homepage";
 import ProfilePut from "./components/profile/ProfilePut";
 import NavBarNew from "./components/NavBarNew";
 import ExperiencesSetting from "./components/profile/ExperiencesSetting";
-import Favourites from "./components/settingPage/Favourites";
+
 import FooterSection from "./components/Footer";
 import JobsHome from "./components/jobs/JobsHome";
 import Setting from "./components/settingPage/Setting";
 import JobDetails from "./components/jobsDetailes/JobDetailes";
-
 
 function App() {
   return (
     <BrowserRouter>
       <NavBarNew />
       <Routes>
-       <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/profile/put" element={<ProfilePut />} />
@@ -30,10 +29,10 @@ function App() {
           path="/profile/setting/experiences"
           element={<ExperiencesSetting />}
         />
-        <Route path="/profile/setting/preferiti" element={<Favourites />} />
+
         <Route path="/profile/setting" element={<Setting />} />
         <Route path="/Jobs" element={<JobsHome />} />
-        <Route path="/Jobs/detailes" element={<JobDetails/>}/>
+        <Route path="/Jobs/detailes" element={<JobDetails />} />
       </Routes>
       <FooterSection />
     </BrowserRouter>

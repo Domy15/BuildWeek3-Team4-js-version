@@ -107,7 +107,7 @@ const mainReducer = (state = initialState, action) => {
         interaction: {
           ...state.interaction,
           favourites: state.interaction.favourites.filter((item) => {
-            return action.payload !== item;
+            return item._id !== action.payload._id;
           }),
         },
       };

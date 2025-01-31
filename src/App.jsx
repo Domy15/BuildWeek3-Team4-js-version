@@ -14,7 +14,6 @@ import Favourites from "./components/settingPage/Favourites";
 import FooterSection from "./components/Footer";
 import JobsHome from "./components/jobs/JobsHome";
 import Setting from "./components/settingPage/Setting";
-import SearchJobs from "./components/search/SearchJobs";
 import JobDetails from "./components/jobsDetailes/JobDetailes";
 
 

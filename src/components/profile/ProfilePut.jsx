@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 const ProfilePut = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => (state.myProfile));
+  const user = useSelector((state) => state.myProfile);
   const [profileBody, setProfileBody] = useState(user);
-  const [imgProfile, setImgProfile] = useState({img: null});
+  const [imgProfile, setImgProfile] = useState({ img: null });
 
   const putData = async () => {
     try {
@@ -24,7 +24,7 @@ const ProfilePut = () => {
         }
       );
       if (response.ok) {
-        console.log('dati aggioranti');
+        console.log("dati aggioranti");
       } else {
         throw new Error("Errore nell'invio dei dati");
       }
@@ -50,14 +50,14 @@ const ProfilePut = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          body: formData
+          body: formData,
         }
       );
       if (response.ok) {
-        console.log('immagine del profilo aggiornata');
+        console.log("immagine del profilo aggiornata");
         dispatch({
-          type: "UPDATE"
-        })
+          type: "UPDATE",
+        });
       } else {
         throw new Error("errore nella fetch dei dati");
       }
@@ -139,9 +139,12 @@ const ProfilePut = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formFile">
           <Form.Label>Pick for profile</Form.Label>
-          <Form.Control type="file" onChange={(e) => {
-            setImgProfile({ img: e.target.files[0] }); 
-          }}/>
+          <Form.Control
+            type="file"
+            onChange={(e) => {
+              setImgProfile({ img: e.target.files[0] });
+            }}
+          />
         </Form.Group>
         <Button type="submit" variant="success">
           Save

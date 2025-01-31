@@ -128,9 +128,9 @@ const JobCentral = () => {
                   <Link
                     to="/Jobs/detailes"
                     state={{ jobs: array, job: item }}
-                    className="text-decoration-underline nav-link"
+                    className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0"
                   >
-                    Dettagli
+                    Vedi di più
                   </Link>
                 </div>
               </Col>

@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { Bookmark, DashLg, Geo, PlusLg } from "react-bootstrap-icons";
+import {  BookmarkDash, BookmarkPlus, DashLg, Geo, PlusLg } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const JobsList = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   /* const [page, setPage] = useState(0); */
+  const favouritesJobs = useSelector((state) => state.interaction.favouritesJobs);
+  const dispatch = useDispatch();
   const [sortOrder, setSortOrder] = useState("recenti");
   const [show, setShow] = useState(5);
   const location = useLocation();
@@ -137,7 +140,7 @@ const JobsList = () => {
           </div>
         </div>
 
-        {loading && <p>Caricamento...</p>}
+        {/* {loading && <p>Caricamento...</p>} */}
         {error && <p className="text-danger">Errore: {error}</p>}
         <div className="list-group ">
           {jobs &&
@@ -152,7 +155,28 @@ const JobsList = () => {
                 >
                   {job.title}
                 </Link>
-                <Bookmark size={25} />
+                {!favouritesJobs.includes(job) ? (
+                    <button
+                      className="d-flex justify-content-center align-items-center border-0 bg-transparent"
+                      onClick={() =>
+                        dispatch({ type: "ADDJOB", payload: job })
+                      }
+                    >
+                      <BookmarkPlus className="fs-4 fs-md-4 fs-lg-3" />
+                    </button>
+                  ) : (
+                    <button
+                      className="d-flex justify-content-center align-items-center border-0 bg-transparent"
+                      onClick={() =>
+                        dispatch({
+                          type: "REMOVEJOB",
+                          payload: job,
+                        })
+                      }
+                    >
+                      <BookmarkDash className="fs-4 fs-md-4 fs-lg-3" />
+                    </button>
+                  )}
               </div>
               <p className="m-0 my-2">{job.company_name}</p>
               <div className="d-flex align-items-center">

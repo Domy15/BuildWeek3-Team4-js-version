@@ -30,7 +30,6 @@ const JobCentral = () => {
       if (response.ok) {
         const data = await response.json();
         setArray(data.data);
-        console.log(array);
       } else {
         throw new Error("errore");
       }
@@ -76,7 +75,6 @@ const JobCentral = () => {
             <small>{item}</small>
           </div>
         ))}
-        {console.log(cat)}
       </div>
       <Row className="px-4">
         {array &&

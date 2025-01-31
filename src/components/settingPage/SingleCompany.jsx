@@ -7,7 +7,7 @@ const SingleCompany = ({ item }) => {
   const jobs = useSelector((state) => state.interaction.favouritesJobs);
   const dispatch = useDispatch();
   return (
-    <Col key={item._id} xs={12} className="p-3 border rounded-2 my-3 bg-white">
+    <Col key={item._id} xs={12} className="p-3 border-bottom my-3 bg-white">
       <div className="d-flex justify-content-between">
         <h5 className="p-0 mb-2">{item.title}</h5>
         {jobs.includes(item) && (
@@ -37,7 +37,7 @@ const SingleCompany = ({ item }) => {
         </p>
         <Link
           to="/Jobs/detailes"
-          state={{ jobs: item, job: item }}
+          state={{ jobs: [item], job: item }}
           className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0"
         >
           Vedi di più

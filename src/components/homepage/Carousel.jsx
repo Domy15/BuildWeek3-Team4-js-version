@@ -37,6 +37,8 @@ function SamplePrevArrow(props) {
 const Carousel = ({ id }) => {
   const dispatch = useDispatch();
   const bntOption = [
+    "PEFFOZZA!",
+    "GLS",
     "Mi piace",
     "Geniale",
     "Suggerimenti Utili",
@@ -47,7 +49,6 @@ const Carousel = ({ id }) => {
     "Disgustoso",
     "Orribile",
     "Di cattivo gusto",
-    "GLS",
     "No comment",
   ];
   const settings = {

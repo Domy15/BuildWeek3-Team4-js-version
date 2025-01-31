@@ -8,9 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const JobsList = () => {
   const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  /* const [page, setPage] = useState(0); */
   const favouritesJobs = useSelector((state) => state.interaction.favouritesJobs);
   const dispatch = useDispatch();
   const [sortOrder, setSortOrder] = useState("recenti");
@@ -33,7 +30,7 @@ const JobsList = () => {
   const fetchquery = async () => {
     try {
       const response = await fetch(
-        `https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`
+        `https://strive-benchmark.herokuapp.com/api/jobs?search=${query || "data"}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -47,40 +44,6 @@ const JobsList = () => {
     }
   };
 
- /* const fetchJobs = async () => {
-    try {
-      const response = await fetch(
-        `https://strive-benchmark.herokuapp.com/api/jobs?limit=3&offset=${
-          page * 100
-        }`
-      );
-      if (!response.ok) {
-        throw new Error("Errore nel recupero dei dati");
-      }
-      const data = await response.json();
-
-      let sortedJobs = data.data;
-      if (sortOrder === "recenti") {
-        sortedJobs = sortedJobs.sort(
-          (a, b) => new Date(b.publication_date) - new Date(a.publication_date)
-        );
-      } else {
-        sortedJobs = sortedJobs.sort(
-          (a, b) => new Date(a.publication_date) - new Date(b.publication_date)
-        );
-      }
-
-      setJobs((prevJobs) =>
-        page === 0 ? sortedJobs : [...prevJobs, ...sortedJobs]
-      );
-
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    }
-  }; */
-
   const showMore = () => {
     setShow(show + 3);
   };
@@ -88,23 +51,10 @@ const JobsList = () => {
   const showLess = () => {
     setShow(show - 3);
   };
-  console.log(jobs.length);
 
   useEffect(() => {
     fetchquery();
   }, [query]);
-
-  {/*useEffect(() => {
-    setJobs([]);
-    setPage(0);
-    //fetchJobs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortOrder]);
-
-  useEffect(() => {
-    //fetchJobs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);*/}
 
   return (
     <>
@@ -140,9 +90,6 @@ const JobsList = () => {
             </select>
           </div>
         </div>
-
-        {/* {loading && <p>Caricamento...</p>} */}
-        {error && <p className="text-danger">Errore: {error}</p>}
         <div className="list-group ">
           {jobs &&
             show > 0 &&

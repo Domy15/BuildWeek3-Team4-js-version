@@ -14,6 +14,7 @@ import {
   PinMapFill,
   PlayBtnFill,
   PlusLg,
+  CaretDownFill,
 } from "react-bootstrap-icons";
 import SearchJobs from "./search/SearchJobs";
 import Container from "react-bootstrap/Container";
@@ -25,10 +26,9 @@ import { Link, useNavigate } from "react-router-dom";
 function NavBarNew() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState();
-  
+
   const AUTH_TOKEN =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
-
 
   const fetchProfile = async () => {
     try {
@@ -127,22 +127,29 @@ function NavBarNew() {
             </Nav.Link>
 
             <div className="text-center">
-              {profile && (
-                <img
-                  src={profile.image}
-                  alt="Profilo"
-                  className="rounded-circle img-fluid"
-                  width="30"
-                  height="30"
-                />
-              )}
-
               <div className="mx-2">
                 <NavDropdown
-                  title="Profilo"
+                  title={
+                    <>
+                      <div>
+                        {profile && (
+                          <img
+                            src={profile.image}
+                            alt="Profilo"
+                            className="rounded-circle img-fluid"
+                            width="32"
+                            height="32"
+                          />
+                        )}
+                        <div className="align-items-center d-none d-lg-flex">
+                          <p className="p-0 m-0 me-1">Profilo</p> <CaretDownFill size={12}/>
+                        </div>
+                      </div>
+                    </>
+                  }
                   id="basic-nav-dropdown"
                   align="end"
-                  className=" dropdown-menu-end d-none d-lg-block"
+                  className="dropdown-menu-end"
                 >
                   <div className="d-flex align-items-center p-3">
                     {profile && (
@@ -156,7 +163,9 @@ function NavBarNew() {
                         />
 
                         <div className="ms-4">
-                          <h5>{profile.name} {profile.surname}</h5>
+                          <h5>
+                            {profile.name} {profile.surname}
+                          </h5>
                           <p className="m-0">{profile.title}</p>
                         </div>
                       </>
@@ -188,7 +197,10 @@ function NavBarNew() {
                     <h4 className="ps-3">Gestisci</h4>
                     <NavDropdown.Item>Post e attività</NavDropdown.Item>
                     <NavDropdown.Item
-                    onClick={()=>{navigate("/jobs")}}>
+                      onClick={() => {
+                        navigate("/jobs");
+                      }}
+                    >
                       Account per la pubblicazione di offerte lavorative
                     </NavDropdown.Item>
                     <NavDropdown.Item>Lingua</NavDropdown.Item>
@@ -201,16 +213,22 @@ function NavBarNew() {
               </div>
             </div>
             <div className="text-center mx-2">
-              <div>
-                <Grid3x3GapFill size={25} />
-              </div>
               <NavDropdown
-                title="Dropdown"
+                title={
+                  <>
+                    <div>
+                      <Grid3x3GapFill size={25} />
+                      <div className="align-items-center d-none d-lg-flex">
+                        <p className="p-0 m-0 me-1">Per le aziende</p> <CaretDownFill size={12}/>
+                      </div>
+                    </div>
+                  </>
+                }
                 id="basic-nav-dropdown"
                 align="end"
-                className="d-none d-lg-block"
+                className=""
               >
-                <div className="d-md-flex containerSecondDropDown p-3">
+                <div className="d-md-flex containerSecondDropDown p-3 overflow-y-scroll overflow-x-hidden drop-h">
                   <div className="boxesSecondDropDown">
                     <h2>Le mie app</h2>
                     <div className="d-flex align-items-center">

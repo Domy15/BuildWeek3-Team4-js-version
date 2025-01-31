@@ -2,8 +2,8 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import CardProfile from "../homepage/CardProfile";
 import Linkfoot from "../homepage/Linkfoot";
 import JobsButton from "./JobsButton";
-import JobsList from "./JobsList";
 import JobCentral from "./JobCentral";
+import JobsList from "./JobsList";
 
 
 

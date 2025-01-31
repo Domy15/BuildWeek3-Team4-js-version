@@ -15,13 +15,12 @@ import JobsHome from "./components/jobs/JobsHome";
 import Setting from "./components/settingPage/Setting";
 import JobDetails from "./components/jobsDetailes/JobDetailes";
 
-
 function App() {
   return (
     <BrowserRouter>
       <NavBarNew />
       <Routes>
-       <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
         <Route path="/profile/put" element={<ProfilePut />} />
@@ -31,7 +30,7 @@ function App() {
         />
         <Route path="/profile/setting" element={<Setting />} />
         <Route path="/Jobs" element={<JobsHome />} />
-        <Route path="/Jobs/detailes" element={<JobDetails/>}/>
+        <Route path="/Jobs/detailes" element={<JobDetails />} />
       </Routes>
       <FooterSection />
     </BrowserRouter>

@@ -136,14 +136,14 @@ const NewsHome = () => {
   return (
     <div>
       <Container className="classMargin">
-        <div className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
+        <div className="bg-white mb-5 p-3 rounded border border-1">
           <Row className="px-3 mb-3">
             <Col xs={2} xl={1}>
               {profile && (
                 <Image
                   src={profile.image}
                   roundedCircle
-                  className="me-3"
+                  className="m-0 p-0"
                   width={40}
                   height={40}
                 />
@@ -158,15 +158,19 @@ const NewsHome = () => {
                 className="me-3 rounded-5 mb-3"
               />
             </Col>
-            <Col xs={2}>
-              <Button onClick={createPost} disabled={!newPostText.trim()}>
+            <Col xs={2} className="cursor-pointer z-1">
+              <Button
+                className="align-self-baseline z-3"
+                onClick={createPost}
+                disabled={!newPostText.trim()}
+              >
                 Post
               </Button>
             </Col>
           </Row>
-          <Row>
+          <Row className="mx-3">
             <Col xs={5}>
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center btnsHomeProf">
                 <label
                   htmlFor="file-upload"
                   className="btn p-0 labelUpload d-flex align-items-center "
@@ -187,14 +191,14 @@ const NewsHome = () => {
                 />
               </div>
             </Col>
-            <Col xs={3} className="p-0">
-              <div className="d-flex align-items-center justify-content-center fw-medium">
+            <Col xs={3} className="p-0 ">
+              <div className="d-flex align-items-center justify-content-center fw-medium btnsHomeProf">
                 <Calendar2 size={20} className="iconLabel2" />
                 <p className="subtitlesHome m-0 ps-2">Evento</p>
               </div>
             </Col>
             <Col xs={4}>
-              <div className="d-flex align-items-center justify-content-end fw-medium">
+              <div className="d-flex align-items-center justify-content-end fw-medium btnsHomeProf">
                 <BlockquoteLeft size={20} className="iconLabel3" />
                 <p className="subtitlesHome m-0 ps-2">Scrivi un articolo</p>
               </div>

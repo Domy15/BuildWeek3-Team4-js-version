@@ -11,7 +11,7 @@ const NewsHome = () => {
   const [posts, setPosts] = useState([]);
   const [newPostText, setNewPostText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showmore, setShowmore] = useState(6);
+  const [showmore, setShowmore] = useState(20);
   const [imgPost, setImgPost] = useState();
   const [profile, setProfile] = useState();
   const [update, setUpdate] = useState(false);
@@ -122,7 +122,7 @@ const NewsHome = () => {
   };
 
   const handleShowMore = () => {
-    setShowmore(showmore + 6);
+    setShowmore(showmore + 20);
   };
 
   useEffect(() => {

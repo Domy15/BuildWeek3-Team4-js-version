@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import { Bookmark, DashLg, Geo, PlusLg } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
@@ -9,7 +10,11 @@ const Linkjobs = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(0);
   const [sortOrder, setSortOrder] = useState("recenti");
+  const [show, setShow] = useState(5);
+  const location = useLocation();
+  const query = location.state;
 
+  console.log(query);
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
     return date.toLocaleString({
@@ -23,7 +28,24 @@ const Linkjobs = () => {
     });
   };
 
-  const fetchJobs = async () => {
+  const fetchquery = async () => {
+    try {
+      const response = await fetch(
+        `https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setJobs(data.data);
+        console.log(data.data);
+      } else {
+        throw new Error("Errore nel recupero dati");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+ const fetchJobs = async () => {
     try {
       const response = await fetch(
         `https://strive-benchmark.herokuapp.com/api/jobs?limit=3&offset=${
@@ -45,10 +67,10 @@ const Linkjobs = () => {
           (a, b) => new Date(a.publication_date) - new Date(b.publication_date)
         );
       }
-
       setJobs((prevJobs) =>
         page === 0 ? sortedJobs : [...prevJobs, ...sortedJobs]
       );
+
       setLoading(false);
     } catch (err) {
       setError(err.message);
@@ -56,17 +78,30 @@ const Linkjobs = () => {
     }
   };
 
+  const showMore = () => {
+    setShow(show + 3);
+  };
+
+  const showLess = () => {
+    setShow(show - 3);
+  };
+  console.log(jobs.length);
+
   useEffect(() => {
+    fetchquery();
+  }, [query]);
+
+  {/*useEffect(() => {
     setJobs([]);
     setPage(0);
-    fetchJobs();
+    //fetchJobs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortOrder]);
 
   useEffect(() => {
-    fetchJobs();
+    //fetchJobs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page]);*/}
 
   return (
     <>
@@ -105,9 +140,10 @@ const Linkjobs = () => {
 
         {loading && <p>Caricamento...</p>}
         {error && <p className="text-danger">Errore: {error}</p>}
-
         <div className="list-group ">
-          {jobs.map((job) => (
+          {jobs &&
+            show > 0 &&
+            jobs.slice(0, show).map((job) => (
             <div key={job._id} className="p-3 border rounded-2 my-3 bg-white">
               <div className="d-flex align-items-center justify-content-between">
                 <Link
@@ -142,13 +178,13 @@ const Linkjobs = () => {
         <div className="d-flex align-items-center justify-content g-1">
           <Button
             className="button-29 d-flex gap-1 rounded-5 me-2"
-            onClick={() => setPage((prev) => prev + 1)}
+            onClick={() => showMore()}
           >
             <PlusLg size={25} className="fw-bold" />
           </Button>
           <Button
             className="button-29 d-flex gap-1 rounded-5"
-            onClick={() => setPage((prev) => prev - 1)}
+            onClick={() => showLess()}
           >
             <DashLg size={25} />
           </Button>

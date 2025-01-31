@@ -37,7 +37,7 @@ const SingleCompany = ({ item }) => {
         </p>
         <Link
           to="/Jobs/detailes"
-          state={{ jobs: [item], job: item }}
+          state={{ jobs: jobs, job: item }}
           className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0"
         >
           Vedi di più

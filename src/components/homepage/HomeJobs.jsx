@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import Linkfoot from "./Linkfoot";
+import { useNavigate } from "react-router-dom";
 
 const HomeJobs = ({ searchQuery }) => {
   const [randomJobs, setRandomJobs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchJobs();
@@ -54,7 +56,7 @@ const HomeJobs = ({ searchQuery }) => {
             )}
           </ul>
         ))}
-        <Button className="w-100 rounded-5 pb-2" variant="outline-primary">
+        <Button className="w-100 rounded-5 pb-2" variant="outline-primary" onClick={() => navigate("/Jobs")}>
           Mostra altro
         </Button>
       </Card>

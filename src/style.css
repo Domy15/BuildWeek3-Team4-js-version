@@ -430,3 +430,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+.dropdown-toggle::after{
+  display: none;
+}
+
+.drop-h{
+  height: 70vh;
+}

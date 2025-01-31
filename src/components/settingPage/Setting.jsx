@@ -142,7 +142,12 @@ const Setting = () => {
                 person={lenght.favourites}
               />
             )}
-            {saved === 3 && ""}
+            {saved === 3 && (
+            <MidFavouriteSection
+              title="Aziende salvate"
+              company={lenght.favouritesJobs}
+            />
+          )}
           </Col>
         </Row>
       </div>

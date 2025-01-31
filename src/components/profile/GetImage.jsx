@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
-const GetImage = ({ query = "minimalism abstract backgrounds" }) => {
+const GetImage = ({ query = "minimalism abstract backgrounds", array }) => {
   const [photo, setPhoto] = useState(null);
 
   const ACCESS_KEY = `2XWbEqqkK6AerFu28tEnvVVgKHQ3Aj5KE2IShHT86dvRP9jcW7kGyEBG`;
@@ -41,7 +41,7 @@ const GetImage = ({ query = "minimalism abstract backgrounds" }) => {
     if (query) {
       pexelsPhotos();
     }
-  }, [query]);
+  }, [query,array]);
 
   return (
     <>

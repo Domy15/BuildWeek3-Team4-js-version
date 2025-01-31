@@ -17,7 +17,7 @@ const AsideDetailes = ({ job }) => {
           </p>
         </div>
         <hr />
-        <h2 className>{job.title}</h2>
+        <h2>{job.title}</h2>
         <div className="d-flex mb-4">
           <Geo size={25} className="iconLabel3 me-2" />
           <p className="m-0 fst-italic">{job.candidate_required_location}</p>

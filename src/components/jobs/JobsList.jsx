@@ -35,7 +35,6 @@ const JobsList = () => {
       if (response.ok) {
         const data = await response.json();
         setJobs(data.data);
-        console.log(data.data);
       } else {
         throw new Error("Errore nel recupero dati");
       }

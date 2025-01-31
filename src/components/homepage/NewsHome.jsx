@@ -136,8 +136,8 @@ const NewsHome = () => {
   return (
     <div>
       <Container className="classMargin">
-        <div className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
-          <Row className="px-3 mb-3 align-items-">
+        <div className="bg-white mb-5 p-3 rounded border border-1">
+          <Row className="px-3 mb-3">
             <Col xs={2} xl={1}>
               {profile && (
                 <Image
@@ -160,7 +160,7 @@ const NewsHome = () => {
             </Col>
             <Col xs={2} className="cursor-pointer z-1">
               <Button
-                className="cursor-pointer align-self-baseline z-3"
+                className="align-self-baseline z-3"
                 onClick={createPost}
                 disabled={!newPostText.trim()}
               >
@@ -168,7 +168,7 @@ const NewsHome = () => {
               </Button>
             </Col>
           </Row>
-          <Row>
+          <Row className="mx-3">
             <Col xs={5}>
               <div className="d-flex align-items-center btnsHomeProf">
                 <label

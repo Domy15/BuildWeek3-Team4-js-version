@@ -50,7 +50,7 @@ const JobCentral = () => {
   return (
     <>
       {show && (
-        <Container className="p-0 py-3 mb-3 bg-white rounded-3 border py-3 my-3">
+        <Container className="p-0 py-3 mb-3 bg-white rounded-3 border py-3 mb-3">
           <Row className="m-2 border-bottom">
             <Col>
               <div className="d-flex align-items-center">
@@ -84,7 +84,7 @@ const JobCentral = () => {
               </div>
             ))}
           </div>
-          <Row className="px-4">
+          <Row className="px-1 overflow-y-scroll overflow-x-hidden mx-1" style={{height: '50vh'}}>
             {array &&
               array.map((item) => {
                 return (

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 const GetImage = ({ query = "minimalism abstract backgrounds" }) => {
   const [photo, setPhoto] = useState(null);
-  console.log("query che arriva", query);
 
   const ACCESS_KEY = `2XWbEqqkK6AerFu28tEnvVVgKHQ3Aj5KE2IShHT86dvRP9jcW7kGyEBG`;
 
@@ -20,14 +19,6 @@ const GetImage = ({ query = "minimalism abstract backgrounds" }) => {
           },
         }
       );
-      console.log(
-        `https://api.pexels.com/v1/search?query=${encodeURIComponent(
-          query
-        )}&per_page=100&orientation=landscape`
-      );
-
-      // minimalist+abstract
-
       if (!response.ok) {
         throw new Error("Errore richiesta delle img");
       }

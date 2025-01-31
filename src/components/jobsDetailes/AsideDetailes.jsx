@@ -23,7 +23,7 @@ const AsideDetailes = ({ job }) => {
           <p className="m-0 fst-italic">{job.candidate_required_location}</p>
         </div>
         <div className="agencyImage">
-          <GetImage query="business workspace" />
+          <GetImage query="business workspace" array={job}/>
         </div>
         <hr />
         <Prova description={job.description} />

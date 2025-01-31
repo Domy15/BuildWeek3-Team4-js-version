@@ -100,7 +100,7 @@ const Activity = ({ param }) => {
         </button>
         <button
           className="btn btn-outline-secondary fw-bold rounded-5"
-          onClick={() => setChange(true)}
+          onClick={() => setChange(false)}
         >
           Commenti
         </button>

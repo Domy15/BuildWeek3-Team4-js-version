@@ -1,6 +1,8 @@
 const initialState = {
+  myProfile: {},
   user: {
     update: false,
+    update2: false,
     profile: {},
   },
   friends: [],
@@ -13,6 +15,12 @@ const initialState = {
 
 const mainReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SAVE_PROFILE":
+      return {
+        ...state,
+        myProfile: action.payload,
+      };
+
     case "FRIENDS":
       return {
         ...state,
@@ -28,6 +36,15 @@ const mainReducer = (state = initialState, action) => {
         },
       };
 
+    case "UPDATE2":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          update2: !state.user.update2,
+        },
+      };
+
     case "UPDATE":
       return {
         ...state,
@@ -37,16 +54,18 @@ const mainReducer = (state = initialState, action) => {
         },
       };
 
-      case "ADD_POST":
+    case "ADD_POST":
       return {
         ...state,
         interaction: {
           ...state.interaction,
-          favouritesPosts: state.interaction.favouritesPosts.concat(action.payload),
+          favouritesPosts: state.interaction.favouritesPosts.concat(
+            action.payload
+          ),
         },
       };
 
-      case "REMOVE_POST":
+    case "REMOVE_POST":
       return {
         ...state,
         interaction: {
@@ -76,6 +95,28 @@ const mainReducer = (state = initialState, action) => {
           }),
         },
       };
+
+      case "ADDJOB":
+        return {
+          ...state,
+          interaction: {
+            ...state.interaction,
+            favouritesJobs: state.interaction.favouritesJobs.concat(action.payload),
+          },
+        };
+  
+      case "REMOVEJOB":
+        return {
+          ...state,
+          interaction: {
+            ...state.interaction,
+            favouritesJobs: state.interaction.favouritesJobs.filter((item) => {
+              return action.payload !== item;
+            }),
+          },
+        };
+
+
 
     default:
       return state;

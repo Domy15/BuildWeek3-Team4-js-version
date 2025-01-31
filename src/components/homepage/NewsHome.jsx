@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { BlockquoteLeft, Calendar2, Images } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CardPost from "./CardPost";
+import { useDispatch, useSelector } from "react-redux";
 
 const NewsHome = () => {
   const [posts, setPosts] = useState([]);
@@ -12,6 +14,9 @@ const NewsHome = () => {
   const [showmore, setShowmore] = useState(6);
   const [imgPost, setImgPost] = useState();
   const [profile, setProfile] = useState();
+  const [update, setUpdate] = useState(false);
+  const update2 = useSelector((state) => state.user.update);
+  const dispatch = useDispatch();
 
   const API_URL = "https://striveschool-api.herokuapp.com/api/posts/";
   const AUTH_TOKEN =
@@ -30,6 +35,7 @@ const NewsHome = () => {
       if (response.ok) {
         const data = await response.json();
         setProfile(data);
+        dispatch({ type: "SAVE_PROFILE", payload: data });
       } else {
         throw new Error("errore nella fetch dei dati del tuo profilo");
       }
@@ -81,6 +87,7 @@ const NewsHome = () => {
       setPosts([newPost, ...posts]);
       setNewPostText("");
       addImgPost(newPost._id);
+      setUpdate(!update);
     } catch (error) {
       console.error("Error creating post:", error.message);
     }
@@ -119,22 +126,28 @@ const NewsHome = () => {
   };
 
   useEffect(() => {
-    fetchProfile();
     fetchPosts();
+  }, [update, update2]);
+
+  useEffect(() => {
+    fetchProfile();
   }, []);
 
   return (
-      <Container className="mt-4 mb-3">
+    <div>
+      <Container className="classMargin">
         <div className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
           <Row className="px-3 mb-3">
             <Col xs={2} xl={1}>
-              {profile && <Image
-                src={profile.image}
-                roundedCircle
-                className="me-3"
-                width={40}
-                height={40}
-              />}
+              {profile && (
+                <Image
+                  src={profile.image}
+                  roundedCircle
+                  className="me-3"
+                  width={40}
+                  height={40}
+                />
+              )}
             </Col>
             <Col xs={8} xl={9}>
               <Form.Control
@@ -195,17 +208,18 @@ const NewsHome = () => {
         {loading ? (
           <p>Loading posts...</p>
         ) : (
-          posts.slice(0, showmore).map((post) => (
-          <CardPost key={post._id} post={post} />
-        ))
-      )}
-      <div className="text-center mt-4">
-        <button className="btn btn-primary" onClick={handleShowMore}>
-          Show More
-        </button>
-      </div>
-    </Container>
-);
+          posts
+            .slice(0, showmore)
+            .map((post) => <CardPost key={post._id} post={post} />)
+        )}
+        <div className="text-center mt-4">
+          <button className="btn btn-primary mb-3" onClick={handleShowMore}>
+            Show More
+          </button>
+        </div>
+      </Container>
+    </div>
+  );
 };
 
 export default NewsHome;

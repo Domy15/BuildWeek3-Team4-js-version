@@ -1,13 +1,60 @@
+import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { BookmarkFill } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
+import MidFavouriteSection from "./MidFavouriteSection";
 
 const Favourites = () => {
+  const [selected, setSelected] = useState(0);
+  const lenght = useSelector((state) => state.interaction);
+
   return (
-    <Container className="border rounded-2 p-0 pt-3 mb-3 bg-white">
+    <Container className=" mb-3 ms-4 ">
       <Row className="">
-        <Col className="d-flex gap-3 align-items-center custom-border-bottom p-3" xs={12} md={3} >
-          <BookmarkFill size={25} className="custom-grey"/>
-          <h4 className="m-0 custom-grey"> I miei elementi</h4>
+        <Col className="d-flex flex-column bg-white p-0">
+          <div
+            className={`border-bottom m-0 d-flex align-items-center py-2 ${
+              selected === 1 ? "selected-border" : ""
+            }`}
+            style={{ cursor: "pointer" }}
+            onClick={() => setSelected(1)}
+          >
+            <p className="m-0">Post e articoli salvati</p>
+            <p className="p-0 m-0 ms-auto">{lenght.favouritesPosts.length}</p>
+          </div>
+          <div
+            className={`border-bottom m-0 d-flex align-items-center py-2 ${
+              selected === 2 ? "selected-border" : ""
+            }`}
+            style={{ cursor: "pointer" }}
+            onClick={() => setSelected(2)}
+          >
+            <p className="m-0">Profili salvati</p>
+            <p className="p-0 m-0 ms-auto">{lenght.favourites.length}</p>
+          </div>
+          <div
+            className={`m-0 d-flex align-items-center py-2 ${
+              selected === 3 ? "selected-border" : ""
+            }`}
+            style={{ cursor: "pointer" }}
+            onClick={() => setSelected(3)}
+          >
+            <p className="m-0">Aziende salvate</p>
+            <p className="p-0 m-0 ms-auto">{lenght.favouritesJobs.length}</p>
+          </div>
+        </Col>
+        <Col xs={12} className="">
+          {selected === 1 && (
+            <MidFavouriteSection
+              title="Post salvati"
+              post={lenght.favouritesPosts}
+            />
+          )}
+          {selected === 2 && (
+            <MidFavouriteSection
+              title="Profili salvati"
+              person={lenght.favourites}
+            />
+          )}
         </Col>
       </Row>
     </Container>

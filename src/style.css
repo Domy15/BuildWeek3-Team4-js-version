@@ -2,8 +2,25 @@ body {
   background-color: #f4f2ee;
 }
 
+.carouselComment {
+  width: auto !important;
+}
+
 .navbar-nav .dropdown-menu {
   position: absolute;
+}
+
+.modal-dialog {
+  top: 8%;
+}
+
+.navBarNew {
+  z-index: 1000000;
+}
+
+.classMargin {
+  margin-top: 6rem;
+  top: 10%;
 }
 
 .available-custom .dropdown-toggle::after {
@@ -15,15 +32,10 @@ body {
 }
 
 .z-custom {
-  z-index:-1;
+  z-index: 50;
 }
 
 /* profile info */
-
-.imgExp {
-  width: 3em;
-  height: 3em;
-}
 
 .pExp {
   font-size: 0.9em;
@@ -54,6 +66,11 @@ body {
   width: 100%;
 }
 
+.selected-border {
+  border-left: #2264a6 4px solid;
+  color: #2264a6;
+}
+
 .bckImageProfile {
   height: 300px;
 }
@@ -62,17 +79,93 @@ body {
   width: 150px;
   height: 150px;
   border: 5px solid white;
-  top: 250px;
-  left: 50px;
-  /* transform: translate(40px, -50px); */
+  top: 20%;
+  left: 6%;
 }
 
 .titleProfile {
-  margin-top: 2.8em;
+  margin-top: 1.8em;
 }
 
 .verifyBtn {
   border-style: dashed;
+}
+
+/* single experience */
+
+.btnShowExp {
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  outline: none;
+  padding: 8px 10px !important;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.btnShowExp:hover,
+.btnShowExp:focus {
+  background-color: #07c;
+}
+
+.btnShowExp:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
+}
+
+.btnShowExp:active {
+  background-color: #0064bd;
+  box-shadow: none;
+}
+
+/* form modify exp */
+.form-control:focus,
+.form-control {
+  box-shadow: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.213) !important;
+  background-color: transparent !important;
+  height: 3em !important;
+}
+
+.formExpSetting label {
+  font-size: 20px;
+}
+
+.form-check-input,
+.form-check-input:focus {
+  box-shadow: none !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(0, 0, 0, 0.213) !important;
+  height: 1.5em !important;
+  width: 1.5em !important;
+  margin-right: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px !important;
+}
+.form-check-input:checked[type="checkbox"] {
+  background-color: #c37c17 !important;
+}
+
+.textareaExpMod,
+.textareaExpMod:focus {
+  height: 15vh !important;
+}
+
+.imgAreaExpMod:focus,
+.imgAreaExpMod {
+  height: 2.3em !important;
 }
 
 /* modifyExperience */
@@ -94,7 +187,6 @@ body {
 .form-floating > .form-control:focus ~ label::after,
 .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
 .form-floating > .form-select ~ label::after {
-  background-color: #f4f2ee !important;
   padding: 0 !important;
 }
 
@@ -114,11 +206,34 @@ body {
   margin-bottom: 1em;
 }
 
-/* aside */
+/* comment section */
 
-.asideSection {
-  width: fit-content;
+.searchComment input,
+.searchComment input:focus,
+.searchComment input:-webkit-autofill,
+.searchComment input:-webkit-autofill:focus {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
 }
+
+.searchComment {
+  padding: 0.8em 1em !important;
+}
+
+.btnSectionComm {
+  white-space: nowrap;
+  min-width: fit-content;
+  margin: 0 3px !important;
+}
+
+.btnSectionComm:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+
+  cursor: pointer;
+}
+
+/* aside */
 
 .profileImageAside {
   width: 55px;
@@ -131,7 +246,8 @@ body {
   max-width: 400px;
 }
 
-.descriptionAside {
+.descriptionAside,
+.commentHomeSection {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -179,11 +295,100 @@ body {
   width: 100px;
   height: 100px;
   border: 5px solid white;
-  top: 100px;
+  top: 50px;
   left: 20px;
-  /* transform: translate(40px, -50px); */
 }
 
-.imageHome {
-  height: 150px;
+.pippo {
+  height: 13vh;
+}
+
+.pluto {
+  height: 21vh;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-select {
+  padding: 0 0.3em !important;
+  width: 150px;
+}
+
+.form-select:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.button-29 {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #0374b3 0,
+    #0374b3 100%
+  );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+}
+
+.button-29:focus {
+  box-shadow: #0374b3 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #0374b3 0 -3px 0 inset;
+}
+
+.button-29:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #0374b3 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-29:active {
+  box-shadow: #0374b3 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.button-71:before {
+  background-color: initial;
+  background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+  border-radius: 125px;
+  content: "";
+  opacity: 0.5;
+  transition: all 0.3s;
+}
+
+.button-71:hover {
+  box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
+    rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
+  transform: scale(1.05);
+}
+
+.agencyImage {
+  height: 30vh;
 }

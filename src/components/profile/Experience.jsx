@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 import SingleExperience from "./SingleExperience";
 import { Button } from "react-bootstrap";
 import { PencilFill } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const TOKEN =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
 
 const Experience = ({ param }) => {
-  const navigate = useNavigate();
   const [exp, setExp] = useState([]);
   const randomNumber = Math.floor(Math.random() * (4 - 2 + 1)) + 2;
   const [numExp, setNumExp] = useState(randomNumber);
+  // eslint-disable-next-line no-unused-vars
+  const [state, setState] = useState(2)
 
   const getExperience = async () => {
     const id = param || "67975ee416f6350015fecb97";
@@ -48,15 +49,13 @@ const Experience = ({ param }) => {
       <div className=" d-flex justify-content-between">
         <h4 className="pt-3 ps-3">Esperienza</h4>
         {!param && (
-          <Button
-            variant="transparent"
-            className="ms-auto"
-            onClick={() => {
-              navigate("/profile/setting/experiences");
-            }}
-          >
+          <Link
+          to="/profile/setting"
+          state={state}
+          className="ms-auto btn bg-transparent"
+        >
             <PencilFill size={25} />
-          </Button>
+          </Link>
         )}
       </div>
 

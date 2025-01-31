@@ -33,7 +33,7 @@ const SingleExpSettings = (props) => {
     setForm(!form);
   };
   return (
-    <Row className=" align-items-center custom-border-bottom">
+    <Row className=" align-items-center ">
       <Col xs={10}>
         {form && <SingleExperience exp={props.exp} />}
         {!form && (
@@ -44,7 +44,7 @@ const SingleExpSettings = (props) => {
           />
         )}
       </Col>
-      <Col className=" d-flex gap-4 justify-content-end">
+      <Col xs={2} className=" d-flex gap-4 justify-content-end">
         {form && <PencilFill size={30} onClick={() => formModify()} />}
         {form && (
           <Trash3Fill

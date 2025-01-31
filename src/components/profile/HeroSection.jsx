@@ -8,15 +8,20 @@ import {
   PersonFillAdd,
   PersonFillDash,
 } from "react-bootstrap-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import GetImage from "./GetImage";
 
 const HeroSection = ({ param }) => {
   const follow = useSelector((state) => state.interaction.favourites);
   const profile = useSelector((state) => state.user);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [work, setwork] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [state, setState] = useState({
+    setting: 0,
+    profile: 1,
+  });
 
   const fetchProfile = async () => {
     const id = param || "me";
@@ -46,12 +51,11 @@ const HeroSection = ({ param }) => {
       console.log(err);
     }
   };
-  const getRandom = Math.floor(Math.random() *(3-1+1)*1)
-
+  const getRandom = Math.floor(Math.random() * (3 - 1 + 1) * 1);
 
   useEffect(() => {
     fetchProfile();
-    setwork(getRandom)
+    setwork(getRandom);
   }, [param, profile.update]);
 
   if (error) {
@@ -63,157 +67,157 @@ const HeroSection = ({ param }) => {
   }
 
   return (
-    <div className="mt-5">
-      <div>
-        <div>
-          <div className="bg-light position-relative rounded bg-white border border-1">
-            {/* Profile Image */}
+    <div className="classMargin">
+      <div className="bg-light position-relative rounded bg-white border border-1">
+        {/* Profile Image */}
 
-            <img
-              src="https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
-              alt="background"
-              className="bckImageProfile img-fluid w-100 rounded-top"
-            />
-            <div className="relative">
-              <img
-                src={profile.profile.image}
-                alt="Profile"
-                className="rounded-circle profilePicture position-absolute "
-              />
-              {work === 1 && (
-                <img
-                  src="/public/Open.png"
-                  className="rounded-circle profilePicture position-absolute"
-                  style={{zIndex: '1000'}}
-                />
-              )}
-              {work === 2 && (
-                <img
-                  src="/public/Freelancer.png"
-                  className="rounded-circle profilePicture position-absolute"
-                  style={{zIndex: '1000'}}
-                />
-              )}
-            </div>
-            <div className="d-flex align-items-end">
-              <h1 className="fw-bold titleProfile mx-3">
-                {profile.profile.name} {profile.profile.surname}
-              </h1>
-              <Button
-                variant="link"
-                className="verifyBtn btn-light border-2 rounded-4 m-2 border-primary text-decoration-none"
-              >
-                Aggiungi badge di verifica
-              </Button>
-            </div>
-            <div className="p-3">
-              <p className="h5 fw-light mb-1 text-black fw-bold">
-                {profile.profile.title}
-              </p>
-              <p className="mb-2 text-muted">{profile.area}</p>
-              <div className="d-flex gap-2">
-                {param && (
-                  <>
-                    {!follow.includes(profile.profile) ? (
-                      <Button
-                        variant="primary"
-                        className="d-flex align-items-center"
-                        onClick={() => {
-                          dispatch({
-                            type: "ADD",
-                            payload: profile.profile,
-                          });
-                        }}
-                      >
-                        <PersonFillAdd size={20} className="me-1" />
-                        Segui
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="primary"
-                        className="d-flex align-items-center"
-                        onClick={() => {
-                          dispatch({
-                            type: "REMOVE",
-                            payload: profile.profile,
-                          });
-                        }}
-                      >
-                        <PersonFillDash size={20} className="me-1" />
-                        Smetti di seguire
-                      </Button>
-                    )}
-
-                    <Button variant="outline-secondary">Messaggio</Button>
-                  </>
-                )}
-
-                {!param && (
-                  <>
-                    <DropdownButton
-                      id="dropdown-basic-button"
-                      title="Disponibile per"
-                      className="available-custom"
-                    >
-                      <Dropdown>
-                        <Dropdown.Item onClick={() => setwork(1)}>
-                          <p className="fw-bold lh-1 p-0 m-0">
-                            Aperto a nuove disponibilità
-                          </p>
-                          <p>
-                            Questa opzione mostra ai recruiter e agli altri che
-                            sei disponibile a lavorare
-                          </p>
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          className=" dropdown-item"
-                          onClick={() => setwork(2)}
-                        >
-                          <p className="fw-bold lh-1 p-0 m-0">Freelancer</p>
-                          <p>
-                            Questa opzione è utile per consulenti, liberi
-                            professionisti e lavoratori autonomi
-                          </p>
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          className=" dropdown-item"
-                          onClick={() => setwork(0)}
-                        >
-                          <p className="fw-bold lh-1 p-0 m-0">
-                            Non sto cercando lavoro
-                          </p>
-                          <p>
-                            Questa opzione è utile se attualmente sei occupato e
-                            non stai cercando lavoro
-                          </p>
-                        </Dropdown.Item>
-                      </Dropdown>
-                    </DropdownButton>
-                    <Link to="" className="btn btn-outline-secondary">
-                      Modifica Profile
-                    </Link>
-                    <Link to="/profile/setting/preferiti" className="btn btn-outline-secondary">
-                      <BookmarkFill /> Elementi salvati
-                    </Link>
-                    <Button
-                      variant="transparent"
-                      className="ms-auto"
-                      onClick={() => {
-                        navigate("/profile/put");
-                      }}
-                    >
-                      <PencilFill size={25} />
-                    </Button>{" "}
-                  </>
-                )}
-              </div>
-            </div>
+        <div className="relative">
+          <div className="pluto">
+            <GetImage />
           </div>
-          <div className="p-3 border rounded-2 my-3 bg-white">
-            <h4 className="">Informazioni</h4>
-            <p>{profile.profile.bio}</p>
+          <img
+            src={profile.profile.image}
+            alt="Profile"
+            className="rounded-circle profilePicture position-absolute "
+          />
+          {work === 1 && (
+            <img
+              src="/public/Open.png"
+              className="rounded-circle profilePicture position-absolute"
+              style={{ zIndex: "1000" }}
+            />
+          )}
+          {work === 2 && (
+            <img
+              src="/public/Freelancer.png"
+              className="rounded-circle profilePicture position-absolute"
+              style={{ zIndex: "1000" }}
+            />
+          )}
+        </div>
+        <div className="d-flex align-items-end">
+          <h1 className="fw-bold titleProfile mx-3">
+            {profile.profile.name} {profile.profile.surname}
+          </h1>
+          <Button
+            variant="link"
+            className="verifyBtn btn-light border-2 rounded-4 m-2 border-primary text-decoration-none"
+          >
+            Aggiungi badge di verifica
+          </Button>
+        </div>
+        <div className="p-3">
+          <p className="h5 fw-light mb-1 text-black fw-bold">
+            {profile.profile.title}
+          </p>
+          <p className="mb-2 text-muted">{profile.area}</p>
+          <div className="d-flex gap-2">
+            {param && (
+              <>
+                {!follow.includes(profile.profile) ? (
+                  <Button
+                    variant="primary"
+                    className="d-flex align-items-center"
+                    onClick={() => {
+                      dispatch({
+                        type: "ADD",
+                        payload: profile.profile,
+                      });
+                    }}
+                  >
+                    <PersonFillAdd size={20} className="me-1" />
+                    Segui
+                  </Button>
+                ) : (
+                  <Button
+                    variant="primary"
+                    className="d-flex align-items-center"
+                    onClick={() => {
+                      dispatch({
+                        type: "REMOVE",
+                        payload: profile.profile,
+                      });
+                    }}
+                  >
+                    <PersonFillDash size={20} className="me-1" />
+                    Smetti di seguire
+                  </Button>
+                )}
+
+                <Button variant="outline-secondary">Messaggio</Button>
+              </>
+            )}
+
+            {!param && (
+              <>
+                <DropdownButton
+                  id="dropdown-basic-button"
+                  title="Disponibile per"
+                  className="available-custom"
+                >
+                  <Dropdown>
+                    <Dropdown.Item onClick={() => setwork(1)}>
+                      <p className="fw-bold lh-1 p-0 m-0">
+                        Aperto a nuove disponibilità
+                      </p>
+                      <p>
+                        Questa opzione mostra ai recruiter e agli altri che sei
+                        disponibile a lavorare
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className=" dropdown-item"
+                      onClick={() => setwork(2)}
+                    >
+                      <p className="fw-bold lh-1 p-0 m-0">Freelancer</p>
+                      <p>
+                        Questa opzione è utile per consulenti, liberi
+                        professionisti e lavoratori autonomi
+                      </p>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className=" dropdown-item"
+                      onClick={() => setwork(0)}
+                    >
+                      <p className="fw-bold lh-1 p-0 m-0">
+                        Non sto cercando lavoro
+                      </p>
+                      <p>
+                        Questa opzione è utile se attualmente sei occupato e non
+                        stai cercando lavoro
+                      </p>
+                    </Dropdown.Item>
+                  </Dropdown>
+                </DropdownButton>
+                <Link
+                  to="/profile/setting"
+                  state={state.setting}
+                  className="btn btn-outline-secondary"
+                >
+                  Modifica Profile
+                </Link>
+                <Link
+                  to="/profile/setting"
+                  state={state.setting}
+                  className="btn btn-outline-secondary"
+                >
+                  <BookmarkFill /> Elementi salvati
+                </Link>
+                <Link
+                  to="/profile/setting"
+                  state={state.profile}
+                  className="ms-auto btn bg-transparent"
+                >
+                  <PencilFill size={25} />
+                </Link>
+              </>
+            )}
           </div>
         </div>
+      </div>
+      <div className="p-3 border rounded-2 my-3 bg-white">
+        <h4 className="">Informazioni</h4>
+        <p>{profile.profile.bio}</p>
       </div>
     </div>
   );

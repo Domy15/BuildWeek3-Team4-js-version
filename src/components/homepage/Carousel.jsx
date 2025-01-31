@@ -37,6 +37,7 @@ function SamplePrevArrow(props) {
 const Carousel = ({ id }) => {
   const dispatch = useDispatch();
   const bntOption = [
+    "PEFFOZZA!",
     "Mi piace",
     "Geniale",
     "Suggerimenti Utili",

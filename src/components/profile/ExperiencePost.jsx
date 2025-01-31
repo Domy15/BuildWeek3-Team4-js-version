@@ -105,15 +105,6 @@ const ExperiencePost = (props) => {
               />
             </Form.Group>
           </Row>
-          <div className="mx-2">
-            <Form.Check
-              type="checkbox"
-              label="Attualmente ricopro questo incarico"
-              className="p-3"
-              height={20}
-              width={20}
-            />
-          </div>
           <div className="d-flex">
             <Form.Group as={Col} controlId="inizio" className="pe-3">
               <Form.Label>Data di inizio</Form.Label>

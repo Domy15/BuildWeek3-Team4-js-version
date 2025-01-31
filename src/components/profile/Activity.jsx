@@ -15,7 +15,7 @@ function SampleNextArrow(props) {
         display: "block",
         position: "absolute",
         top: "28%",
-        right: "-3%",
+        right: "0%",
       }}
       onClick={onClick}
     />
@@ -31,7 +31,7 @@ function SamplePrevArrow(props) {
         display: "block",
         position: "absolute",
         top: "28%",
-        left: "-3%",
+        left: "0%",
       }}
       onClick={onClick}
     />
@@ -105,7 +105,7 @@ const Activity = ({ param }) => {
           Commenti
         </button>
         {posts && !change && (
-          <Slider {...settings} className="mt-4 h-50">
+          <Slider {...settings} className="mt-4 h-50 px-4">
             {posts.map((post) => (
               <div key={post._id}>
                 <ActivityCardPost post={post} />

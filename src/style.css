@@ -431,14 +431,23 @@ body {
   background: #555;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6563e4d078e04b19814ce5261c9a3b76ca113b85
 .dropdown-toggle::after{
   display: none;
 }
 
 .drop-h{
+<<<<<<< HEAD
   height: 70vh;}
   
+=======
+  height: 70vh;
+}
+
+>>>>>>> 6563e4d078e04b19814ce5261c9a3b76ca113b85
 .elipses{
   display: -webkit-box;
   -webkit-line-clamp: 1;

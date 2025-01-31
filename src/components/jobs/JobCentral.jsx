@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { BookmarkDash, BookmarkPlus, Linkedin } from "react-bootstrap-icons";
+import { BookmarkDash, BookmarkPlus, Geo } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -52,8 +52,14 @@ const JobCentral = () => {
       <Row className="m-2 border-bottom">
         <Col>
           <div className="d-flex align-items-center">
-            <Linkedin className="me-2" />
-            <p className=" fw-bold fs-5 p-0 m-0">Ricerche Rapide</p>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+              alt="imageProfile"
+              width={30}
+              height={30}
+              className="rounded border shadow-sm me-3"
+            />
+            <p className="fw-medium text-dark m-0 h4">Ricerche Rapide</p>
           </div>
           <p className="text-muted"></p>
         </Col>
@@ -72,11 +78,15 @@ const JobCentral = () => {
         ))}
         {console.log(cat)}
       </div>
-      <Row className="px-3">
+      <Row className="px-4">
         {array &&
           array.map((item) => {
             return (
-              <Col key={item._id} xs={12} className="border-bottom py-3">
+              <Col
+                key={item._id}
+                xs={12}
+                className="p-3 border rounded-2 my-3 bg-white"
+              >
                 <div className="d-flex justify-content-between">
                   <h5 className="p-0 mb-2">{item.title}</h5>
                   {!jobs.includes(item) ? (
@@ -102,17 +112,24 @@ const JobCentral = () => {
                     </button>
                   )}
                 </div>
-                <p className="p-0 m-0">{item.company_name}</p>
-                <p className=" text-muted p-0 m-1">
-                  {item.candidate_required_location}
-                </p>
+                <p className="p-0 m-0 mb-2">{item.company_name}</p>
+                <div className="d-flex">
+                  <Geo size={25} className="iconLabel3" />
+                  <p className="p-0 ms-2 fst-italic">
+                    {item.candidate_required_location}
+                  </p>
+                </div>
                 <div className="d-flex justify-content-between">
                   <p className="p-0 m-0 opacity-50">
                     <small>
                       {new Date(item.publication_date).toLocaleDateString()}
                     </small>
                   </p>
-                  <Link to='/Jobs/detailes' state={{ jobs: array, job: item }} className="nav-link">
+                  <Link
+                    to="/Jobs/detailes"
+                    state={{ jobs: array, job: item }}
+                    className="text-decoration-underline nav-link"
+                  >
                     Dettagli
                   </Link>
                 </div>

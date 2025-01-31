@@ -4,6 +4,7 @@ import {
   Card,
   Dropdown,
   DropdownButton,
+  Form,
   Image,
   Modal,
 } from "react-bootstrap";
@@ -26,6 +27,8 @@ const CardPost = ({ post }) => {
   const [show, setShow] = useState(false);
   const [showPost, setShowPost] = useState(true);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showPut, setShowPut] = useState(false);
+  const [newPostText, setNewPostText] = useState("");
 
   const deletePost = async () => {
     try {
@@ -42,7 +45,34 @@ const CardPost = ({ post }) => {
       if (response.ok) {
         console.log("Post eliminato con successo");
       } else {
-        throw new Error("Errore nell'eliminazione dei post");
+        throw new Error("Errore nell'eliminazione del post");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const putPost = async () => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${post._id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text: newPostText }),
+        }
+      );
+      if (response.ok) {
+        console.log("Post modificato con successo");
+        setShowPut(false);
+        dispatch({ type: "UPDATE" });
+        console.log(newPostText);
+      } else {
+        throw new Error("Errore nella modifica del post");
       }
     } catch (error) {
       console.log(error);
@@ -95,6 +125,13 @@ const CardPost = ({ post }) => {
                       >
                         Nascondi
                       </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => {
+                          setShowPut(true);
+                        }}
+                      >
+                        Modifica post
+                      </Dropdown.Item>
                     </DropdownButton>
                     <XLg
                       size={20}
@@ -110,7 +147,12 @@ const CardPost = ({ post }) => {
                   <p className="p-0 m-0">{post.text}</p>
                 </div>
               </div>
-              {post.image && <img src={post.image} style={{ width: "100%", height: "50%"}} />}
+              {post.image && (
+                <img
+                  src={post.image}
+                  style={{ width: "100%", height: "50%" }}
+                />
+              )}
               <hr className="mx-3" />
               <div className="d-flex w-100 flex-wrap align-items-center justify-content-center">
                 <div className="d-flex align-items-center justify-content-center p-2 w-25">
@@ -162,7 +204,11 @@ const CardPost = ({ post }) => {
           </Card>
           <Modal show={showConfirm} onHide={() => setShowConfirm(false)}>
             <Modal.Header closeButton>
-              <Modal.Title className="d-flex align-items-center"><ExclamationLg className="text-danger" size={30} />ATTENZIONE<ExclamationLg className="text-danger" size={30} /></Modal.Title>
+              <Modal.Title className="d-flex align-items-center">
+                <ExclamationLg className="text-danger" size={30} />
+                ATTENZIONE
+                <ExclamationLg className="text-danger" size={30} />
+              </Modal.Title>
             </Modal.Header>
             {post.user._id === "67975ee416f6350015fecb97" ? (
               <Modal.Body>
@@ -182,6 +228,43 @@ const CardPost = ({ post }) => {
                     deletePost();
                     setShowConfirm(false);
                     dispatch({ type: "UPDATE" });
+                  }}
+                >
+                  Conferma
+                </Button>
+              )}
+            </Modal.Footer>
+          </Modal>
+          <Modal show={showPut} onHide={() => setShowPut(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title className="d-flex align-items-center">
+                <ExclamationLg className="text-danger" size={30} />
+                ATTENZIONE
+                <ExclamationLg className="text-danger" size={30} />
+              </Modal.Title>
+            </Modal.Header>
+            {post.user._id === "67975ee416f6350015fecb97" ? (
+              <Modal.Body>
+                <Form.Control
+                  type="text"
+                  placeholder="Inserisci la tua modifica..."
+                  value={newPostText}
+                  onChange={(e) => setNewPostText(e.target.value)}
+                  className="me-3 rounded-5 mb-3"
+                />
+              </Modal.Body>
+            ) : (
+              <Modal.Body>Non puoi modificare i post degli altri.</Modal.Body>
+            )}
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowPut(false)}>
+                Annulla
+              </Button>
+              {post.user._id === "67975ee416f6350015fecb97" && (
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    putPost();
                   }}
                 >
                   Conferma

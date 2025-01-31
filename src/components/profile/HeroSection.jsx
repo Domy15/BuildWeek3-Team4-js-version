@@ -114,7 +114,7 @@ const HeroSection = ({ param }) => {
           <div className="d-flex gap-2">
             {param && (
               <>
-                {!follow.includes(profile.profile) ? (
+                {!follow.some((e) => e._id === profile.profile._id) ? (
                   <Button
                     variant="primary"
                     className="d-flex align-items-center"

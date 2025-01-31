@@ -8,9 +8,8 @@ import {
   PersonFillAdd,
   PersonFillDash,
 } from "react-bootstrap-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import GetImage from "./GetImage";
-
 
 const HeroSection = ({ param }) => {
   const follow = useSelector((state) => state.interaction.favourites);
@@ -20,8 +19,8 @@ const HeroSection = ({ param }) => {
   const [work, setwork] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [state, setState] = useState({
-    setting:0,
-    profile:1,
+    setting: 0,
+    profile: 1,
   });
 
   const fetchProfile = async () => {
@@ -190,8 +189,11 @@ const HeroSection = ({ param }) => {
                     </Dropdown.Item>
                   </Dropdown>
                 </DropdownButton>
-                <Link to="/profile/setting"
-                  state={state.setting}className="btn btn-outline-secondary">
+                <Link
+                  to="/profile/setting"
+                  state={state.setting}
+                  className="btn btn-outline-secondary"
+                >
                   Modifica Profile
                 </Link>
                 <Link

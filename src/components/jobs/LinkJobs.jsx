@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import { Bookmark, DashLg, Geo, PlusLg } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 const Linkjobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -104,74 +106,86 @@ const Linkjobs = () => {
   return (
     <>
       <div className="bg-white p-3 rounded shadow-sm mt-4">
-        <h5 className="bi-linkedin fw-bold"> Altre offerte di lavoro per te</h5>
-        <p className="text-muted">
+        <div className="d-flex justify-content-center align-items-center mb-4">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+            alt="imageProfile"
+            width={50}
+            height={50}
+            className="rounded border shadow-sm me-3"
+          />
+          <h5 className="fw-bold text-dark m-0 h2">
+            Altre offerte di lavoro per te
+          </h5>
+        </div>
+        <hr />
+        <p>
           In base al tuo profilo, alle tue preferenze e ad attività come
           candidature, ricerche e salvataggi
         </p>
 
-        <div className="mb-3">
-          <label htmlFor="sortOrder" className="form-label">
-            Ordina per:
-          </label>
-          <select
-            id="sortOrder"
-            className="form-select w-50 bg-primary-subtle"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-          >
-            <option value="recenti">Più recenti</option>
-            <option value="meno_recenti">Meno recenti</option>
-          </select>
+        <div className="mb-3  d-flex align-items-center justify-content-end">
+          <p className="m-0 me-2"> Ordina per:</p>
+          <div className="d-flex position-relative">
+            <select
+              className="form-select ms-auto"
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
+              <option value="recenti">Più recenti</option>
+              <option value="meno_recenti">Meno recenti</option>
+            </select>
+          </div>
         </div>
 
         {loading && <p>Caricamento...</p>}
         {error && <p className="text-danger">Errore: {error}</p>}
-
-        <ul className="list-group ">
+        <div className="list-group">
           {jobs &&
-            show > 0 &&
-            jobs.slice(0, show).map((job) => (
-              <li key={job._id} className="list-group-item">
-                <h5 className="text-primary">{job.title}</h5>
-                <p style={{ lineHeight: "0.6" }}>{job.company_name}</p>
-                <p style={{ lineHeight: "0.5" }}>
-                  {" "}
+            show > 0 && jobs.slice(0, show).map((job) => (
+            <div key={job._id} className="p-3 border rounded-2 my-3 bg-white">
+              <div className="d-flex align-items-center justify-content-between">
+                <Link
+                  to="/Jobs/detailes"
+                  state={{ jobs: jobs, job: job }}
+                  className="fw-bold h6 m-0"
+                >
+                  {job.title}
+                </Link>
+                <Bookmark size={25} />
+              </div>
+              <p className="m-0 my-2">{job.company_name}</p>
+              <div className="d-flex align-items-center">
+                <Geo size={25} className="iconLabel3" />
+                <p className="m-0 fst-italic">
                   {job.candidate_required_location}
                 </p>
-                <div className="d-flex justify-content-between">
-                  <span className="text-muted" style={{ lineHeight: "0.5" }}>
-                    <small>
-                      {" "}
-                      {job.publication_date && (
-                        <p> {formatDate(job.publication_date)}</p>
-                      )}
-                    </small>
-                  </span>
-                  <a
-                    style={{ lineHeight: "0.2" }}
-                    href={job.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <small>Dettagli</small>
-                  </a>
+              </div>
+              <div className="mt-2 d-flex justify-content-between align-items-center text-muted">
+                <div>
+                  {job.publication_date && (
+                    <p> {formatDate(job.publication_date)}</p>
+                  )}
                 </div>
-              </li>
-            ))}
-        </ul>
-        <div className=" mt-3 ">
+                <Link to='/Jobs/detailes' state={{ jobs: jobs, job: job }} className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0">
+                  Vedi di più
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="d-flex align-items-center justify-content g-1">
           <Button
-            className="btn btn-primary rounded-5 "
+            className="button-29 d-flex gap-1 rounded-5 me-2"
             onClick={() => showMore()}
           >
-            Carica più risultati
+            <PlusLg size={25} className="fw-bold" />
           </Button>
           <Button
-            className="btn btn-primary rounded-5 ms-3"
+            className="button-29 d-flex gap-1 rounded-5"
             onClick={() => showLess()}
           >
-            Mostra meno
+            <DashLg size={25} />
           </Button>
         </div>
       </div>

@@ -48,15 +48,6 @@ const CardProfile = () => {
 
   return (
     <>
-      {/* <img
-        src={
-          bgImage ||
-          "https://800anniunipd.it/wp-content/uploads/2022/05/n_boscopini.jpg"
-        }
-        alt="background"
-        className="imageHome img-fluid w-100 rounded-top mb-3"
-        height={20}
-      /> */}
       <div className="position-relative">
         <div className="pippo">
           <GetImage setBgImage={setBgImage} className=" rounded-top mb-3" />

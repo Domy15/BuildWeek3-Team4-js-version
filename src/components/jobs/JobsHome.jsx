@@ -5,6 +5,7 @@ import JobsButton from "./JobsButton";
 import Linkjobs from "./Linkjobs";
 import JobCentral from "./JobCentral";
 
+
 const JobsHome = () => {
   return (
     <Container className="p-0 py-3">
@@ -19,8 +20,9 @@ const JobsHome = () => {
             </div>
           </Col>
           <Col md={6}>
-            <Linkjobs />
+            {" "}
             <JobCentral/>
+            <Linkjobs />
           </Col>
           <Col md={3}>
             <div className="sticky-top z-custom ">

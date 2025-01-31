@@ -32,7 +32,7 @@ const ActivityCardPost = ({ post }) => {
 
   return (
     <>
-      <Card key={post._id} className="mb-4 mx-2" style={{height: "380px"}}>
+      <Card key={post._id} className="mb-4 mx-2" style={{height: "400px"}}>
         <Card.Body className="p-0">
           <div className="px-3 pt-3">
             <div className="d-flex align-items-center mb-3 justify-content-between">
@@ -72,11 +72,11 @@ const ActivityCardPost = ({ post }) => {
               </div>
             </div>
             <div className="bg-white p-2">
-              <p className="p-0 m-0">{post.text}</p>
+              <p className="p-0 m-0 elipses">{post.text}</p>
             </div>
           </div>
           {post.image && (
-            <img src={post.image} style={{ width: "100%", height: "258px", borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px' }} />
+            <img src={post.image} style={{ width: "100%", height: "280px", borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px' }} />
           )}
         </Card.Body>
       </Card>

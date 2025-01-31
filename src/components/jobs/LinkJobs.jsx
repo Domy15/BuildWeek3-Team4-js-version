@@ -71,15 +71,15 @@ const Linkjobs = () => {
   return (
     <>
       <div className="bg-white p-3 rounded shadow-sm mt-4">
-        <div className="d-flex justify-content-center align-items-center mb-4">
+        <div className="d-flex align-items-center mb-4">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
             alt="imageProfile"
-            width={50}
-            height={50}
+            width={30}
+            height={30}
             className="rounded border shadow-sm me-3"
           />
-          <h5 className="fw-bold text-dark m-0 h2">
+          <h5 className="fw-medium text-dark m-0 h4">
             Altre offerte di lavoro per te
           </h5>
         </div>
@@ -132,7 +132,11 @@ const Linkjobs = () => {
                     <p> {formatDate(job.publication_date)}</p>
                   )}
                 </div>
-                <Link to='/Jobs/detailes' state={{ jobs: jobs, job: job }} className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0">
+                <Link
+                  to="/Jobs/detailes"
+                  state={{ jobs: jobs, job: job }}
+                  className="button-71 btn btn-primary rounded-4 px-2 py-1 m-0"
+                >
                   Vedi di più
                 </Link>
               </div>

@@ -286,6 +286,20 @@ body {
   font-size: 13px;
 }
 
+.btnsHomeProf {
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btnsHomeProf:hover {
+  background-color: rgb(203, 201, 201);
+  transform: scale(1.1);
+  padding: 0.3em;
+  border-radius: 20px;
+}
+
 .titleHome {
   background-color: #f4f2ee;
   transform: scale(0.85) translateY(-2.8rem) translateX(1rem);
@@ -391,4 +405,8 @@ body {
 
 .agencyImage {
   height: 30vh;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
 }

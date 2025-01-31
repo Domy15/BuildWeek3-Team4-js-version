@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Badge } from "react-bootstrap";
 import {
-  Search,
+  
   HouseDoorFill,
   PeopleFill,
   BriefcaseFill,
@@ -16,9 +16,8 @@ import {
   PlayBtnFill,
   PlusLg,
 } from "react-bootstrap-icons";
-
+import SearchJobs from "./search/SearchJobs";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -71,16 +70,9 @@ function NavBarNew() {
               className="ms-3"
             />
           </Link>
-          <Form className="d-flex align-items-center ">
-            <Search size={25} className="mx-3" />
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2 d-none d-lg-flex"
-              aria-label="Search"
-            />
-          </Form>
+          <SearchJobs/>
         </div>
+        
         <div>
           <Nav className=" d-flex align-items-center flex-row">
             <Link to="/" className="position-relative mx-1 nav-link">

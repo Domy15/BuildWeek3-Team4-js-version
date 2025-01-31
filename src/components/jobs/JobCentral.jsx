@@ -53,7 +53,7 @@ const JobCentral = () => {
         <Container className="p-0 py-3 mb-3 bg-white rounded-3 border py-3 my-3">
           <Row className="m-2 border-bottom">
             <Col>
-              <div className="d-flex align-items-center mb-1 pb-1">
+              <div className="d-flex align-items-center">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
                   alt="imageProfile"
@@ -71,11 +71,11 @@ const JobCentral = () => {
               </div>
             </Col>
           </Row>
-          <div className=" d-flex flex-wrap gap-2 mx-2 mt-3">
+          <div className=" d-flex flex-wrap gap-2 mx-2 my-3">
             {categories.map((item, i) => (
               <div
                 key={i}
-                className="btn bg-transparent border border-1 border-black rounded-5 text-center carouselComment"
+                className="btn bg-transparent border border-1 border-black rounded-5 text-center carouselComment cursor-pointer btnRapidSearch"
                 onClick={() => {
                   setCat(item);
                 }}

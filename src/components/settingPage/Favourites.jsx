@@ -38,7 +38,7 @@ const Favourites = () => {
             style={{ cursor: "pointer" }}
             onClick={() => setSelected(3)}
           >
-            <p className="m-0">Aziende salvate</p>
+            <p className="m-0">Aziende</p>
             <p className="p-0 m-0 ms-auto">{lenght.favouritesJobs.length}</p>
           </div>
         </Col>

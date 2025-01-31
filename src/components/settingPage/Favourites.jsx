@@ -55,6 +55,12 @@ const Favourites = () => {
               person={lenght.favourites}
             />
           )}
+          {selected === 3 && (
+            <MidFavouriteSection
+              title="Aziende salvate"
+              company={lenght.favouritesJobs}
+            />
+          )}
         </Col>
       </Row>
     </Container>

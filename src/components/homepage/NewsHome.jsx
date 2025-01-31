@@ -136,7 +136,7 @@ const NewsHome = () => {
   return (
     <div>
       <Container className="classMargin">
-        <div className="align-items-center justify-content-center bg-white mb-5 p-3 rounded border border-1">
+        <div className="bg-white mb-5 p-3 rounded border border-1">
           <Row className="px-3 mb-3">
             <Col xs={2} xl={1}>
               {profile && (

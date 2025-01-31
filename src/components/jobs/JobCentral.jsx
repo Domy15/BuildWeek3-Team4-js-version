@@ -47,7 +47,10 @@ const JobCentral = () => {
   }, [cat]);
 
   return (
-    <Container className="p-0 py-3 mb-3 bg-white rounded-3 border py-3 my-3">
+    <Container
+      className="p-0 py-3 mb-3 bg-white rounded-3 border py-3 my-3 overflow-y-scroll overflow-x-hidden"
+      style={{ height: "70vh", width: "fit-content" }}
+    >
       <Row className="m-2 border-bottom">
         <Col>
           <div className="d-flex align-items-center">

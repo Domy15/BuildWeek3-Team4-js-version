@@ -2,8 +2,9 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import CardProfile from "../homepage/CardProfile";
 import Linkfoot from "../homepage/Linkfoot";
 import JobsButton from "./JobsButton";
-import Linkjobs from "./Linkjobs";
+import JobsList from "./JobsList";
 import JobCentral from "./JobCentral";
+
 
 
 const JobsHome = () => {
@@ -22,7 +23,7 @@ const JobsHome = () => {
           <Col md={6}>
             {" "}
             <JobCentral/>
-            <Linkjobs />
+            <JobsList />
           </Col>
           <Col md={3}>
             <div className="sticky-top z-custom ">

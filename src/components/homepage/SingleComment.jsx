@@ -1,18 +1,18 @@
-import {
-  ClockFill,
-  ThreeDots,
-} from "react-bootstrap-icons";
+import { ThreeDots } from "react-bootstrap-icons";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
 const SingleComment = ({ comment }) => {
-  const dispatch= useDispatch()
+  const dispatch = useDispatch();
   const date = new Date(comment.createdAt);
   const todayDate = new Date();
-  const hourDifference = (todayDate - date) / 1000 / 3600;
-  const hoursAgo = Math.floor(hourDifference);
-  const minutesAgo = Math.floor((hourDifference - hoursAgo) * 60);
-  
+  const diffInSeconds = Math.max(
+    0,
+    Math.floor((todayDate.getTime() - date.getTime()) / 1000)
+  );
+  const hoursAgo = Math.floor(diffInSeconds / 3600);
+  const minutesAgo = Math.floor((diffInSeconds % 3600) / 60);
+  const timeAgo = hoursAgo > 0 ? `${hoursAgo} h` : `${minutesAgo} m`;
 
   const deleteComment = async () => {
     if (comment.author !== "Pablo") {
@@ -32,8 +32,8 @@ const SingleComment = ({ comment }) => {
       if (response.ok) {
         console.log("commento eliminato");
         dispatch({
-          type: 'UPDATE2',
-        })
+          type: "UPDATE2",
+        });
       } else {
         throw new Error("errore nell'eleliminazione del commento");
       }
@@ -54,23 +54,28 @@ const SingleComment = ({ comment }) => {
         />
 
         <div className="d-flex flex-column" style={{ width: "400px" }}>
-          <h6 className="m-0 fw-bold">{comment.author.split('@').slice(0, 1)}</h6>
+          <div className="d-flex align-items-center">
+            <h6 className="m-0 fw-bold">
+              {comment.author.split("@").slice(0, 1)}
+            </h6>
+            <p className="m-0 p-0 ms-2 opacity-75" style={{ fontSize: "0.8em" }}>
+               {timeAgo}
+            </p>
+          </div>
           <p className="m-0 commentHomeSection">{comment.comment}</p>
 
           <p className="m-0 text-secondary fw-medium">Consiglia | Rispondi</p>
         </div>
-        <div className="align-self-start">
-          <div className="d-flex align-items-center gap-1">
-            <ClockFill size={10} />
-            <p className="m-0" style={{fontSize: '0.8em'}}>{hoursAgo > 1 ? `${hoursAgo} ore fa` : (hoursAgo > 0 ? `${hoursAgo} ora fa` : (minutesAgo > 1 ? `${minutesAgo} minuti fa` : `${minutesAgo} minuto fa`))}</p>
+        <div className="align-self-start timeDiv">
+          <div className="text-end">
             <DropdownButton
-          className="available-custom"
-          variant="trasparent"
-          id="dropdown-basic-button"
-          title={<ThreeDots className="text-black" />}
-        >
-          <Dropdown.Item onClick={deleteComment}>Elimina</Dropdown.Item>
-        </DropdownButton>
+              className="available-custom"
+              variant="trasparent"
+              id="dropdown-basic-button"
+              title={<ThreeDots className="text-black" />}
+            >
+              <Dropdown.Item onClick={deleteComment}>Elimina</Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
       </div>

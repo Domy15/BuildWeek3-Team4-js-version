@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { Bookmark, DashLg, Geo, PlusLg } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
-const Linkjobs = () => {
+const JobsList = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -162,4 +162,4 @@ const Linkjobs = () => {
   );
 };
 
-export default Linkjobs;
+export default JobsList;

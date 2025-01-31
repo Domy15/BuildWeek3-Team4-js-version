@@ -73,7 +73,7 @@ const HeroSection = ({ param }) => {
 
         <div className="relative">
           <div className="pluto">
-            <GetImage query="minimalism+abstract" />
+            <GetImage query="minimalism abstract backgrounds" array={profile} />
           </div>
           <img
             src={profile.profile.image}

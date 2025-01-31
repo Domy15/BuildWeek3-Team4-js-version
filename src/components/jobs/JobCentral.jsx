@@ -52,7 +52,7 @@ const JobCentral = () => {
       {show && (
         <Container className="p-0 py-3 mb-3 bg-white rounded-3 border py-3 mb-3">
           <Row className="m-2 border-bottom">
-            <Col>
+            <Col className="mb-3">
               <div className="d-flex align-items-center">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"

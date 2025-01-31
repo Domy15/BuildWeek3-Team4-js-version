@@ -1,21 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
-const GetImage = () => {
+const GetImage = ({ query = "minimalism abstract backgrounds" }) => {
   const [photo, setPhoto] = useState(null);
+  console.log("query che arriva", query);
 
   const ACCESS_KEY = `2XWbEqqkK6AerFu28tEnvVVgKHQ3Aj5KE2IShHT86dvRP9jcW7kGyEBG`;
 
   const pexelsPhotos = async () => {
     try {
       const response = await fetch(
-        `https://api.pexels.com/v1/search?query=minimalist+abstract&per_page=100&orientation=landscape`,
+        `https://api.pexels.com/v1/search?query=${encodeURIComponent(
+          query
+        )}&per_page=100&orientation=landscape`,
+
         {
           headers: {
             Authorization: ACCESS_KEY,
           },
         }
       );
+      console.log(
+        `https://api.pexels.com/v1/search?query=${encodeURIComponent(
+          query
+        )}&per_page=100&orientation=landscape`
+      );
+
+      // minimalist+abstract
 
       if (!response.ok) {
         throw new Error("Errore richiesta delle img");
@@ -36,8 +47,10 @@ const GetImage = () => {
   };
 
   useEffect(() => {
-    pexelsPhotos();
-  }, []);
+    if (query) {
+      pexelsPhotos();
+    }
+  }, [query]);
 
   return (
     <>

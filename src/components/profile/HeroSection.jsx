@@ -73,7 +73,7 @@ const HeroSection = ({ param }) => {
 
         <div className="relative">
           <div className="pluto">
-            <GetImage />
+            <GetImage query="minimalism+abstract" />
           </div>
           <img
             src={profile.profile.image}

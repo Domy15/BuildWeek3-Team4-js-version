@@ -58,7 +58,7 @@ const JobsList = () => {
 
   return (
     <>
-      <div className="bg-white p-3 rounded shadow-sm mt-4">
+      <div className="bg-white p-3 rounded shadow-sm ">
         <div className="d-flex align-items-center mb-4">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"

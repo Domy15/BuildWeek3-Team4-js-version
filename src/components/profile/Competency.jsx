@@ -171,7 +171,6 @@ const Competency = ({param}) => {
                 className=" show-more-btn"
                 onClick={showMore}
               >
-                {" "}
                 Mostra tutte le competenze
               </Button>
             )}

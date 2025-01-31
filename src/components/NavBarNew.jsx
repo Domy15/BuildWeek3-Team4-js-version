@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Badge } from "react-bootstrap";
 import {
-  
   HouseDoorFill,
   PeopleFill,
   BriefcaseFill,
@@ -26,8 +25,10 @@ import { Link, useNavigate } from "react-router-dom";
 function NavBarNew() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState();
+  
   const AUTH_TOKEN =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3NWVlNDE2ZjYzNTAwMTVmZWNiOTciLCJpYXQiOjE3Mzc5NzM0NzYsImV4cCI6MTczOTE4MzA3Nn0.PGJBXtnIkXE6LDZ33f1lboEIywMNz9bqJZVEcvQw_Qc";
+
 
   const fetchProfile = async () => {
     try {
@@ -70,9 +71,9 @@ function NavBarNew() {
               className="ms-3"
             />
           </Link>
-          <SearchJobs/>
+          <SearchJobs />
         </div>
-        
+
         <div>
           <Nav className=" d-flex align-items-center flex-row">
             <Link to="/" className="position-relative mx-1 nav-link">
@@ -94,7 +95,12 @@ function NavBarNew() {
                 <p className="m-0 d-none d-lg-block">Rete</p>
               </div>
             </Nav.Link>
-            <Nav.Link className="text-center mx-1" onClick={() => {navigate("/Jobs")}}>
+            <Nav.Link
+              className="text-center mx-1"
+              onClick={() => {
+                navigate("/Jobs");
+              }}
+            >
               <div className="d-flex flex-column align-items-center">
                 <BriefcaseFill size={25} />
                 <p className="m-0 d-none d-lg-block">Lavoro</p>
@@ -133,25 +139,28 @@ function NavBarNew() {
 
               <div className="mx-2">
                 <NavDropdown
-                  title="Profile"
+                  title="Profilo"
                   id="basic-nav-dropdown"
                   align="end"
                   className=" dropdown-menu-end d-none d-lg-block"
                 >
                   <div className="d-flex align-items-center p-3">
                     {profile && (
-                      <img
-                        src={profile.image}
-                        alt="Profilo"
-                        className="rounded-circle"
-                        width="70"
-                        height="70"
-                      />
+                      <>
+                        <img
+                          src={profile.image}
+                          alt="Profilo"
+                          className="rounded-circle"
+                          width="70"
+                          height="70"
+                        />
+
+                        <div className="ms-4">
+                          <h5>{profile.name} {profile.surname}</h5>
+                          <p className="m-0">{profile.title}</p>
+                        </div>
+                      </>
                     )}
-                    <div className="ms-4">
-                      <h5>Your Profile</h5>
-                      <p className="m-0">Your description</p>
-                    </div>
                   </div>
                   <Container>
                     <Link
@@ -178,7 +187,8 @@ function NavBarNew() {
                   <div>
                     <h4 className="ps-3">Gestisci</h4>
                     <NavDropdown.Item>Post e attività</NavDropdown.Item>
-                    <NavDropdown.Item>
+                    <NavDropdown.Item
+                    onClick={()=>{navigate("/jobs")}}>
                       Account per la pubblicazione di offerte lavorative
                     </NavDropdown.Item>
                     <NavDropdown.Item>Lingua</NavDropdown.Item>

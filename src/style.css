@@ -286,17 +286,17 @@ body {
   font-size: 13px;
 }
 
-.btnsHomeProf {
+.btnsHomeProf,
+.btnRapidSearch {
   border: none;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btnsHomeProf:hover {
-  background-color: rgb(203, 201, 201);
+.btnsHomeProf:hover,
+.btnRapidSearch:hover {
   transform: scale(1.1);
-  padding: 0.3em;
   border-radius: 20px;
 }
 

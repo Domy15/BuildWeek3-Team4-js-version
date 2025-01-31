@@ -63,11 +63,11 @@ const JobCentral = () => {
           <p className="text-muted"></p>
         </Col>
       </Row>
-      <div className=" d-flex flex-wrap gap-2 mx-2 my-3">
+      <div className=" d-flex flex-wrap gap-2 mx-2 my-3 ">
         {categories.map((item, i) => (
           <div
             key={i}
-            className="btn bg-transparent border border-1 border-black rounded-5 text-center carouselComment"
+            className="btn bg-transparent border border-1 border-black rounded-5 text-center carouselComment cursor-pointer btnRapidSearch"
             onClick={() => {
               setCat(item);
             }}

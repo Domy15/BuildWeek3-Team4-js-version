@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 const Linkjobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -7,7 +8,11 @@ const Linkjobs = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(0);
   const [sortOrder, setSortOrder] = useState("recenti");
+  const [show, setShow] = useState(5);
+  const location = useLocation();
+  const query = location.state;
 
+  console.log(query);
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
     return date.toLocaleString({
@@ -21,7 +26,24 @@ const Linkjobs = () => {
     });
   };
 
-  const fetchJobs = async () => {
+  const fetchquery = async () => {
+    try {
+      const response = await fetch(
+        `https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setJobs(data.data);
+        console.log(data.data);
+      } else {
+        throw new Error("Errore nel recupero dati");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+ const fetchJobs = async () => {
     try {
       const response = await fetch(
         `https://strive-benchmark.herokuapp.com/api/jobs?limit=3&offset=${
@@ -43,10 +65,10 @@ const Linkjobs = () => {
           (a, b) => new Date(a.publication_date) - new Date(b.publication_date)
         );
       }
-
       setJobs((prevJobs) =>
         page === 0 ? sortedJobs : [...prevJobs, ...sortedJobs]
       );
+
       setLoading(false);
     } catch (err) {
       setError(err.message);
@@ -54,17 +76,30 @@ const Linkjobs = () => {
     }
   };
 
+  const showMore = () => {
+    setShow(show + 3);
+  };
+
+  const showLess = () => {
+    setShow(show - 3);
+  };
+  console.log(jobs.length);
+
   useEffect(() => {
+    fetchquery();
+  }, [query]);
+
+  {/*useEffect(() => {
     setJobs([]);
     setPage(0);
-    fetchJobs();
+    //fetchJobs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortOrder]);
 
   useEffect(() => {
-    fetchJobs();
+    //fetchJobs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page]);*/}
 
   return (
     <>
@@ -94,45 +129,47 @@ const Linkjobs = () => {
         {error && <p className="text-danger">Errore: {error}</p>}
 
         <ul className="list-group ">
-          {jobs.map((job) => (
-            <li key={job._id} className="list-group-item">
-              <h5 className="text-primary">{job.title}</h5>
-              <p style={{ lineHeight: "0.6" }}>{job.company_name}</p>
-              <p style={{ lineHeight: "0.5" }}>
-                {" "}
-                {job.candidate_required_location}
-              </p>
-              <div className="d-flex justify-content-between">
-                <span className="text-muted" style={{ lineHeight: "0.5" }}>
-                  <small>
-                    {" "}
-                    {job.publication_date && (
-                      <p> {formatDate(job.publication_date)}</p>
-                    )}
-                  </small>
-                </span>
-                <a
-                  style={{ lineHeight: "0.2" }}
-                  href={job.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <small>Dettagli</small>
-                </a>
-              </div>
-            </li>
-          ))}
+          {jobs &&
+            show > 0 &&
+            jobs.slice(0, show).map((job) => (
+              <li key={job._id} className="list-group-item">
+                <h5 className="text-primary">{job.title}</h5>
+                <p style={{ lineHeight: "0.6" }}>{job.company_name}</p>
+                <p style={{ lineHeight: "0.5" }}>
+                  {" "}
+                  {job.candidate_required_location}
+                </p>
+                <div className="d-flex justify-content-between">
+                  <span className="text-muted" style={{ lineHeight: "0.5" }}>
+                    <small>
+                      {" "}
+                      {job.publication_date && (
+                        <p> {formatDate(job.publication_date)}</p>
+                      )}
+                    </small>
+                  </span>
+                  <a
+                    style={{ lineHeight: "0.2" }}
+                    href={job.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <small>Dettagli</small>
+                  </a>
+                </div>
+              </li>
+            ))}
         </ul>
         <div className=" mt-3 ">
           <Button
             className="btn btn-primary rounded-5 "
-            onClick={() => setPage((prev) => prev + 1)}
+            onClick={() => showMore()}
           >
             Carica più risultati
           </Button>
           <Button
             className="btn btn-primary rounded-5 ms-3"
-            onClick={() => setPage((prev) => prev - 1)}
+            onClick={() => showLess()}
           >
             Mostra meno
           </Button>

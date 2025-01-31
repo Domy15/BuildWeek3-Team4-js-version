@@ -1,6 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import SinglePost from "./SinglePost";
 import SinglePerson from "./SinglePerson";
+import SingleCompany from "./SingleCompany";
 
 const MidFavouriteSection = (props) => {
   return (
@@ -19,7 +20,9 @@ const MidFavouriteSection = (props) => {
               ? props.person.map((item) => {
                   return <SinglePerson key={item._id} post={item} />;
                 })
-              : ""}
+              : props.company.map((item) => {
+                return <SingleCompany key={item._id} item={item} />;
+              })}
           </Col>
         </Row>
       </Container>
